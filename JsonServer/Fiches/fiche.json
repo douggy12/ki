@@ -1,0 +1,9 @@
+{
+  "fiche": [
+    {"userId":1,"nom":"Nom1","prenom":"prenom1","dateN":"1980/01/21","equipe":"1","poste":"poste1"},
+	{"userId":2,"nom":"Nom2","prenom":"prenom2","dateN":"1980/02/22","equipe":"1","poste":"poste2"},
+    {"userId":3,"nom":"Nom3","prenom":"prenom3","dateN":"1980/03/23","equipe":"1","poste":"poste3"},
+	{"userId":4,"nom":"Nom4","prenom":"prenom4","dateN":"1980/04/24","equipe":"1","poste":"poste4"},
+	{"userId":5,"nom":"Nom5","prenom":"prenom5","dateN":"1980/05/25","equipe":"1","poste":"poste5"}
+]
+  }

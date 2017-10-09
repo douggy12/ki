@@ -1,0 +1,77 @@
+
+<div class="box box-primary form-group col-md-6">
+            <!-- <div class="box-header with-border">
+              <h3 class="box-title pull-center">Création d'un fiche personne</h3>
+            </div> -->
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" (ngSubmit)="onSubmit()">
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="inputNom">Nom</label>
+                  <input type="text" class="form-control" disabled="true" [(ngModel)]="fiche.nom" name="fiche.nom" placeholder="Enter le nom">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPrenom">Prénom</label>
+                  <input type="text" class="form-control" disabled="true" [(ngModel)]="fiche.prenom" name="fiche.prenom" placeholder="Enter le prénom">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputFonction">Fonction</label>
+                  <input type="text" class="form-control" disabled="true" [(ngModel)]="fiche.poste" name="fiche.poste" placeholder="Enter le prénom">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEquipe">Equipe</label>
+                  <input type="text" class="form-control" disabled="true" [(ngModel)]="fiche.equipe" name="fiche.Equipe" placeholder="Enter le prénom">
+                </div>
+                
+                <div class="form-group">
+                  <label>Date de naissance</label>
+                  <input type="date" class="form-control pull-right" disabled="true" [(ngModel)]="fiche.dateN" name="fiche.dateN" id="datepicker">
+                </div>
+
+                <div class="form-group">
+                  <label>Parcours Sodifrance : </label>
+                  <div *ngFor="let item of fiche.parcours; let i = index" [attr.data-index]="i">
+                      <div class="text-center">{{item}}<i class="fa fa-fw fa-remove" role="button" (click)="supprimerEquipe(i)"></i></div>
+                  </div>
+                  <div class="text-center">
+                      <select [(ngModel)]="selectedEquipe" name="selectedEquipe" >
+                          <option *ngFor="let equipe of equipes" [value]="equipe.equipeLbl">
+                              {{equipe.equipeLbl}}
+                          </option>
+                      </select>
+                  <i class="fa fa-fw fa-plus-circle" role="button" (click)="ajouterEquipe(selectedEquipe)"></i>
+                   </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEnfant">Nombre enfants</label>
+                  <input type="number" id="inputEnfant" class="form-control bfh-number" [(ngModel)]="fiche.nbrEnfant" name="fiche.nbrEnfant" data-min="0" data-max="10" data-wrap="true">
+                </div>
+
+                <div class="form-group box box-widget widget-user-2">
+                  <div class="widget-user-header">
+                    <div class="widget-user-image">
+                      <img class="img-circle" src="../../../assets/img/user1.jpg" alt="photo">
+                    </div>
+                    <div class="pull-right">
+                      <label for="inputPhoto">Photo</label>
+                      <input type="file" id="inputPhoto">
+                      <p class="help-block">Format JPEG ou PNG,4x5,240x300</p>
+                    </div>
+                  </div>
+                </div>
+
+                
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer pull-right">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+              </div>
+            </form>
+          </div>

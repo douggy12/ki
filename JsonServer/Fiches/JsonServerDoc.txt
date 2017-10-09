@@ -1,0 +1,10 @@
+Json SERVER 
+
+
+1 - Install : 
+	npm install -g json-server
+
+2 - Creat json file 
+
+3 - Start Server :
+	json-server customers.json
