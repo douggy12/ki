@@ -5,3 +5,5 @@ mts/src/dist/
 mts/save.git/
 mts/save.gitignore
 mts/src/bootstrap/
+/mts/nbproject/private/
+mts/nbproject/
