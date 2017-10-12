@@ -1,4 +1,4 @@
-MTS_WSPACE/
+
 mts/node_modules/
 mts/src/plugins/
 mts/src/dist/
@@ -7,3 +7,7 @@ mts/save.gitignore
 mts/src/bootstrap/
 /mts/nbproject/private/
 mts/nbproject/
+MTS_WSPACE/.metadata/
+MTS_WSPACE/.recommenders/
+MTS_WSPACE/MTS_BACKEND/.settings/
+MTS_WSPACE/Servers/
