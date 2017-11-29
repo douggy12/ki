@@ -1,0 +1,39 @@
+<!-- Pilote -->
+<div *ngIf="team && team.pilote">
+  <h2 class="page-header">Pilote</h2>
+  <div class="row pilote-type">
+    <a href="#" data-toggle="modal" data-target="#user-modal">
+      <div class="col-lg-offset-4 col-lg-4">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-green">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/img/user7-128x128.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">{{ team.pilote.prenom }} {{ team.pilote.nom }}</h3>
+            <h5 class="widget-user-desc">{{ team.pilote.jobName }}</h5>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<!-- end Pilote -->
+<!-- Utilisateurs -->
+<h2 class="page-header">Utilisateurs</h2>
+<div class="row user-type" *ngIf="team && team.users">
+  <div class="col-lg-3" *ngFor="let user of team.users" >
+    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(user)">
+      <div class="box box-widget widget-user-2">
+        <div class="widget-user-header bg-yellow">
+          <div class="widget-user-image">
+            <img class="img-circle" src="assets/img/user7-128x128.jpg" alt="User Avatar">
+          </div>
+          <!-- /.widget-user-image -->
+          <h3 class="widget-user-username">{{user.nom}} {{user.prenom}}</h3>
+          <h5 class="widget-user-desc">{{ user.jobName }}</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<!-- end Utilisateurs -->

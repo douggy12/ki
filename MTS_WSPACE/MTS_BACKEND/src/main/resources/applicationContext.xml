@@ -67,7 +67,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		   </property>
 	  </bean>
 
-<!-- 	  <bean id="hibernateDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" /> -->
+	  <bean id="hibernateDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 
 	  
 	  <!-- Transaction manager pour un JPA EntityManager (alternative à JTA) -->  

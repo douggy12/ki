@@ -1,0 +1,185 @@
+<!-- sideBar => TeamDetailComponent -->
+<app-team-detail [team]="selectedTeam"></app-team-detail>
+<!-- end sideBar -->
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- SearchBar => teamSearchComponent -->
+  <app-team-search></app-team-search>
+  <!-- end SearchBar -->
+  <!-- Maincontent -->
+  <section class="content">
+
+    <!-- UpButton -->
+    <div class="team-nav" *ngIf="teamIndex > 0">
+      <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
+        <i class="fa fa-angle-up"></i>
+        <div>{{ teams[teamIndex - 1].name }}</div>
+      </a>
+    </div>
+    <!-- end UpButton -->
+    <!-- UserList => TeamUsersComponent -->
+    <app-team-users [team]="selectedTeam"></app-team-users>
+    <!-- end UserList -->
+    <!-- DownButton -->
+    <div class="team-nav" *ngIf="teams && teamIndex < teams.length-1">
+      <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
+        <i class="fa fa-angle-down"></i>
+        <div>{{teams[teamIndex + 1].name}}</div>
+      </a>
+    </div>
+    <!-- end DownButton -->
+
+  </section>
+
+  <!--User modal-->
+  <div class="modal fade" id="user-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">Nadia Carmichael
+            <small>Lead Developper</small>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="user-modal-img">
+                <img class="img-circle" src="assets/img/user7-128x128.jpg" alt="User Avatar">
+              </div>
+              <div class="user-modal-control">
+                <button class="btn btn-primary">Changer de photo</button>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Prénom</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input_prenom" value="Nadia" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Nom</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input_nom" value="Carmichael" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Equipe actuelle</label>
+                  <div class="col-sm-6">
+                    <select class="form-control multsel" id="input_team" multiple="multiple" style="width: 100%" disabled>
+                      <option value="CDS JAVA" selected="selected">CDS JAVA</option>
+                      <option value="AT MMA">AT MMA</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Role</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input_role" value="utilisateur confirmé" disabled="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Anciennes équipes</label>
+                  <div class="col-sm-6">
+                    <select class="form-control multsel" id="input_former_team" multiple="multiple" style="width: 100%">
+                      <option value="CDS JAVA" selected="selected">CDS JAVA</option>
+                      <option value="AT MMA" selected="selected">AT MMA</option>
+                      <option value="AT VINCI">AT VINCI</option>
+                      <option value="DEFIS">DEFIS</option>
+                      <option value="MANU CIAO">MANU CIAO</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Date de naissance</label>
+
+                  <div class="col-sm-6">
+                    <div class="input-group date">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input id="datemask" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" value="15/06/1978"
+                        disabled>
+                    </div>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Nb enfants</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" id="input_children">
+                      <option value="Null"></option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2" selected>2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  
+</div>
+<!-- FooterComponent -->
+<app-footer></app-footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-light">
+  <!-- Content of control sidebar goes here -->
+  <div class="tab-content">
+    <div class="tab-pane active">
+      <h3 class="control-sidebar-heading">Liste des équipes</h3>
+      <ul class="control-sidebar-menu">
+        <li *ngFor="let team of teams; let i=index">
+          <a href="#" (click)="onSelect(team, i)" [class.active]="team === selectedTeam">
+            <i class="menu-icon fa fa-hashtag bg-blue"></i>
+            <div class="menu-info">
+              <h4 class="control-sidebar-subheading">{{ team.name }}</h4>
+              <p>Utilisateurs :
+                <span *ngIf="team.users">{{ team.users.length }}</span>
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+
+<!-- <div>
+
+  <ul>
+    <li *ngFor="let team of teams; let i=index" [class.selected]="team === selectedTeam" (click)="onSelect(team, i)">{{ team.name }}</li>
+  </ul>
+</div> -->
+
+<!-- 
+  <div *ngIf="teamIndex > 0" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">{{ teams[teamIndex - 1].name }}</div>
+  <div *ngIf="teamIndex < teams.length-1" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">{{teams[teamIndex + 1].name}}</div> 
+-->

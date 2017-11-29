@@ -1,0 +1,35 @@
+<aside class="main-sidebar">
+    <section class="sidebar" *ngIf="team">
+        <div class="user-panel">
+            <div class="info-equipe">
+
+                <h2>{{ team.name }}</h2>
+
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="header">INFO de L'EQUIPE</li>
+            <li><i class="fa fa-paw text-aqua"></i>Pilote : {{team.pilote.prenom}} {{team.pilote.nom}}</li>
+            <li><i class="fa fa-calendar text-aqua"></i>Créé le : {{team.createdAt.date | date:'dd/MM/yyyy'}}</li>
+            <li><i class="fa fa-users text-aqua" *ngIf="team.users"></i>Nb user : {{ team.users.length }}</li>
+            <li class="description">
+                <i class="fa fa-question-circle text-aqua"></i>Description :
+                <p>{{team.description}}</p>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i> Editer</a>
+            </li>
+            <li></li>
+        </ul>
+    </section>
+    
+  <!-- /.content -->
+</aside>
+<!--Team edit Modal-->
+<div class="modal fade" id="team-edit-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <app-team-detail-form [team]="team"></app-team-detail-form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

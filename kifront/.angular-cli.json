@@ -1,0 +1,80 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "kifront"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+       
+        "../node_modules/admin-lte/bootstrap/css/bootstrap.min.css",
+        "../node_modules/admin-lte/plugins/select2/select2.min.css",
+        "../node_modules/admin-lte/plugins/datepicker/datepicker3.css",
+        "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
+        "../node_modules/admin-lte/dist/css/skins/_all-skins.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
+        "styles.css"
+      ],
+      "scripts": [
+        "assets/js/initadmin.js",
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/admin-lte/bootstrap/js/bootstrap.min.js",
+        "../node_modules/admin-lte/dist/js/app.min.js",
+        "../node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
+        "../node_modules/admin-lte/plugins/select2/select2.full.min.js",
+        "../node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js",
+        "../node_modules/admin-lte/plugins/input-mask/jquery.inputmask.date.extensions.js",
+        "../node_modules/admin-lte/plugins/input-mask/jquery.inputmask.extensions.js",
+        "../node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
+        "assets/js/onload.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}
