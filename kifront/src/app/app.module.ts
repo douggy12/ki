@@ -1,3 +1,4 @@
+import { TeamUserFormComponent } from './component/team-user-form/team-user-form.component';
 import { TeamDetailFormComponent } from './component/team-detail-form/team-detail-form.component';
 import { TeamSearchComponent } from './component/team-search/team-search.component';
 import { AppScriptComponent } from './component/app-script.component';
@@ -34,6 +35,7 @@ import { TeamDetailComponent } from './component/team-detail/team-detail.compone
     AppFooterComponent,
     AppScriptComponent,
     TeamSearchComponent,
+    TeamUserFormComponent
 
 
 ],
