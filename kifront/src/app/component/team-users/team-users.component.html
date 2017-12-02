@@ -2,7 +2,7 @@
 <div *ngIf="team && team.pilote">
   <h2 class="page-header">Pilote</h2>
   <div class="row pilote-type">
-    <a href="#" data-toggle="modal" data-target="#user-modal">
+    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(team.pilote)">
       <div class="col-lg-offset-4 col-lg-4">
         <div class="box box-widget widget-user-2">
           <div class="widget-user-header bg-green">
@@ -37,3 +37,5 @@
   </div>
 </div>
 <!-- end Utilisateurs -->
+<!--User modal-->
+<app-team-user-form [selectedUser]="selectedUser"></app-team-user-form>

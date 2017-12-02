@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
-    "admin-lte": "^2.3.11",
+    "admin-lte": "2.3",
     "angular-in-memory-web-api": "~0.4.0",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",

@@ -2,7 +2,7 @@ import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
-
+// new
 @Component({
   selector: 'app-team-detail-form',
   templateUrl: './team-detail-form.component.html',
