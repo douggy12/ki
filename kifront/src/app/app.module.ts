@@ -1,3 +1,4 @@
+import { UserCService } from './service/userC.service';
 import { TeamUserFormComponent } from './component/team-user-form/team-user-form.component';
 import { TeamDetailFormComponent } from './component/team-detail-form/team-detail-form.component';
 import { TeamSearchComponent } from './component/team-search/team-search.component';
@@ -47,7 +48,7 @@ import { TeamDetailComponent } from './component/team-detail/team-detail.compone
     ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
-  providers: [ TeamService ],
+  providers: [ TeamService, UserCService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
