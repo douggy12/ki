@@ -8,5 +8,7 @@ export class User {
     active: boolean;
     bornDate: Date;
     jobName: string;
+    nbEnfants: number;
+    equipes_old: object;
     equipes_role: Array<TeamRole>;
 }
