@@ -3,6 +3,7 @@
   <persistence-unit name="com.qualitybox_kiback_war_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.qualityboc.kiback.domain.KiTeam</class>
+    <class>com.qualityboc.kiback.service.wrapper.UserJson</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ki_db?zeroDateTimeBehavior=convertToNull"/>
