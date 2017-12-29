@@ -15,7 +15,7 @@ public class TeamWrapper {
     private Long id;
     private String name;
     private DateWrapper createdAt;
-    private UserInfoWrapper pilote;
+    private UserWrapper pilote;
    
 
     public TeamWrapper() {
@@ -45,11 +45,11 @@ public class TeamWrapper {
         this.createdAt = createdAt;
     }
 
-    public UserInfoWrapper getPilote() {
+    public UserWrapper getPilote() {
         return pilote;
     }
 
-    public void setPilote(UserInfoWrapper pilote) {
+    public void setPilote(UserWrapper pilote) {
         this.pilote = pilote;
     }
 

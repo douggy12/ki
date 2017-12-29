@@ -14,16 +14,16 @@ import java.io.Serializable;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AllUserWrapper implements Serializable{
-    private UserInfoWrapper user;
+    private UserWrapper user;
 
     public AllUserWrapper() {
     }
 
-    public UserInfoWrapper getUser() {
+    public UserWrapper getUser() {
         return user;
     }
 
-    public void setUser(UserInfoWrapper user) {
+    public void setUser(UserWrapper user) {
         this.user = user;
     }
 

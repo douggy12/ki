@@ -5,42 +5,123 @@
  */
 package com.qualityboc.kiback.service.wrapper;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author dmetthey
  */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserWrapper {
-    private UserInfoWrapper info;
-    private List<TeamRoleWrapper> equipes_role;
+public class UserWrapper implements Serializable{
+    private Long id;
+    private String nom;
+    private String prenom;
+    private String mail;
+    private Boolean admin;
+  
+    private Long createdBy;
+    private DateWrapper createdAt;
+    private Boolean active;
+    private DateWrapper bornDate;
+    private String jobName;
     
-    public UserWrapper(){}
+    public UserWrapper(){
+        
+    }
+    public UserWrapper(String string) {
 
-    public UserInfoWrapper getInfo() {
-        return info;
     }
 
-    public void setInfo(UserInfoWrapper info) {
-        this.info = info;
+
+    public Long getId() {
+        return id;
     }
 
-    public List<TeamRoleWrapper> getEquipes_role() {
-        return equipes_role;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setEquipes_role(List<TeamRoleWrapper> equipes_role) {
-        this.equipes_role = equipes_role;
+    public String getNom() {
+        return nom;
     }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+
+    public DateWrapper getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(DateWrapper createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(UserWrapper createdBy) {
+        this.createdBy = createdBy.getId();
+    }
+
     
+    
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public DateWrapper getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(DateWrapper bornDate) {
+       
+        this.bornDate = bornDate;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
 
     @Override
     public String toString() {
-        return "JsonUser{" + "info=" + info + '}';
+        return "IhniUser{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + '}';
     }
-    
     
 }
