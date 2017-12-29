@@ -12,18 +12,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author dmetthey
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EquipeRoleWrapper {
-    private EquipeWrapper equipe;
+public class TeamRoleWrapper {
+    private TeamWrapper equipe;
     private String role;
 
-    public EquipeRoleWrapper() {
+    public TeamRoleWrapper() {
     }
 
-    public EquipeWrapper getEquipe() {
+    public TeamWrapper getEquipe() {
         return equipe;
     }
 
-    public void setEquipe(EquipeWrapper equipe) {
+    public void setEquipe(TeamWrapper equipe) {
         this.equipe = equipe;
     }
 

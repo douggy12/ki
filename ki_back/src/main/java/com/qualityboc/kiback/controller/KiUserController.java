@@ -9,6 +9,7 @@ package com.qualityboc.kiback.controller;
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
+import com.qualityboc.kiback.service.wrapper.TeamWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import java.util.List;
@@ -44,14 +45,17 @@ public class KiUserController {
     }
     
     @RequestMapping(value = "team", method = GET)
-    public List<AllTeamWrapper> listTeam() {
-        return ihniService.getAllTeam();
+    public List<TeamWrapper> listTeam() {
+        List<TeamWrapper> allTeam = ihniService.getAllTeam();
+               
+        return allTeam;
     }
     
     @RequestMapping(value = "objuser/{id}", method = GET)
     public Object getObj(@PathVariable String id){
         return ihniService.getObjUser(id);
     }
+    
     
     
 }

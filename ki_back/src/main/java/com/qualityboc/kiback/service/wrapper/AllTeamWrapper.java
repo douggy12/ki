@@ -13,16 +13,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AllTeamWrapper {
-    private EquipeWrapper team;
+    private TeamWrapper team;
 
     public AllTeamWrapper() {
     }
 
-    public EquipeWrapper getTeam() {
+    public TeamWrapper getTeam() {
         return team;
     }
 
-    public void setTeam(EquipeWrapper team) {
+    public void setTeam(TeamWrapper team) {
         this.team = team;
     }
     

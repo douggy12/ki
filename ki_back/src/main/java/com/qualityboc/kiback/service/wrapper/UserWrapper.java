@@ -16,7 +16,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserWrapper {
     private UserInfoWrapper info;
-    private List<EquipeRoleWrapper> equipes_role;
+    private List<TeamRoleWrapper> equipes_role;
     
     public UserWrapper(){}
 
@@ -28,11 +28,11 @@ public class UserWrapper {
         this.info = info;
     }
 
-    public List<EquipeRoleWrapper> getEquipes_role() {
+    public List<TeamRoleWrapper> getEquipes_role() {
         return equipes_role;
     }
 
-    public void setEquipes_role(List<EquipeRoleWrapper> equipes_role) {
+    public void setEquipes_role(List<TeamRoleWrapper> equipes_role) {
         this.equipes_role = equipes_role;
     }
     
