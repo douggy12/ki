@@ -6,7 +6,7 @@
 package com.qualityboc.kiback.service;
 
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
-import com.qualityboc.kiback.service.wrapper.UserJson;
+import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -26,18 +26,18 @@ public class IhniService {
     private String ihniApiKey;
     private String ihniUrl;
 
-    public UserJson getIhniUser(String id) {
+    public UserWrapper getIhniUser(String id) {
 
         UserWrapper user = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", UserWrapper.class);
 
-        return user.getInfo();
+        return user;
     }
 
-    public List<UserJson> getAllIhniUser() {
+    public List<UserInfoWrapper> getAllIhniUser() {
 
         AllUserWrapper[] userArray = new RestTemplate().getForObject("http://qualitybox/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
 
-        List<UserJson> userList = new LinkedList();
+        List<UserInfoWrapper> userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
             userList.add(userWrapper.getUser());
         }

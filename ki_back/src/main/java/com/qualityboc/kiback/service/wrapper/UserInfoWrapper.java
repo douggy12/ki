@@ -6,25 +6,38 @@
 package com.qualityboc.kiback.service.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author dmetthey
  */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserJson {
+public class UserInfoWrapper implements Serializable{
     private Long id;
     private String nom;
     private String prenom;
     private String mail;
     private Boolean admin;
-//    private String createdBy;
-//    private Date createdAt;
+  
+    private Long createdBy;
+    private DateWrapper createdAt;
     private Boolean active;
-//    private Date birthDate;
+    private DateWrapper bornDate;
     private String jobName;
     
-    public UserJson(){};
+    public UserInfoWrapper(){
+        
+    }
+    public UserInfoWrapper(String string) {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -66,21 +79,24 @@ public class UserJson {
         this.admin = admin;
     }
 
-//    public String getCreatedBy() {
-//        return createdBy;
-//    }
-//
-//    public void setCreatedBy(String createdBy) {
-//        this.createdBy = createdBy;
-//    }
-//
-//    public Date getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(Date createdAt) {
-//        this.createdAt = createdAt;
-//    }
+    public DateWrapper getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(DateWrapper createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(UserInfoWrapper createdBy) {
+        this.createdBy = createdBy.getId();
+    }
+
+    
+    
 
     public Boolean getActive() {
         return active;
@@ -90,13 +106,14 @@ public class UserJson {
         this.active = active;
     }
 
-//    public Date getBirthDate() {
-//        return birthDate;
-//    }
-//
-//    public void setBirthDate(Date birthDate) {
-//        this.birthDate = birthDate;
-//    }
+    public DateWrapper getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(DateWrapper bornDate) {
+       
+        this.bornDate = bornDate;
+    }
 
     public String getJobName() {
         return jobName;

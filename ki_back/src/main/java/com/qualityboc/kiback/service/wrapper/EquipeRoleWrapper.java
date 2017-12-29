@@ -6,32 +6,34 @@
 package com.qualityboc.kiback.service.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.io.Serializable;
 
 /**
  *
  * @author dmetthey
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllUserWrapper implements Serializable{
-    private UserInfoWrapper user;
+public class EquipeRoleWrapper {
+    private EquipeWrapper equipe;
+    private String role;
 
-    public AllUserWrapper() {
+    public EquipeRoleWrapper() {
     }
 
-    public UserInfoWrapper getUser() {
-        return user;
+    public EquipeWrapper getEquipe() {
+        return equipe;
     }
 
-    public void setUser(UserInfoWrapper user) {
-        this.user = user;
+    public void setEquipe(EquipeWrapper equipe) {
+        this.equipe = equipe;
     }
 
-    @Override
-    public String toString() {
-        return "AllUserWrapper{" + "user=" + user + '}';
+    public String getRole() {
+        return role;
     }
-    
+
+    public void setRole(String role) {
+        this.role = role;
+    }
     
     
 }

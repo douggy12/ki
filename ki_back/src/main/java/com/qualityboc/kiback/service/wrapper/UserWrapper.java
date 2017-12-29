@@ -7,6 +7,7 @@ package com.qualityboc.kiback.service.wrapper;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
 /**
  *
@@ -14,17 +15,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserWrapper {
-    private UserJson info;
+    private UserInfoWrapper info;
+    private List<EquipeRoleWrapper> equipes_role;
     
     public UserWrapper(){}
 
-    public UserJson getInfo() {
+    public UserInfoWrapper getInfo() {
         return info;
     }
 
-    public void setInfo(UserJson info) {
+    public void setInfo(UserInfoWrapper info) {
         this.info = info;
     }
+
+    public List<EquipeRoleWrapper> getEquipes_role() {
+        return equipes_role;
+    }
+
+    public void setEquipes_role(List<EquipeRoleWrapper> equipes_role) {
+        this.equipes_role = equipes_role;
+    }
+    
 
     @Override
     public String toString() {

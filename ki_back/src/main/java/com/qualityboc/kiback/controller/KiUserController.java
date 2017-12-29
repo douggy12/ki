@@ -8,7 +8,7 @@ package com.qualityboc.kiback.controller;
 
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
-import com.qualityboc.kiback.service.wrapper.UserJson;
+import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import java.util.List;
 
@@ -38,12 +38,12 @@ public class KiUserController {
     IhniService ihniService;
     
     @RequestMapping(method = GET)
-    public List<UserJson> list() {
+    public List<UserInfoWrapper> list() {
         return ihniService.getAllIhniUser();
     }
     
     @RequestMapping(value = "/{id}", method = GET)
-    public UserJson get(@PathVariable String id) {      
+    public UserWrapper get(@PathVariable String id) {      
         return ihniService.getIhniUser(id);
     }
     
