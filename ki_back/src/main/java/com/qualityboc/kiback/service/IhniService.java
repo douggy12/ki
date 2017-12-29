@@ -7,6 +7,7 @@ package com.qualityboc.kiback.service;
 
 import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
+import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
@@ -29,28 +30,20 @@ public class IhniService {
     private String ihniUrl;
 
     public UserWrapper getIhniUser(String id) {
-
         UserWrapper user = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", UserWrapper.class);
-
         return user;
     }
 
     public List<UserInfoWrapper> getAllIhniUser() {
-
         AllUserWrapper[] userArray = new RestTemplate().getForObject("http://qualitybox/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
-
         List<UserInfoWrapper> userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
             userList.add(userWrapper.getUser());
         }
-        
-
         return userList;
-
     }
     
-    public List<TeamWrapper> getAllTeam() {
-        
+    public List<TeamWrapper> getAllTeam() {        
         AllTeamWrapper[] teamArray = new RestTemplate().getForObject("http://qualitybox/api/team?apikey=9e6babc5542e", AllTeamWrapper[].class);
         List<TeamWrapper> teamList = new LinkedList();
         for(AllTeamWrapper team : teamArray){
@@ -59,9 +52,9 @@ public class IhniService {
         return teamList;
     }
     
-    public Object getObjUser(String id){
-        Object ObjUser = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", Object.class);
-        return ObjUser;
+    public TeamInfoWrapper getIhniTeam(String id){
+        TeamInfoWrapper team = new RestTemplate().getForObject("http://qualitybox/api/team/" + id + "?apikey=9e6babc5542e", TeamInfoWrapper.class);
+        return team;
     }
 
     public IhniService() {
