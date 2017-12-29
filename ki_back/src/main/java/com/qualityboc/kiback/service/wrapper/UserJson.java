@@ -6,7 +6,6 @@
 package com.qualityboc.kiback.service.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.Date;
 
 /**
  *

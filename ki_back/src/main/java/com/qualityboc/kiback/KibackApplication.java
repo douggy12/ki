@@ -26,7 +26,7 @@ public class KibackApplication {
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
         return args -> {
             UserWrapper user = restTemplate.getForObject("http://qualitybox/api/user/2?apikey=9e6babc5542e", UserWrapper.class);
-            log.info(user.toString());
+            log.info(user.toString()); 
         };
     }
 }

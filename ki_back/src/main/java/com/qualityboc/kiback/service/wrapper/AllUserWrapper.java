@@ -6,13 +6,14 @@
 package com.qualityboc.kiback.service.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 
 /**
  *
  * @author dmetthey
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AllUserWrapper {
+public class AllUserWrapper implements Serializable{
     private UserJson user;
 
     public AllUserWrapper() {

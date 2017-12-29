@@ -5,7 +5,7 @@
  */
 package com.qualityboc.kiback.service.wrapper;
 
-import com.qualityboc.kiback.service.wrapper.UserJson;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -18,11 +18,11 @@ public class UserWrapper {
     
     public UserWrapper(){}
 
-    public UserJson getUser() {
+    public UserJson getInfo() {
         return info;
     }
 
-    public void setUser(UserJson info) {
+    public void setInfo(UserJson info) {
         this.info = info;
     }
 

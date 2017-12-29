@@ -8,10 +8,11 @@ package com.qualityboc.kiback.service;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
 import com.qualityboc.kiback.service.wrapper.UserJson;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
+import java.util.Arrays;
 import java.util.LinkedList;
+
 import java.util.List;
-import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,28 +22,33 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class IhniService {
-    
+
     private String ihniApiKey;
     private String ihniUrl;
-    @Autowired
-    private RestTemplate restTemplate;
-    
-    public UserJson getIhniUser(Long id)
-    {
-        UserWrapper user = restTemplate.getForObject("http://qualitybox/api/user/"+id+"?apikey=9e6babc5542e", UserWrapper.class);
-        
-        return user.getUser();
+
+    public UserJson getIhniUser(String id) {
+
+        UserWrapper user = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", UserWrapper.class);
+
+        return user.getInfo();
     }
-    public List<UserJson> getAllIhniUser()
-    {
-        AllUserWrapper[] userArray = restTemplate.getForObject("http://qualitybox/api/alluser", AllUserWrapper[].class);
-        List<UserJson> userList = new LinkedList<>();
-        for(AllUserWrapper user : userArray)
-        {
-            userList.add(user.getUser());
+
+    public List<UserJson> getAllIhniUser() {
+
+        AllUserWrapper[] userArray = new RestTemplate().getForObject("http://qualitybox/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
+
+        List<UserJson> userList = new LinkedList();
+        for(AllUserWrapper userWrapper : userArray){
+            userList.add(userWrapper.getUser());
         }
-        return userList;
         
+
+        return userList;
+
     }
-    
+
+    public IhniService() {
+
+    }
+
 }
