@@ -7,10 +7,7 @@ package com.qualityboc.kiback.controller;
 
 
 import com.qualityboc.kiback.service.IhniService;
-import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
-import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.UserWrapper;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,24 +31,20 @@ public class KiUserController {
     IhniService ihniService;
     
     @RequestMapping(value = "user", method = GET)
-    public List<UserInfoWrapper> list() {
+    public List<Object> list() {
         return ihniService.getAllIhniUser();
     }
     
     @RequestMapping(value = "user/{id}", method = GET)
-    public UserWrapper get(@PathVariable String id) {      
+    public Object get(@PathVariable String id) {      
         return ihniService.getIhniUser(id);
     }
     
     @RequestMapping(value = "team", method = GET)
-    public List<AllTeamWrapper> listTeam() {
+    public List<Object> listTeam() {
         return ihniService.getAllTeam();
     }
     
-    @RequestMapping(value = "objuser/{id}", method = GET)
-    public Object getObj(@PathVariable String id){
-        return ihniService.getObjUser(id);
-    }
     
     
 }
