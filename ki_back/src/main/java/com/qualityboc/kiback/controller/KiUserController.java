@@ -7,24 +7,20 @@ package com.qualityboc.kiback.controller;
 
 
 import com.qualityboc.kiback.service.IhniService;
+import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
 
 /**
  *
@@ -37,29 +33,25 @@ public class KiUserController {
     @Autowired
     IhniService ihniService;
     
-    @RequestMapping(method = GET)
+    @RequestMapping(value = "user", method = GET)
     public List<UserInfoWrapper> list() {
         return ihniService.getAllIhniUser();
     }
     
-    @RequestMapping(value = "/{id}", method = GET)
+    @RequestMapping(value = "user/{id}", method = GET)
     public UserWrapper get(@PathVariable String id) {      
         return ihniService.getIhniUser(id);
     }
     
-    @RequestMapping(value = "/{id}", method = PUT)
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        return null;
+    @RequestMapping(value = "team", method = GET)
+    public List<AllTeamWrapper> listTeam() {
+        return ihniService.getAllTeam();
     }
     
-    @RequestMapping(value = "/{id}", method = POST)
-    public ResponseEntity<?> post(@PathVariable String id, @RequestBody Object input) {
-        return null;
+    @RequestMapping(value = "objuser/{id}", method = GET)
+    public Object getObj(@PathVariable String id){
+        return ihniService.getObjUser(id);
     }
     
-    @RequestMapping(value = "/{id}", method = DELETE)
-    public ResponseEntity<Object> delete(@PathVariable String id) {
-        return null;
-    }
     
 }

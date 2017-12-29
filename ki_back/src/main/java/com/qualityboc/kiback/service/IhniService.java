@@ -5,7 +5,9 @@
  */
 package com.qualityboc.kiback.service;
 
+import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
 import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
+import com.qualityboc.kiback.service.wrapper.EquipeWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import java.util.Arrays;
@@ -45,6 +47,19 @@ public class IhniService {
 
         return userList;
 
+    }
+    
+    public List<AllTeamWrapper> getAllTeam() {
+        
+        List<AllTeamWrapper> teamList;
+        teamList = new RestTemplate().getForObject("http://qualitybox/api/team?apikey=9e6babc5542e", List.class);
+        
+        return teamList;
+    }
+    
+    public Object getObjUser(String id){
+        Object ObjUser = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", Object.class);
+        return ObjUser;
     }
 
     public IhniService() {
