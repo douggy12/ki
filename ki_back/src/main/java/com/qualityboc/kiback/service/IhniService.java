@@ -11,7 +11,7 @@ import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import java.util.List;
@@ -37,16 +37,16 @@ public class IhniService {
 
     public List<UserWrapper> getAllIhniUser() {
         AllUserWrapper[] userArray = new RestTemplate().getForObject("http://localhost:8000/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
-        LinkedList userList = new LinkedList();
+        List<UserWrapper> userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
             userList.add(userWrapper.getUser());
         }
         return userList;
     }
     
-    public List<TeamWrapper> getAllTeam() {        
+    public List<TeamWrapper> getAllTeam() {
         AllTeamWrapper[] teamArray = new RestTemplate().getForObject("http://localhost:8000/api/team?apikey=9e6babc5542e", AllTeamWrapper[].class);
-        LinkedList teamList = new LinkedList();
+        List<TeamWrapper> teamList = new LinkedList();
         for(AllTeamWrapper team : teamArray){
             teamList.add(team.getTeam());
         }
