@@ -9,6 +9,7 @@ export class User {
     bornDate: Date;
     jobName: string;
     nbEnfants: number;
-    equipes_old: object;
+    equipes_old: Array<object>;
     equipes_role: Array<TeamRole>;
+
 }

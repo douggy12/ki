@@ -16,7 +16,7 @@ export class InMemoryUserService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
-          nb_enfants : 2,
+          nbEnfants: 2,
           jobName: 'Chef d\'Agence',
           equipes_role:
             [
@@ -36,18 +36,7 @@ export class InMemoryUserService implements InMemoryDbService {
               }
             ],
           equipes_old: [
-            {
-              equipe: {
-                id: 1,
-                name: 'ATG Lybernet',
-              }
-            },
-            {
-              equipe: {
-                id: 2,
-                name: 'CDS P9 Recouvrement',
-              }
-            }
+            1,3
           ]
         },
         {
@@ -63,7 +52,7 @@ export class InMemoryUserService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
-          nb_enfants : 1,
+          nbEnfants : 1,
           jobName: 'Pilote',
           equipes_role: [
             {
@@ -82,18 +71,7 @@ export class InMemoryUserService implements InMemoryDbService {
             }
           ],
           equipes_old: [
-            {
-              equipe: {
-                id: 1,
-                name: 'ATG Lybernet',
-              }
-            },
-            {
-              equipe: {
-                id: 2,
-                name: 'CDS P9 Recouvrement',
-              }
-            }
+            1
           ]
         },
         {
@@ -109,7 +87,7 @@ export class InMemoryUserService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
-          nb_enfants : 4,
+          nbEnfants : 4,
           jobName: 'Pilote',
           equipes_role: [
             {
@@ -121,18 +99,7 @@ export class InMemoryUserService implements InMemoryDbService {
             }
           ],
           equipes_old: [
-            {
-              equipe: {
-                id: 1,
-                name: 'ATG Lybernet',
-              }
-            },
-            {
-              equipe: {
-                id: 2,
-                name: 'CDS P9 Recouvrement',
-              }
-            }
+            3
           ]
         }
       ];

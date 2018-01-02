@@ -1,6 +1,7 @@
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 declare var $: any;
 // new
 @Component({
@@ -12,13 +13,14 @@ export class TeamDetailFormComponent implements OnInit {
 
   @Input() team: Team;
   model: FormGroup;
+
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
 
   onSubmit({ value, valid}: {value, valid: boolean}) {
     this.team.description = value.description;
-    $("#team-edit-modal").modal('hide');
+    $('#team-edit-modal').modal('hide');
 
   }
 

@@ -62,12 +62,8 @@
               <div class="form-group">
                 <label class="col-sm-6 control-label">Anciennes équipes</label>
                 <div class="col-sm-6">
-                  <select class="form-control multsel" id="input_former_team" multiple="multiple" style="width: 100%">
-                    <option value="CDS JAVA" selected="selected">CDS JAVA</option>
-                    <option value="AT MMA" selected="selected">AT MMA</option>
-                    <option value="AT VINCI">AT VINCI</option>
-                    <option value="DEFIS">DEFIS</option>
-                    <option value="MANU CIAO">MANU CIAO</option>
+                  <select class="form-control multsel" id="input_former_team" multiple="multiple" style="width: 100%" [(ngModel)] = "model.equipes_old">
+                    <option *ngFor="let team of teams" [value]="team.id" >{{ team.name }}</option>
                   </select>
                 </div>
               </div>
@@ -76,20 +72,13 @@
                 <label class="col-sm-6 control-label">Nb enfants</label>
                 <div class="col-sm-6">
                   <select class="form-control" id="input_children">
-                    <option value="Null"></option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2" selected>2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
+                    <option *ngFor="let choice of nbchoices" value="{{ choice }}" [selected] = "model.nbEnfants == choice">{{ choice }}</option>
+
                   </select>
+
                 </div>
               </div>
+
             </div>
           </div>
         </div>

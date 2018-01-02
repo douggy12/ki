@@ -25,23 +25,27 @@ export class InMemoryTeamService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
+          nbEnfants: 2,
           jobName: 'Chef d\'Agence',
           equipes_role:
-          [
-            {
-              equipe: {
-                id: 1,
-                name: 'ATG Lybernet',
+            [
+              {
+                equipe: {
+                  id: 1,
+                  name: 'ATG Lybernet',
+                },
+                role: 'pilote'
               },
-              role: 'pilote'
-            },
-            {
-              equipe: {
-                id: 2,
-                name: 'CDS P9 Recouvrement',
-              },
-              role: 'utilisateur'
-            }
+              {
+                equipe: {
+                  id: 2,
+                  name: 'CDS P9 Recouvrement',
+                },
+                role: 'utilisateur'
+              }
+            ],
+          equipes_old: [
+            1,3
           ]
         },
         users: [
@@ -58,6 +62,7 @@ export class InMemoryTeamService implements InMemoryDbService {
               'timezone_type': 3,
               'timezone': 'Europe/Berlin'
             },
+            nbEnfants : 1,
             jobName: 'Pilote',
             equipes_role: [
               {
@@ -74,6 +79,9 @@ export class InMemoryTeamService implements InMemoryDbService {
                 },
                 role: 'pilote'
               }
+            ],
+            equipes_old: [
+              3
             ]
           },
           {
@@ -88,22 +96,37 @@ export class InMemoryTeamService implements InMemoryDbService {
               'timezone_type': 3,
               'timezone': 'Europe/Berlin'
             },
+            nbEnfants: 2,
             jobName: 'Chef d\'Agence',
             equipes_role:
-            [
+              [
+                {
+                  equipe: {
+                    id: 1,
+                    name: 'ATG Lybernet',
+                  },
+                  role: 'pilote'
+                },
+                {
+                  equipe: {
+                    id: 2,
+                    name: 'CDS P9 Recouvrement',
+                  },
+                  role: 'utilisateur'
+                }
+              ],
+            equipes_old: [
               {
                 equipe: {
                   id: 1,
                   name: 'ATG Lybernet',
-                },
-                role: 'pilote'
+                }
               },
               {
                 equipe: {
                   id: 2,
                   name: 'CDS P9 Recouvrement',
-                },
-                role: 'utilisateur'
+                }
               }
             ]
           }
@@ -131,6 +154,7 @@ export class InMemoryTeamService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
+          nbEnfants : 1,
           jobName: 'Pilote',
           equipes_role: [
             {
@@ -146,6 +170,20 @@ export class InMemoryTeamService implements InMemoryDbService {
                 name: 'TMA AssurIARD'
               },
               role: 'pilote'
+            }
+          ],
+          equipes_old: [
+            {
+              equipe: {
+                id: 1,
+                name: 'ATG Lybernet',
+              }
+            },
+            {
+              equipe: {
+                id: 2,
+                name: 'CDS P9 Recouvrement',
+              }
             }
           ]
         },
@@ -163,6 +201,7 @@ export class InMemoryTeamService implements InMemoryDbService {
               'timezone_type': 3,
               'timezone': 'Europe/Berlin'
             },
+            nbEnfants : 1,
             jobName: 'Pilote',
             equipes_role: [
               {
@@ -179,6 +218,9 @@ export class InMemoryTeamService implements InMemoryDbService {
                 },
                 role: 'pilote'
               }
+            ],
+            equipes_old: [
+              2
             ]
           }
         ],
@@ -205,6 +247,7 @@ export class InMemoryTeamService implements InMemoryDbService {
             'timezone_type': 3,
             'timezone': 'Europe/Berlin'
           },
+          nbEnfants : 1,
           jobName: 'Pilote',
           equipes_role: [
             {
@@ -221,6 +264,9 @@ export class InMemoryTeamService implements InMemoryDbService {
               },
               role: 'pilote'
             }
+          ],
+          equipes_old: [
+            1,2
           ]
         },
         users: [
@@ -237,6 +283,7 @@ export class InMemoryTeamService implements InMemoryDbService {
               'timezone_type': 3,
               'timezone': 'Europe/Berlin'
             },
+            nbEnfants : 1,
             jobName: 'Pilote',
             equipes_role: [
               {
@@ -253,6 +300,9 @@ export class InMemoryTeamService implements InMemoryDbService {
                 },
                 role: 'pilote'
               }
+            ],
+            equipes_old: [
+              1,2
             ]
           },
           {
@@ -268,6 +318,7 @@ export class InMemoryTeamService implements InMemoryDbService {
               'timezone_type': 3,
               'timezone': 'Europe/Berlin'
             },
+            nbEnfants : 4,
             jobName: 'Pilote',
             equipes_role: [
               {
@@ -277,6 +328,10 @@ export class InMemoryTeamService implements InMemoryDbService {
                 },
                 role: 'utilisateur'
               }
+            ],
+            equipes_old: [
+
+              2
             ]
           }
         ],
