@@ -11,7 +11,7 @@ import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-import java.util.Arrays;
+
 import java.util.LinkedList;
 
 import java.util.List;
@@ -30,14 +30,14 @@ public class IhniService {
     private String ihniUrl;
 
     public UserInfoWrapper getIhniUser(String id) {
-        UserInfoWrapper user = new RestTemplate().getForObject("http://qualitybox/api/user/" + id + "?apikey=9e6babc5542e", UserInfoWrapper.class);
+        UserInfoWrapper user = new RestTemplate().getForObject("http://localhost:8000/api/user/" + id + "?apikey=9e6babc5542e", UserInfoWrapper.class);
         user.getInfo().setNbEnfant(Long.valueOf("8"));
         return user;
     }
 
     public List<UserWrapper> getAllIhniUser() {
-        AllUserWrapper[] userArray = new RestTemplate().getForObject("http://qualitybox/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
-        List<UserWrapper> userList = new LinkedList();
+        AllUserWrapper[] userArray = new RestTemplate().getForObject("http://localhost:8000/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
+        LinkedList userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
             userList.add(userWrapper.getUser());
         }
@@ -45,8 +45,8 @@ public class IhniService {
     }
     
     public List<TeamWrapper> getAllTeam() {        
-        AllTeamWrapper[] teamArray = new RestTemplate().getForObject("http://qualitybox/api/team?apikey=9e6babc5542e", AllTeamWrapper[].class);
-        List<TeamWrapper> teamList = new LinkedList();
+        AllTeamWrapper[] teamArray = new RestTemplate().getForObject("http://localhost:8000/api/team?apikey=9e6babc5542e", AllTeamWrapper[].class);
+        LinkedList teamList = new LinkedList();
         for(AllTeamWrapper team : teamArray){
             teamList.add(team.getTeam());
         }
@@ -54,7 +54,7 @@ public class IhniService {
     }
     
     public TeamInfoWrapper getIhniTeam(String id){
-        TeamInfoWrapper team = new RestTemplate().getForObject("http://qualitybox/api/team/" + id + "?apikey=9e6babc5542e", TeamInfoWrapper.class);
+        TeamInfoWrapper team = new RestTemplate().getForObject("http://localhost:8000/api/team/" + id + "?apikey=9e6babc5542e", TeamInfoWrapper.class);
         return team;
     }
 

@@ -17,16 +17,5 @@ public class KibackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KibackApplication.class, args);
 	}
-        @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
-    @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-        return args -> {
-            UserInfoWrapper user = restTemplate.getForObject("http://qualitybox/api/user/2?apikey=9e6babc5542e", UserInfoWrapper.class);
-            log.info(user.toString()); 
-        };
-    }
 }
