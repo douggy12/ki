@@ -28,7 +28,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @author dmetthey
  */
 @RestController
-@RequestMapping("/ihni")
+@RequestMapping("/ihni/user")
 public class KiUserController {
     
     @Autowired
@@ -36,31 +36,18 @@ public class KiUserController {
     @Autowired
     MixedUserService mixedUserService;
     
-    @RequestMapping(value = "user", method = GET)
+    @RequestMapping(value = "", method = GET)
     public List<UserWrapper> listUser() {
         return ihniService.getAllIhniUser();
     }
     
-    @RequestMapping(value = "user/{id}", method = GET)
+    @RequestMapping(value = "/{id}", method = GET)
     public MixedUserService getUser(@PathVariable String id) {
         UserInfoWrapper ihniUser = ihniService.getIhniUser(id);
         mixedUserService.setIhniUser(ihniUser);
         mixedUserService.setKiUser(id);
         return mixedUserService;
     }
-    
-    @RequestMapping(value = "team", method = GET)
-    public List<TeamWrapper> listTeam() {
-        List<TeamWrapper> allTeam = ihniService.getAllTeam();
-               
-        return allTeam;
-    }
-    
-    @RequestMapping(value = "team/{id}", method = GET)
-    public TeamInfoWrapper getTeam(@PathVariable String id){
-        return ihniService.getIhniTeam(id);
-    }
-    
-    
+
     
 }
