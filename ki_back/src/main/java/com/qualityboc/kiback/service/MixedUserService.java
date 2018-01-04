@@ -14,31 +14,18 @@ import org.springframework.stereotype.Service;
 public class MixedUserService {
     @Autowired
     private KiUserRepository kiUserRepository;
+    @Autowired
+    private IhniService ihniService;
     private UserInfoWrapper ihniUser;
     private KiUser kiUser;
 
-
-
     public MixedUserService() {
-
     }
 
-    public UserInfoWrapper getIhniUser() {
-        return ihniUser;
-    }
-
-    public void setIhniUser(UserInfoWrapper ihniUser) {
-
-        this.ihniUser = ihniUser;
-    }
-
-    public KiUser getKiUser() {
-        return kiUser;
-    }
-
-    public void setKiUser(String kiUserId) {
-       Long longId = Long.valueOf(kiUserId);
-       KiUser kiUser = kiUserRepository.findByIhniId(longId);
+    public void setUser(String kiUserId) {
+        this.ihniUser = ihniService.getIhniUser(kiUserId);
+        Long longId = Long.valueOf(kiUserId);
+        KiUser kiUser = kiUserRepository.findByIhniId(longId);
         if(kiUser != null) {
             this.kiUser = kiUser;
         }else{
@@ -47,5 +34,13 @@ public class MixedUserService {
             kiUserRepository.save(kiUser);
             this.kiUser = kiUser;
         }
+    }
+
+    public UserInfoWrapper getIhniUser() {
+        return ihniUser;
+    }
+
+    public KiUser getKiUser() {
+        return kiUser;
     }
 }

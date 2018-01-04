@@ -6,21 +6,20 @@
 package com.qualityboc.kiback.controller;
 
 
-import com.qualityboc.kiback.service.MixedUserService;
+import com.qualityboc.kiback.domain.KiUser;
+import com.qualityboc.kiback.repository.KiUserRepository;
 import com.qualityboc.kiback.service.IhniService;
-import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.TeamWrapper;
+import com.qualityboc.kiback.service.MixedUserService;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 
 /**
@@ -30,24 +29,27 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping("/ihni/user")
 public class KiUserController {
-    
-    @Autowired
-    IhniService ihniService;
+
     @Autowired
     MixedUserService mixedUserService;
+    @Autowired
+    KiUserRepository kiUserRepository;
     
-    @RequestMapping(value = "", method = GET)
-    public List<UserWrapper> listUser() {
-        return ihniService.getAllIhniUser();
-    }
-    
+
     @RequestMapping(value = "/{id}", method = GET)
-    public MixedUserService getUser(@PathVariable String id) {
-        UserInfoWrapper ihniUser = ihniService.getIhniUser(id);
-        mixedUserService.setIhniUser(ihniUser);
-        mixedUserService.setKiUser(id);
+    public MixedUserService get(@PathVariable String id) {
+        mixedUserService.setUser(id);
         return mixedUserService;
     }
-
-    
+    @RequestMapping(value = "/{id}", method = PUT)
+    public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiUser kiUser) {
+        KiUser currentUser = kiUserRepository.findByIhniId(Long.valueOf(id));
+        if (currentUser == null) {
+            return ResponseEntity.notFound().build();
+        }
+        currentUser.setAvatar(kiUser.getAvatar());
+        currentUser.setNbEnfant(kiUser.getNbEnfant());
+        kiUserRepository.save(currentUser);
+        return ResponseEntity.accepted().build();
+    }
 }

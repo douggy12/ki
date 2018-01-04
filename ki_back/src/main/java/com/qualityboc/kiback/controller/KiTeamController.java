@@ -6,20 +6,22 @@
 package com.qualityboc.kiback.controller;
 
 
+import com.qualityboc.kiback.domain.KiTeam;
+import com.qualityboc.kiback.repository.KiTeamRepository;
 import com.qualityboc.kiback.service.IhniService;
-import com.qualityboc.kiback.service.MixedUserService;
-import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualityboc.kiback.service.MixedTeamService;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 
 /**
@@ -29,24 +31,34 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping("/ihni/team")
 public class KiTeamController {
-    
     @Autowired
     IhniService ihniService;
     @Autowired
-    MixedUserService mixedUserService;
+    MixedTeamService mixedTeamService;
+    @Autowired
+    KiTeamRepository kiTeamRepository;
+
 
     @RequestMapping(value = "", method = GET)
     public List<TeamWrapper> listTeam() {
-        List<TeamWrapper> allTeam = ihniService.getAllTeam();
-               
-        return allTeam;
+        return ihniService.getAllTeam();
     }
     
     @RequestMapping(value = "/{id}", method = GET)
-    public TeamInfoWrapper getTeam(@PathVariable String id){
-        return ihniService.getIhniTeam(id);
+    public MixedTeamService getTeam(@PathVariable String id){
+        mixedTeamService.setTeam(id);
+        return mixedTeamService;
     }
-    
+    @RequestMapping(value = "/{id}", method = PUT)
+    public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiTeam kiTeam) {
+        KiTeam currentTeam = kiTeamRepository.findByIhniId(Long.valueOf(id));
+        if (currentTeam == null) {
+            return ResponseEntity.notFound().build();
+        }
+        currentTeam.setDescription(kiTeam.getDescription());
+        kiTeamRepository.save(currentTeam);
+        return ResponseEntity.accepted().build();
+    }
     
     
 }
