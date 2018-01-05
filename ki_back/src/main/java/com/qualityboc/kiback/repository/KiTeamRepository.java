@@ -18,6 +18,5 @@ import org.springframework.data.rest.core.annotation.RestResource;
  */
 @RepositoryRestResource(collectionResourceRel = "team", path = "team")
 public interface KiTeamRepository extends PagingAndSortingRepository<KiTeam, Long> {
-    @RestResource(path = "byId")
-    List<KiTeam> findById(@Param("id") Long id);
+    KiTeam findByIhniId(@Param("ihniId") Long id);
 }
