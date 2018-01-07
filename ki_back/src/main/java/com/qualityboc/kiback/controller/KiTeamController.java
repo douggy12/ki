@@ -13,10 +13,7 @@ import com.qualityboc.kiback.service.MixedTeamService;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,17 +35,19 @@ public class KiTeamController {
     @Autowired
     KiTeamRepository kiTeamRepository;
 
-
+    @CrossOrigin
     @RequestMapping(value = "", method = GET)
     public List<TeamWrapper> listTeam() {
         return ihniService.getAllTeam();
     }
-    
+
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
     public MixedTeamService getTeam(@PathVariable String id){
         mixedTeamService.setTeam(id);
         return mixedTeamService;
     }
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = PUT)
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiTeam kiTeam) {
         KiTeam currentTeam = kiTeamRepository.findByIhniId(Long.valueOf(id));

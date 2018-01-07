@@ -34,13 +34,14 @@ public class KiUserController {
     MixedUserService mixedUserService;
     @Autowired
     KiUserRepository kiUserRepository;
-    
 
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
     public MixedUserService get(@PathVariable String id) {
         mixedUserService.setUser(id);
         return mixedUserService;
     }
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = PUT)
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiUser kiUser) {
         KiUser currentUser = kiUserRepository.findByIhniId(Long.valueOf(id));
