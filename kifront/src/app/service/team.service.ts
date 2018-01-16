@@ -26,7 +26,13 @@ getTeams(): Observable<Team[]> {
 }
 getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
-    return this.http.get<Team>(url);
+    let team: Team;
+    return this.http.get(url).subscribe(data => {
+      team = data['ihniTeam']['info'];
+      team.description = data['kiTeam']['description'];
+
+    });
+
 }
 update(team: Team): Observable<any> {
 

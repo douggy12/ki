@@ -26,7 +26,7 @@ export class TeamsComponent implements OnInit {
   }
 
   onSelect(team: Team, teamIndex: number): void {
-    this.selectedTeam = team;
+    this.selectedTeam = this.teamService.getTeam(team.id);
     this.teamIndex = teamIndex;
   }
 

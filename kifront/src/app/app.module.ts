@@ -26,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './component/app.component';
 import { TeamsComponent } from './component/teams/teams.component';
 import { TeamDetailComponent } from './component/team-detail/team-detail.component';
-import {MessageService} from "./message.service";
+import {MessageService} from './message.service';
 
 @NgModule({
   declarations: [
