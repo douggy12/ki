@@ -12,6 +12,8 @@ import { of } from 'rxjs/observable/of';
 import {MessageService} from '../message.service';
 
 
+
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -30,11 +32,14 @@ getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
     return this.http.get<Team>(url);
 }
-update(team: Team): Observable<any> {
-
-  return this.http.put(this.teamUrl, team, httpOptions)
+update(team: Team): Observable<any>  {
+  const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;
+  console.log(url);
+  return this.http.put(url, team.kiTeam, httpOptions)
     .pipe(
-    tap(_ => this.log(`updated hero id=${team.ihniTeam.info.id}`)),
+    tap(_ => {
+      this.log(`updated hero id=${team.ihniTeam.info.id}`);
+    }),
     catchError(this.handleError<any>('updateHero'))
   )
     ;
@@ -49,10 +54,10 @@ update(team: Team): Observable<any> {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

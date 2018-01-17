@@ -45,7 +45,7 @@
       <h3 class="control-sidebar-heading">Liste des équipes</h3>
       <ul class="control-sidebar-menu">
         <li *ngFor="let team of teams; let i=index">
-          <a href="#" (click)="onSelect(team, i)" [class.active]="team === selectedTeam">
+          <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
             <i class="menu-icon fa fa-hashtag bg-blue"></i>
             <div class="menu-info">
               <h4 class="control-sidebar-subheading">{{ team.ihniTeam.info.name }}</h4>

@@ -1,3 +1,4 @@
+import { TeamService } from './../../service/team.service';
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,13 +13,14 @@ export class TeamDetailFormComponent implements OnInit {
 
   @Input() team: Team;
   model: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private teamService: TeamService) {
     this.createForm();
   }
 
   onSubmit({ value, valid}: {value, valid: boolean}) {
     this.team.kiTeam.description = value.description;
     $('#team-edit-modal').modal('hide');
+    this.teamService.update(this.team).subscribe();
 
   }
 

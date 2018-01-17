@@ -15,15 +15,10 @@ export class TeamDetailComponent implements OnInit {
   myId: number;
 
   constructor(
-    private teamService: TeamService,
     // private route: ActivatedRoute,
     // private location: Location
   ) { }
-
-  save(): void {
-    this.teamService.update(this.team);
-  }
-
+  
   ngOnInit(): void {
     // this.route.paramMap
     // .switchMap((params: ParamMap) => this.teamService.getTeam(+params.get('id')))

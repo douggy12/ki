@@ -65,6 +65,7 @@ public class KiTeamController {
         }
         currentTeam.setDescription(kiTeam.getDescription());
         kiTeamRepository.save(currentTeam);
+        System.out.println(kiTeam);
         return ResponseEntity.accepted().build();
     }
     
