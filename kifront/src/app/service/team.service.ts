@@ -24,15 +24,15 @@ constructor(private http: HttpClient, private messageService: MessageService) { 
 getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.teamUrl);
 }
-getTeam(id: number): Observable<Team> {
+getTeam(id: number): Team {
     const url = `${this.teamUrl}/${id}`;
     let team: Team;
-    return this.http.get(url).subscribe(data => {
+    this.http.get<Team>(url).subscribe(data => {
       team = data['ihniTeam']['info'];
       team.description = data['kiTeam']['description'];
-
+      console.log(team);
     });
-
+    return team;
 }
 update(team: Team): Observable<any> {
 

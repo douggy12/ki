@@ -10,7 +10,9 @@ import com.qualityboc.kiback.domain.KiTeam;
 import com.qualityboc.kiback.repository.KiTeamRepository;
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.MixedTeamService;
+import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.TeamWrapper;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +39,15 @@ public class KiTeamController {
 
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
-    public List<TeamWrapper> listTeam() {
-        return ihniService.getAllTeam();
+    public List<MixedTeamService> listTeam() {
+        List<TeamWrapper> allTeam =  ihniService.getAllTeam();
+        List<MixedTeamService> allTeamJson = new ArrayList<>();
+        allTeam.forEach(ihniTeam -> {
+            TeamInfoWrapper teamInfo = new TeamInfoWrapper();
+            teamInfo.setInfo(ihniTeam);
+            allTeamJson.add(new MixedTeamService(teamInfo));
+                });
+        return allTeamJson;
     }
 
     @CrossOrigin

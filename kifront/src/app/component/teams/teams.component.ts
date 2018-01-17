@@ -22,12 +22,13 @@ export class TeamsComponent implements OnInit {
 
   getTeams(): void {
     // this.teamService.getTeams().then(teams => {this.teams = teams; this.teamIndex = 0 ; this.selectedTeam = teams[this.teamIndex]; } );
-    this.teamService.getTeams().subscribe(teams => this.teams = teams);
+    this.teamService.getTeams().subscribe(teams => {this.teams = teams; this.teamIndex = 0 ; this.selectedTeam = teams[this.teamIndex]; });
   }
 
   onSelect(team: Team, teamIndex: number): void {
+    // this.teamService.getTeam(team.id).subscribe(selectedTeam => {this.selectedTeam = selectedTeam; });
     this.selectedTeam = this.teamService.getTeam(team.id);
-    this.teamIndex = teamIndex;
+    console.log(this.selectedTeam);
   }
 
 }

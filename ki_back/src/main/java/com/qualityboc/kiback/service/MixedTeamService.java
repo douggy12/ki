@@ -16,10 +16,15 @@ public class MixedTeamService {
     private KiTeamRepository kiTeamRepository;
     @Autowired
     private IhniService ihniService;
+    
     private TeamInfoWrapper ihniTeam;
     private KiTeam kiTeam;
 
     public MixedTeamService() {
+    }
+    
+    public MixedTeamService(TeamInfoWrapper ihniTeam) {
+        this.ihniTeam = ihniTeam;
     }
 
     public void setTeam(String kiTeamId) {

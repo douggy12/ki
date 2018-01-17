@@ -19,7 +19,7 @@ public class TeamInfoWrapper {
 
     public TeamInfoWrapper() {
     }
-
+    
     public TeamWrapper getInfo() {
         return info;
     }
