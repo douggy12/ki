@@ -1,3 +1,5 @@
+import { TeamInfo } from './../class/TeamInfo';
+import { IhniTeam } from './../class/IhniTeam';
 import { Team } from './../class/Team';
 
 import 'rxjs/add/operator/toPromise';
@@ -24,21 +26,15 @@ constructor(private http: HttpClient, private messageService: MessageService) { 
 getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.teamUrl);
 }
-getTeam(id: number): Team {
+getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
-    let team: Team;
-    this.http.get<Team>(url).subscribe(data => {
-      team = data['ihniTeam']['info'];
-      team.description = data['kiTeam']['description'];
-      console.log(team);
-    });
-    return team;
+    return this.http.get<Team>(url);
 }
 update(team: Team): Observable<any> {
 
   return this.http.put(this.teamUrl, team, httpOptions)
     .pipe(
-    tap(_ => this.log(`updated hero id=${team.id}`)),
+    tap(_ => this.log(`updated hero id=${team.ihniTeam.info.id}`)),
     catchError(this.handleError<any>('updateHero'))
   )
     ;

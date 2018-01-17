@@ -14,7 +14,7 @@
     <div class="team-nav" *ngIf="teamIndex > 0">
       <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
         <i class="fa fa-angle-up"></i>
-        <div>{{ teams[teamIndex - 1].name }}</div>
+        <div>{{ teams[teamIndex - 1].ihniTeam.info.name }}</div>
       </a>
     </div>
     <!-- end UpButton -->
@@ -25,7 +25,7 @@
     <div class="team-nav" *ngIf="teams && teamIndex < teams.length-1">
       <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
         <i class="fa fa-angle-down"></i>
-        <div>{{teams[teamIndex + 1].name}}</div>
+        <div>{{teams[teamIndex + 1].ihniTeam.info.name}}</div>
       </a>
     </div>
     <!-- end DownButton -->
@@ -48,10 +48,8 @@
           <a href="#" (click)="onSelect(team, i)" [class.active]="team === selectedTeam">
             <i class="menu-icon fa fa-hashtag bg-blue"></i>
             <div class="menu-info">
-              <h4 class="control-sidebar-subheading">{{ team.name }}</h4>
-              <p>Utilisateurs :
-                <span *ngIf="team.users">{{ team.users.length }}</span>
-              </p>
+              <h4 class="control-sidebar-subheading">{{ team.ihniTeam.info.name }}</h4>
+              
             </div>
           </a>
         </li>

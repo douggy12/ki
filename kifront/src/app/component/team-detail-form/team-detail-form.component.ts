@@ -17,8 +17,8 @@ export class TeamDetailFormComponent implements OnInit {
   }
 
   onSubmit({ value, valid}: {value, valid: boolean}) {
-    this.team.description = value.description;
-    $("#team-edit-modal").modal('hide');
+    this.team.kiTeam.description = value.description;
+    $('#team-edit-modal').modal('hide');
 
   }
 
@@ -33,7 +33,7 @@ export class TeamDetailFormComponent implements OnInit {
   ngOnChanges() {
     this.model.reset();
     this.model.patchValue({
-      description : this.team ? this.team.description : null
+      description : this.team ? this.team.kiTeam.description : null
     });
   }
 

@@ -1,3 +1,4 @@
+import { TeamService } from './../../service/team.service';
 import { User } from './../../class/User';
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input } from '@angular/core';
@@ -11,7 +12,8 @@ export class TeamUsersComponent implements OnInit {
   @Input() team: Team;
   selectedUser: User;
 
-  constructor() { }
+  constructor(private teamService: TeamService) {
+  }
 
   ngOnInit() {
   }
