@@ -34,7 +34,6 @@ getTeam(id: number): Observable<Team> {
 }
 update(team: Team): Observable<any>  {
   const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;
-  console.log(url);
   return this.http.put(url, team.kiTeam, httpOptions)
     .pipe(
     tap(_ => {
