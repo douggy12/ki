@@ -9,7 +9,7 @@ export class UserInfo {
     bornDate: Object;
     jobName: string;
     createdAt: Object;
-    nbEnfants: number;
+    
     // equipes_old: object;
    
 }

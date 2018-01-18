@@ -1,5 +1,7 @@
-import { Team } from './Team';
+import { TeamInfo } from './TeamInfo';
+
+
 export class TeamRole {
-    equipe_id: number;
+    equipe: TeamInfo;
     role: string;
 }
