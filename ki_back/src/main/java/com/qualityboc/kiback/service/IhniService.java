@@ -31,7 +31,6 @@ public class IhniService {
 
     public UserInfoWrapper getIhniUser(String id) {
         UserInfoWrapper user = new RestTemplate().getForObject("http://devbox/api/user/" + id + "?apikey=9e6babc5542e", UserInfoWrapper.class);
-        user.getInfo().setNbEnfant(Long.valueOf("8"));
         return user;
     }
 

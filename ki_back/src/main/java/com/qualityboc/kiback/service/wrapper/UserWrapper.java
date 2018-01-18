@@ -29,8 +29,6 @@ public class UserWrapper implements Serializable{
     private DateWrapper bornDate;
     private String jobName;
     
-    private Long nbEnfant;
-    
     public UserWrapper(){
         
     }
@@ -123,16 +121,6 @@ public class UserWrapper implements Serializable{
         this.jobName = jobName;
     }
 
-    public Long getNbEnfant() {
-        return nbEnfant;
-    }
-
-    public void setNbEnfant(Long nbEnfant) {
-        
-        this.nbEnfant = nbEnfant;
-        
-    }
-    
 
     @Override
     public String toString() {
