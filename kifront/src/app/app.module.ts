@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 // Imports for loading & configuring the in-memory web api
@@ -48,6 +49,8 @@ import {MessageService} from './message.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],

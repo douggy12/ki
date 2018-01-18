@@ -14,7 +14,7 @@
             <li><i class="fa fa-users text-aqua"></i>Nb user : {{ team.ihniTeam.users.length }}</li>
             <li class="description">
                 <i class="fa fa-question-circle text-aqua"></i>Description :
-                <p>{{team.kiTeam.description}}</p>
+                <p [froalaView]="team.kiTeam.description"></p>
                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i> Editer</a>
             </li>
             <li></li>

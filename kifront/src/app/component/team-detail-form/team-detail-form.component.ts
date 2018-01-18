@@ -11,6 +11,16 @@ declare var $: any;
 })
 export class TeamDetailFormComponent implements OnInit {
 
+  public options: Object = {
+    toolbarButtons:   ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline'],
+    height : 500,
+    heightMax: 500,
+    pluginsEnabled: ['lists']
+
+  };
   @Input() team: Team;
   model: FormGroup;
   constructor(private fb: FormBuilder, private teamService: TeamService) {
@@ -38,5 +48,7 @@ export class TeamDetailFormComponent implements OnInit {
       description : this.team ? this.team.kiTeam.description : null
     });
   }
+
+
 
 }
