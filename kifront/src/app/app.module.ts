@@ -1,3 +1,4 @@
+import { UserService } from './service/user.service';
 import { UserCService } from './service/userC.service';
 import { TeamUserFormComponent } from './component/team-user-form/team-user-form.component';
 import { TeamDetailFormComponent } from './component/team-detail-form/team-detail-form.component';
@@ -54,7 +55,7 @@ import {MessageService} from './message.service';
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
-  providers: [ TeamService, UserCService, MessageService ],
+  providers: [ TeamService, UserService, UserCService, MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

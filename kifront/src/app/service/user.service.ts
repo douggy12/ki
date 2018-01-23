@@ -1,3 +1,4 @@
+import { KiUser } from './../class/KiUser';
 import { User } from './../class/User';
 import { Observable } from 'rxjs/Rx';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -17,9 +18,9 @@ get(id: number): Observable<User> {
     const url = `${this.teamUrl}/${id}`;
     return this.http.get<User>(url);
 }
-update(user: User): Observable<any> {
-    const url = `${this.teamUrl}/${user.ihniUser.info.id}`;
-    return this.http.put(url, user.kiUser, httpOptions);
+update(user: KiUser): Observable<any> {
+    const url = `${this.teamUrl}/${user.ihniId}`;
+    return this.http.put(url, user, httpOptions);
 }
 
 }
