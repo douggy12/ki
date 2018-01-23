@@ -6,6 +6,7 @@
 package com.qualityboc.kiback.service.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class TeamInfoWrapper {
     public void setInfo(TeamWrapper info) {
         this.info = info;
     }
-
+  
     public List<AllUserWrapper> getUsers() {
         return users;
     }

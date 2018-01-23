@@ -5,7 +5,10 @@
  */
 package com.qualityboc.kiback.service.wrapper;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
@@ -14,16 +17,17 @@ import java.io.Serializable;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AllUserWrapper implements Serializable{
+    
     private UserWrapper user;
 
     public AllUserWrapper() {
     }
-
+    
     public UserWrapper getUser() {
         return user;
     }
 
-    public void setUser(UserWrapper user) {
+    public void setInfo(UserWrapper user) {
         this.user = user;
     }
 

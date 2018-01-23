@@ -48,9 +48,10 @@ public class KiUserController {
         if (currentUser == null) {
             return ResponseEntity.notFound().build();
         }
+        
         currentUser.setAvatar(kiUser.getAvatar());
         currentUser.setNbEnfant(kiUser.getNbEnfant());
         kiUserRepository.save(currentUser);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().build(); 
     }
 }
