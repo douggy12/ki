@@ -1,3 +1,5 @@
+import { Ng2ImgToolsService } from 'ng2-img-tools';
+import { AvatarService } from './service/avatar.service';
 import { UserService } from './service/user.service';
 import { UserCService } from './service/userC.service';
 import { TeamUserFormComponent } from './component/team-user-form/team-user-form.component';
@@ -29,6 +31,8 @@ import { AppComponent } from './component/app.component';
 import { TeamsComponent } from './component/teams/teams.component';
 import { TeamDetailComponent } from './component/team-detail/team-detail.component';
 import {MessageService} from './message.service';
+import { ImgResizeExactService } from 'ng2-img-tools/dist/src/img-resize-exact.service';
+import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 
 @NgModule({
   declarations: [
@@ -51,11 +55,13 @@ import {MessageService} from './message.service';
     FormsModule,
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    Ng2ImgToolsModule
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
-  providers: [ TeamService, UserService, UserCService, MessageService ],
+  providers: [ TeamService, UserService, UserCService, MessageService,
+     AvatarService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
