@@ -9,7 +9,9 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { isNull, isUndefined } from 'util';
 import { Ng2ImgMaxModule } from 'ng2-img-max/dist/src/ng2-img-max.module';
 
+
 declare var $: any;
+
 
 @Component({
   selector: 'app-team-user-form',
@@ -23,11 +25,15 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   model: User;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   avatarUrl: String;
-
+  fileChange: Boolean = false;
+ 
   constructor(private userService: UserService, private avatarService: AvatarService) {
   }
   onSubmit() {
     this.userService.update(this.model.kiUser).subscribe();
+    if (this.fileChange) {
+      this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
+    }
   }
 
   ngOnInit() {
@@ -40,17 +46,13 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
         this.avatarUrl = event.target.result;
       };
       this.avatarService.resizeImg(event.target.files[0]).subscribe(img => {
-        // this.file = img;
         reader.readAsDataURL(img);
+        this.file = img;
+        this.fileChange = true;
       });
-      this.file = event.target.files[0];
-      let formData: FormData = new FormData();
-      formData.append('File', this.file, this.file.name);
     }
   }
-  previewAvatar() {
 
-  }
   ngOnChanges(): void {
     // this.model = this.selectedUser;
     // console.log(this.selectedUser.ihniUser.info.id);
