@@ -17,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,7 @@ public class UploadController {
 
     @RequestMapping(value = "/{id}", method = GET)
     @ResponseBody
+    @CrossOrigin
     public ResponseEntity<Resource> getFile(@PathVariable String id) {
         String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
         System.out.println(filename);
@@ -53,7 +55,7 @@ public class UploadController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);
     }
-
+    @CrossOrigin
     @RequestMapping(value = "/post", method = POST)
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("id") String id) {
         String message = "";
