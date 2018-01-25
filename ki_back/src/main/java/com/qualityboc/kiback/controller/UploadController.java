@@ -8,9 +8,15 @@ package com.qualityboc.kiback.controller;
 import com.qualityboc.kiback.repository.KiUserRepository;
 import com.qualityboc.kiback.service.StorageService;
 import com.qualityboc.kiback.domain.KiUser;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -45,15 +51,16 @@ public class UploadController {
     KiUserRepository kiUserRepository;    
 
     @RequestMapping(value = "/{id}", method = GET)
-    @ResponseBody
     @CrossOrigin
-    public ResponseEntity<Resource> getFile(@PathVariable String id) {
+    public Map<String, String> getFile2(@PathVariable String id) throws IOException {
         String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
-        System.out.println(filename);
-        Resource file = storageService.loadFile(filename);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-                .body(file);
+        Path file = storageService.loadPath(filename);
+        String encodeImg = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file));
+
+        Map<String, String> jsonMap = new HashMap<>();
+        jsonMap.put("content", encodeImg);
+        return jsonMap;
+
     }
     @CrossOrigin
     @RequestMapping(value = "/post", method = POST)
