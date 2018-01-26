@@ -1,35 +1,35 @@
 <!-- Pilote -->
-<div *ngIf="team && team.ihniTeam.info.pilote">
-  <h2 class="page-header">Pilote</h2>
-  <div class="row pilote-type">
-    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(team.ihniTeam.info.pilote)">
-      <div class="col-lg-offset-4 col-lg-4">
-        <div class="box box-widget widget-user-2">
-          <div class="widget-user-header bg-green">
-            <div class="widget-user-image">
-              <img class="img-circle" src="assets/img/user7-128x128.jpg" alt="User Avatar">
-            </div>
-            <h3 class="widget-user-username">{{ team.ihniTeam.info.pilote.prenom }} {{ team.ihniTeam.info.pilote.nom }}</h3>
-            <h5 class="widget-user-desc">{{ team.ihniTeam.info.pilote.jobName }}</h5>
+
+<h2 class="page-header">Pilote</h2>
+<div class="row pilote-type" *ngIf="team && team.ihniTeam.users">
+  <div class="col-lg-offset-4 col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
+    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.user.pilote">
+      <div class="box box-widget widget-user-2">
+        <div class="widget-user-header bg-green">
+          <div class="widget-user-image">
+            <img class="img-circle" [src]="wrapper.user.avatar" alt="User Avatar">
           </div>
+          <h3 class="widget-user-username">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
+          <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
         </div>
       </div>
     </a>
   </div>
 </div>
+
 <!-- end Pilote -->
 <!-- Utilisateurs -->
 <h2 class="page-header">Utilisateurs</h2>
 <div class="row user-type" *ngIf="team && team.ihniTeam.users">
-  <div class="col-lg-3" *ngFor="let wrapper of team.ihniTeam.users" >
-    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)">
+  <div class="col-lg-3" *ngFor="let wrapper of team.ihniTeam.users">
+    <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="!wrapper.user.pilote">
       <div class="box box-widget widget-user-2">
         <div class="widget-user-header bg-yellow">
           <div class="widget-user-image">
-            <img class="img-circle" src="assets/img/user7-128x128.jpg" alt="User Avatar">
+            <img class="img-circle" [src]="wrapper.user.avatar" alt="User Avatar">
           </div>
           <!-- /.widget-user-image -->
-          <h3 class="widget-user-username">{{wrapper.user.nom}} {{wrapper.user.prenom}}</h3>
+          <h3 class="widget-user-username">{{wrapper.user.prenom}} {{wrapper.user.nom}}</h3>
           <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
         </div>
       </div>
@@ -38,4 +38,4 @@
 </div>
 <!-- end Utilisateurs -->
 <!--User modal-->
-<app-team-user-form [selectedUser]="selectedUser" [selectedTeam] = "team"></app-team-user-form>
+<app-team-user-form [selectedUser]="selectedUser" [selectedTeam]="team"></app-team-user-form>

@@ -63,6 +63,14 @@ public class StorageService {
         }
     }
 
+    public Path loadPath(String filename) {
+
+        Path file = rootLocation.resolve(filename);
+
+        return file;
+
+    }
+
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }

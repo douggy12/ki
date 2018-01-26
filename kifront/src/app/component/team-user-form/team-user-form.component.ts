@@ -26,7 +26,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   avatarUrl: String;
   fileChange: Boolean = false;
- 
+
   constructor(private userService: UserService, private avatarService: AvatarService) {
   }
   onSubmit() {
@@ -34,32 +34,50 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     if (this.fileChange) {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
     }
+
+    this.blobToUrl(this.file).subscribe(img => {
+      this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
+        .user.avatar = img;
+    });
   }
 
   ngOnInit() {
+
+  }
+  // Transforme un flux Blob en base64 en url image
+  blobToUrl(data) {
+    const reader = new FileReader();
+    let fileObs = Observable.create((observer: any) => {
+      reader.onload = (event: any) => {
+        let file = event.target.result;
+        observer.next(file);
+        observer.complete();
+      };
+    });
+    reader.readAsDataURL(data);
+    return fileObs;
   }
   onFileChange(event): void {
-    if (event.target.files.length > 0) {
-      const reader = new FileReader();
 
-      reader.onload = (event: any) => {
-        this.avatarUrl = event.target.result;
-      };
-      this.avatarService.resizeImg(event.target.files[0]).subscribe(img => {
-        reader.readAsDataURL(img);
-        this.file = img;
-        this.fileChange = true;
+    if (event.target.files.length > 0) {
+      this.avatarService.resizeImg(event.target.files[0]).subscribe(data => {
+        this.file = data;
+        this.blobToUrl(data).subscribe(img => {
+
+          this.avatarUrl = img;
+          this.fileChange = true;
+        });
       });
     }
   }
 
   ngOnChanges(): void {
-    // this.model = this.selectedUser;
-    // console.log(this.selectedUser.ihniUser.info.id);
+
     if (!isUndefined(this.selectedUser)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
-        console.log(this.model);
+        this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
+        .user.avatar
       });
     }
     // Workaround assigner select2 une fois la variable selectedUser attribué

@@ -48,12 +48,18 @@ public class UploadController {
     @Autowired
     StorageService storageService;
     @Autowired
-    KiUserRepository kiUserRepository;    
+    KiUserRepository kiUserRepository;
 
     @RequestMapping(value = "/{id}", method = GET)
     @CrossOrigin
     public Map<String, String> getFile2(@PathVariable String id) throws IOException {
         String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+
+        if (filename == null) {
+            System.out.println("com.qualityboc.kiback.controller.UploadController.getFile2()");
+            filename = "def_2.jpeg";
+        }
+
         Path file = storageService.loadPath(filename);
         String encodeImg = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file));
 
@@ -62,6 +68,7 @@ public class UploadController {
         return jsonMap;
 
     }
+
     @CrossOrigin
     @RequestMapping(value = "/post", method = POST)
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("id") String id) {

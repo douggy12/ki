@@ -9,6 +9,8 @@ export class UserInfo {
     bornDate: Object;
     jobName: string;
     createdAt: Object;
+    avatar: File;
+    pilote = false;
     
     // equipes_old: object;
    

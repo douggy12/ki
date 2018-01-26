@@ -45,7 +45,7 @@ export class TeamDetailFormComponent implements OnInit {
   ngOnChanges() {
     this.model.reset();
     this.model.patchValue({
-      description : this.team ? this.team.kiTeam.description : null
+      description : this.team.kiTeam.description ? this.team.kiTeam.description : ''
     });
   }
 
