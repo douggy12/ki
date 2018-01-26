@@ -6,10 +6,7 @@
 package com.qualityboc.kiback.domain;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -25,6 +22,7 @@ public class KiUser implements Serializable {
     
     private Long nbEnfant;
     private String avatar;
+
     private Long ihniId;
 
     public Long getId() {

@@ -17,5 +17,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  */
 @RepositoryRestResource(collectionResourceRel = "user", path = "user")
 public interface KiUserRepository extends PagingAndSortingRepository<KiUser, Long> {
-    List<KiUser> findById(@Param("id") Long id);
+    KiUser findByIhniId(@Param("ihniId") Long id);
 }

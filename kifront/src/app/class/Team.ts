@@ -1,11 +1,6 @@
-import { User } from './User';
+import { KiTeam } from './KiTeam';
+import { IhniTeam } from './IhniTeam';
 export class Team {
-    id: number;
-    name: string;
-    createdAt: Object;
-    pilote: User;
-    users: Array<User>;
-    description: string;
-
+    ihniTeam: IhniTeam;
+    kiTeam: KiTeam;
 }
-

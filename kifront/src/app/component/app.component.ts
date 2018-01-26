@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
   me: User;
   carlos: User;
 
-  constructor(private meService: UserCService) { }
+  constructor() { }
 
   ngOnInit(): void {
     // this.meService.getUserC().then(me => {this.me = me; });
-    this.meService.getTest().then(carlos => {this.carlos = carlos; console.log(carlos.nom); });
+   //this.meService.getTest().then(carlos => {this.carlos = carlos; console.log(carlos.nom); });
 
   }
- 
+
 }

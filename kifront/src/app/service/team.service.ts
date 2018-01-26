@@ -1,41 +1,71 @@
+import { TeamInfo } from './../class/TeamInfo';
+import { IhniTeam } from './../class/IhniTeam';
 import { Team } from './../class/Team';
 
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import { catchError, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import {MessageService} from '../message.service';
+
+
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class TeamService {
-    private teamUrl = 'api/teams';
-    private headers = new Headers({'Content-Type': 'application/json'});
+    private teamUrl = 'http://localhost:8080/ihni/team';
 
-constructor(private http: Http) { }
 
-getTeams(): Promise<Team[]> {
-    return this.http.get(this.teamUrl)
-    .toPromise()
-    .then(response => response.json().data as Team[])
-    .catch(this.handleError);
+constructor(private http: HttpClient, private messageService: MessageService) { }
+
+getTeams(): Observable<Team[]> {
+    return this.http.get<Team[]>(this.teamUrl);
 }
-getTeam(id: number): Promise<Team> {
+getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
-    return this.http.get(url)
-    .toPromise()
-    .then(response => response.json().data as Team)
-    .catch(this.handleError);
+    return this.http.get<Team>(url);
 }
-update(team: Team): Promise<Team> {
-    const url = `${this.teamUrl}/${team.id}`;
-    return this.http
-    .put(url, JSON.stringify(team), { headers: this.headers })
-    .toPromise()
-    .then(() => team)
-    .catch(this.handleError);
+update(team: Team): Observable<any>  {
+  const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;
+  return this.http.put(url, team.kiTeam, httpOptions)
+    .pipe(
+    tap(_ => {
+      this.log(`updated hero id=${team.ihniTeam.info.id}`);
+    }),
+    catchError(this.handleError<any>('updateHero'))
+  )
+    ;
 }
-private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.log(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add('HeroService: ' + message);
   }
 
 }

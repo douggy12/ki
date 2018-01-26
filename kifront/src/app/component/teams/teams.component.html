@@ -14,7 +14,7 @@
     <div class="team-nav" *ngIf="teamIndex > 0">
       <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
         <i class="fa fa-angle-up"></i>
-        <div>{{ teams[teamIndex - 1].name }}</div>
+        <div>{{ teams[teamIndex - 1].ihniTeam.info.name }}</div>
       </a>
     </div>
     <!-- end UpButton -->
@@ -25,7 +25,7 @@
     <div class="team-nav" *ngIf="teams && teamIndex < teams.length-1">
       <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
         <i class="fa fa-angle-down"></i>
-        <div>{{teams[teamIndex + 1].name}}</div>
+        <div>{{teams[teamIndex + 1].ihniTeam.info.name}}</div>
       </a>
     </div>
     <!-- end DownButton -->
@@ -40,18 +40,16 @@
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-light">
   <!-- Content of control sidebar goes here -->
-  <div class="tab-content">
+  <div class="tab-content" *ngIf="selectedTeam">
     <div class="tab-pane active">
       <h3 class="control-sidebar-heading">Liste des équipes</h3>
       <ul class="control-sidebar-menu">
         <li *ngFor="let team of teams; let i=index">
-          <a href="#" (click)="onSelect(team, i)" [class.active]="team === selectedTeam">
+          <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
             <i class="menu-icon fa fa-hashtag bg-blue"></i>
             <div class="menu-info">
-              <h4 class="control-sidebar-subheading">{{ team.name }}</h4>
-              <p>Utilisateurs :
-                <span *ngIf="team.users">{{ team.users.length }}</span>
-              </p>
+              <h4 class="control-sidebar-subheading">{{ team.ihniTeam.info.name }}</h4>
+              
             </div>
           </a>
         </li>

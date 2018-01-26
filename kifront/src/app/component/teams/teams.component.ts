@@ -1,5 +1,5 @@
-import { TeamService } from './../../service/team.service';
-import { Team } from './../../class/Team';
+import { TeamService } from '../../service/team.service';
+import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -21,12 +21,12 @@ export class TeamsComponent implements OnInit {
   }
 
   getTeams(): void {
-    this.teamService.getTeams().then(teams => {this.teams = teams; this.teamIndex = 0 ; this.selectedTeam = teams[this.teamIndex]; } );
+    this.teamService.getTeams().subscribe(teams => {this.teams = teams; this.teamIndex = 0 ; this.onSelect(teams[0], 0); });
   }
 
   onSelect(team: Team, teamIndex: number): void {
-    this.selectedTeam = team;
-    this.teamIndex = teamIndex;
+    this.teamService.getTeam(team.ihniTeam.info.id)
+    .subscribe(selectedTeam => {this.selectedTeam = selectedTeam; this.teamIndex = teamIndex; });
   }
 
 }
