@@ -3,6 +3,9 @@ package com.qualityboc.kiback.service;
 import com.qualityboc.kiback.domain.KiUser;
 import com.qualityboc.kiback.repository.KiUserRepository;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
+import com.qualityboc.kiback.service.wrapper.UserWrapper;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +45,17 @@ public class MixedUserService {
 
     public KiUser getKiUser() {
         return kiUser;
+    }
+    
+    public List<UserWrapper> getIhniUserByName(String string){
+        List<UserWrapper> allUser = this.ihniService.getAllIhniUser();
+        List<UserWrapper> rsltUser = new ArrayList<>();
+        for (UserWrapper user : allUser){
+            String searchArea = (user.getPrenom()+" "+user.getNom()).toLowerCase();
+            if(searchArea.contains(string)){
+                rsltUser.add(user);
+            }
+        }
+        return rsltUser;
     }
 }

@@ -54,4 +54,9 @@ public class KiUserController {
         kiUserRepository.save(currentUser);
         return ResponseEntity.accepted().build(); 
     }
+    @CrossOrigin
+    @RequestMapping(value = "", method = GET)
+    public List<UserWrapper> getByName (@RequestParam("term") String string) {
+        return this.mixedUserService.getIhniUserByName(string);
+    }
 }
