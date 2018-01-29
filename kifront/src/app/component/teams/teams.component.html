@@ -5,7 +5,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- SearchBar => teamSearchComponent -->
-  <app-team-search></app-team-search>
+  <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
   <!-- end SearchBar -->
   <!-- Maincontent -->
   <section class="content">

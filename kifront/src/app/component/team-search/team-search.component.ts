@@ -1,11 +1,14 @@
+import { TeamInfo } from './../../class/TeamInfo';
 import { UserService } from './../../service/user.service';
 import { UserInfo } from './../../class/UserInfo';
 import { Observable } from 'rxjs/Rx';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { IhniUser } from '../../class/IhniUser';
+
 
 
 @Component({
@@ -14,7 +17,8 @@ import { switchMap } from 'rxjs/operators/switchMap';
   styleUrls: ['./team-search.component.css']
 })
 export class TeamSearchComponent implements OnInit {
-  users$: Observable<UserInfo[]>;
+  @Output() submitedTeam = new EventEmitter<TeamInfo>();
+  users$: Observable<IhniUser[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private userService: UserService) { }
@@ -22,6 +26,11 @@ export class TeamSearchComponent implements OnInit {
   // Push a search term into the observable stream
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  onSubmitTeam(team: TeamInfo) {
+    this.submitedTeam.emit(team);
+    console.log('emitted');
   }
 
   ngOnInit(): void {

@@ -16,15 +16,18 @@
                     </ul>
                 </div>
                 <!-- /btn-group -->
-                <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Rechercher un utilisateur ..." data-toggle = "dropdown">
+                <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Rechercher un utilisateur ..."
+                    data-toggle="dropdown">
                 <ul class="search-result dropdown-menu user-dropdown">
                     <li *ngFor="let user of users$ | async">
-                        
-                            <a>{{user.prenom}} {{user.nom}}<small>CDS DEFIS</small></a>
-                        
-                    </li>
+
+                        <a *ngFor="let teamRole of user.equipes_role" href="#" (click)="onSubmitTeam(teamRole.equipe)">{{user.info.prenom}} {{user.info.nom}}
+                            <small>{{teamRole.equipe.name}}</small>
+                        </a>
+
                 </ul>
-                
+
+
             </div>
         </div>
     </div>

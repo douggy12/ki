@@ -1,3 +1,4 @@
+import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
@@ -27,6 +28,14 @@ export class TeamsComponent implements OnInit {
   onSelect(team: Team, teamIndex: number): void {
     this.teamService.getTeam(team.ihniTeam.info.id)
     .subscribe(selectedTeam => {this.selectedTeam = selectedTeam; this.teamIndex = teamIndex; });
+  }
+  onSubmitedTeam(subTeam: TeamInfo) {
+    this.teamService.getTeam(subTeam.id)
+    .subscribe(
+      selectedTeam => {
+        this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
+      });
+    console.log('received');
   }
 
 }

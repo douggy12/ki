@@ -10,6 +10,7 @@ import com.qualityboc.kiback.domain.KiUser;
 import com.qualityboc.kiback.repository.KiUserRepository;
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.MixedUserService;
+import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
 import com.qualityboc.kiback.service.wrapper.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,7 +57,7 @@ public class KiUserController {
     }
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
-    public List<UserWrapper> getByName (@RequestParam("term") String string) {
+    public List<UserInfoWrapper> getByName (@RequestParam("term") String string) {
         return this.mixedUserService.getIhniUserByName(string);
     }
 }

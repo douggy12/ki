@@ -47,15 +47,16 @@ public class MixedUserService {
         return kiUser;
     }
     
-    public List<UserWrapper> getIhniUserByName(String string){
+    public List<UserInfoWrapper> getIhniUserByName(String string){
         List<UserWrapper> allUser = this.ihniService.getAllIhniUser();
-        List<UserWrapper> rsltUser = new ArrayList<>();
+        List<UserInfoWrapper> rsltUser = new ArrayList<>();
         for (UserWrapper user : allUser){
             String searchArea = (user.getPrenom()+" "+user.getNom()).toLowerCase();
             if(searchArea.contains(string.toLowerCase())){
-                rsltUser.add(user);
+                rsltUser.add(this.ihniService.getIhniUser(user.getId().toString()));
             }
         }
+        
         return rsltUser;
     }
 }
