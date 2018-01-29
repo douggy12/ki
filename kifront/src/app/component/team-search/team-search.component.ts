@@ -30,7 +30,6 @@ export class TeamSearchComponent implements OnInit {
 
   onSubmitTeam(team: TeamInfo) {
     this.submitedTeam.emit(team);
-    console.log('emitted');
   }
 
   ngOnInit(): void {

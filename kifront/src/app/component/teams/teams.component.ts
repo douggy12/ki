@@ -35,7 +35,6 @@ export class TeamsComponent implements OnInit {
       selectedTeam => {
         this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
       });
-    console.log('received');
   }
 
 }

@@ -1,6 +1,6 @@
 .user-dropdown {
     left: unset;
-    width:50%;
+    min-width:222px;
 }
 .user-dropdown small {
     float: right;
