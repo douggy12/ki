@@ -52,7 +52,7 @@ public class MixedUserService {
         List<UserWrapper> rsltUser = new ArrayList<>();
         for (UserWrapper user : allUser){
             String searchArea = (user.getPrenom()+" "+user.getNom()).toLowerCase();
-            if(searchArea.contains(string)){
+            if(searchArea.contains(string.toLowerCase())){
                 rsltUser.add(user);
             }
         }
