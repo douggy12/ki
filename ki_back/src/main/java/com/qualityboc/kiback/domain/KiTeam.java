@@ -52,6 +52,8 @@ public class KiTeam implements Serializable {
     }
     
     
+    
+    
 
     @Override
     public int hashCode() {

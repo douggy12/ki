@@ -22,7 +22,7 @@ public class KiUser implements Serializable {
     
     private Long nbEnfant;
     private String avatar;
-
+    private String team_h;
     private Long ihniId;
 
     public Long getId() {
@@ -56,6 +56,15 @@ public class KiUser implements Serializable {
     public void setIhniId(Long ihniId) {
         this.ihniId = ihniId;
     }
+
+    public String getTeam_h() {
+        return team_h;
+    }
+
+    public void setTeam_h(String team_h) {
+        this.team_h = team_h;
+    }
+    
     
     
 
