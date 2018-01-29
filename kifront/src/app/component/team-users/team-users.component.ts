@@ -5,11 +5,30 @@ import { User } from './../../class/User';
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 @Component({
   selector: 'app-team-users',
   templateUrl: './team-users.component.html',
-  styleUrls: ['./team-users.component.css']
+  styleUrls: ['./team-users.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('* => *', [
+        style({transform: 'translateX(-100%)'}),
+        animate(100)
+      ]),
+      transition('* => *', [
+        animate(100, style({transform: 'translateX(100%)'}))
+      ])
+    ])
+  ]
 })
 export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;

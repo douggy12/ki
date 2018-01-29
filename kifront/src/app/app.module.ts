@@ -12,6 +12,7 @@ import { TeamUsersComponent } from './component/team-users/team-users.component'
 import { TeamService } from './service/team.service';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +51,7 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

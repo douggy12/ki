@@ -1,0 +1,7 @@
+.user-dropdown {
+    left: unset;
+    width:50%;
+}
+.user-dropdown small {
+    float: right;
+}
