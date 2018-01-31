@@ -52,6 +52,7 @@ public class KiUserController {
         
         currentUser.setAvatar(kiUser.getAvatar());
         currentUser.setNbEnfant(kiUser.getNbEnfant());
+        currentUser.setTeamH(kiUser.getTeamH()); 
         kiUserRepository.save(currentUser);
         return ResponseEntity.accepted().build(); 
     }
