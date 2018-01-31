@@ -54,13 +54,13 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     Ng2ImgToolsModule,
-    Select2Module
+    // Select2Module
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],

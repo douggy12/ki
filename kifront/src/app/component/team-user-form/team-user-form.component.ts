@@ -39,6 +39,10 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
 
   }
   onSubmit() {
+    // WorkAround Utilise Jquery pour récupérer les data de select 2 (incompatibilité ANgular)
+    this.model.kiUser.teamH = $('#teamH').select2('data').map(obj => {
+      return obj.id;
+    }).join('|');
     this.userService.update(this.model.kiUser).subscribe();
     if (this.fileChange) {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
@@ -49,13 +53,9 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
       });
     }
   }
-  // Met à jour la liste d'ancienne équipe
-  changed(data: { value: string[] }) {
-    this.model.kiUser.teamH = data.value.join('|');
-  }
 
   ngOnInit() {
-    
+
   }
   // Transforme un flux Blob en base64 en url image
   blobToUrl(data) {
@@ -85,25 +85,24 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.value = ['haha'];
-    if (!isUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
+    if (!isNullOrUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
         this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
           .user.avatar;
-        // Init de la liste de team dispo pour select2
-        this.exampleData = this.teams.map(team => {
-          const idString = team.ihniTeam.info.id + '';
-          return { id: idString, text: team.ihniTeam.info.name };
-        });
-        this.options = { multiple: true };
+        // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée
+        setTimeout(() => {
+          $('#teamH').val(this.model.kiUser.teamH.split('|')).trigger('change');
+        }, 110);
       });
     }
 
 
     // Workaround assigner select2 une fois la variable selectedUser attribué
-    const select2 = Observable.timer(100);
-    select2.subscribe(() => $('.multsel').select2());
+    const select2Timer = Observable.timer(100);
+    select2Timer.subscribe(() => {
+      $('.multsel').select2();
+    });
   }
   getRole(): String {
 

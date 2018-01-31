@@ -18,18 +18,18 @@ import { isNullOrUndefined } from 'util';
   selector: 'app-team-users',
   templateUrl: './team-users.component.html',
   styleUrls: ['./team-users.component.css'],
-  animations: [
-    trigger('flyInOut', [
-      state('in', style({ transform: 'translateX(0)' })),
-      transition('* => *', [
-        style({ transform: 'translateX(-100%)' }),
-        animate(100)
-      ]),
-      transition('* => *', [
-        animate(100, style({ transform: 'translateX(100%)' }))
-      ])
-    ])
-  ]
+  // animations: [
+  //   trigger('flyInOut', [
+  //     state('in', style({ transform: 'translateX(0)' })),
+  //     transition('* => *', [
+  //       style({ transform: 'translateX(-100%)' }),
+  //       animate(100)
+  //     ]),
+  //     transition('* => *', [
+  //       animate(100, style({ transform: 'translateX(100%)' }))
+  //     ])
+  //   ])
+  // ]
 })
 export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;
@@ -44,18 +44,18 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
   // Supprime le pilote de la liste des utilisateurs
   ngOnChanges(changes: SimpleChanges) {
-    
-    if(!isNullOrUndefined(this.team)) {
+
+    if (!isNullOrUndefined(this.team)) {
       this.team.ihniTeam.users.filter(user => user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
-    this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
-      this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
-    });
-    for (let myUser of this.team.ihniTeam.users) {
-      this.avatarService.getImg(myUser.user.id).subscribe(img => {
-        myUser.user.avatar = this.avatarService.base64toUrl(img.content);
+      this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
+        this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
       });
+      for (let myUser of this.team.ihniTeam.users) {
+        this.avatarService.getImg(myUser.user.id).subscribe(img => {
+          myUser.user.avatar = this.avatarService.base64toUrl(img.content);
+        });
+      }
     }
-  }
   }
   onSelect(user: User): void {
     this.selectedUser = user;

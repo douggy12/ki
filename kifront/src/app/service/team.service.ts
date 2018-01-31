@@ -34,14 +34,7 @@ getTeam(id: number): Observable<Team> {
 }
 update(team: Team): Observable<any>  {
   const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;
-  return this.http.put(url, team.kiTeam, httpOptions)
-    .pipe(
-    tap(_ => {
-      this.log(`updated hero id=${team.ihniTeam.info.id}`);
-    }),
-    catchError(this.handleError<any>('updateHero'))
-  )
-    ;
+  return this.http.put(url, team.kiTeam, httpOptions);
 }
   /**
    * Handle Http operation that failed.
