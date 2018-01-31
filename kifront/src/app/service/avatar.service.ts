@@ -25,11 +25,7 @@ export class AvatarService {
 
     getImg(id: number): Observable<any> {
         const url = `${this.imgUrl}/${id}`;
-        return this.http.get<any>(url).pipe(
-            tap(data => {
-                console.log('done');
-            })
-        );
+        return this.http.get<any>(url);
     }
     base64toUrl(data): any {
         return this.sanitizer.bypassSecurityTrustUrl(this.imageType + data);

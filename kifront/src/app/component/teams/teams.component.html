@@ -19,7 +19,7 @@
     </div>
     <!-- end UpButton -->
     <!-- UserList => TeamUsersComponent -->
-    <app-team-users [team]="selectedTeam"></app-team-users>
+    <app-team-users [team]="selectedTeam" [teams]="teams"></app-team-users>
     <!-- end UserList -->
     <!-- DownButton -->
     <div class="team-nav" *ngIf="teams && teamIndex < teams.length-1">

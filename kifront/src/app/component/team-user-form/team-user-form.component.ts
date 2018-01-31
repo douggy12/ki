@@ -1,3 +1,5 @@
+import { KiUser } from './../../class/KiUser';
+import { IhniTeam } from './../../class/IhniTeam';
 import { AvatarService } from './../../service/avatar.service';
 import { Team } from './../../class/Team';
 import { UserInfo } from './../../class/UserInfo';
@@ -6,8 +8,10 @@ import { UserService } from './../../service/user.service';
 import { User } from './../../class/User';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { isNull, isUndefined } from 'util';
+import { isNull, isUndefined, isNullOrUndefined } from 'util';
 import { Ng2ImgMaxModule } from 'ng2-img-max/dist/src/ng2-img-max.module';
+import { Select2OptionData } from 'ng2-select2/ng2-select2.interface';
+
 
 
 declare var $: any;
@@ -21,28 +25,37 @@ declare var $: any;
 export class TeamUserFormComponent implements OnInit, OnChanges {
   @Input() selectedUser: UserInfo;
   @Input() selectedTeam: Team;
+  @Input() teams: Team[];
   file: File;
   model: User;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   avatarUrl: String;
   fileChange: Boolean = false;
+  exampleData: Array<Select2OptionData>;
+  options: Select2Options;
+  value: string[];
 
   constructor(private userService: UserService, private avatarService: AvatarService) {
+
   }
   onSubmit() {
     this.userService.update(this.model.kiUser).subscribe();
     if (this.fileChange) {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
+      // Met à jour la photo dans l'affichage de team-users
+      this.blobToUrl(this.file).subscribe(img => {
+        this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
+          .user.avatar = img;
+      });
     }
-
-    this.blobToUrl(this.file).subscribe(img => {
-      this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
-        .user.avatar = img;
-    });
+  }
+  // Met à jour la liste d'ancienne équipe
+  changed(data: { value: string[] }) {
+    this.model.kiUser.teamH = data.value.join('|');
   }
 
   ngOnInit() {
-
+    
   }
   // Transforme un flux Blob en base64 en url image
   blobToUrl(data) {
@@ -72,14 +85,22 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-
-    if (!isUndefined(this.selectedUser)) {
+    this.value = ['haha'];
+    if (!isUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
         this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
-        .user.avatar
+          .user.avatar;
+        // Init de la liste de team dispo pour select2
+        this.exampleData = this.teams.map(team => {
+          const idString = team.ihniTeam.info.id + '';
+          return { id: idString, text: team.ihniTeam.info.name };
+        });
+        this.options = { multiple: true };
       });
     }
+
+
     // Workaround assigner select2 une fois la variable selectedUser attribué
     const select2 = Observable.timer(100);
     select2.subscribe(() => $('.multsel').select2());

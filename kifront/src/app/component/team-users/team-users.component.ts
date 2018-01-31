@@ -12,6 +12,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-team-users',
@@ -19,19 +20,20 @@ import {
   styleUrls: ['./team-users.component.css'],
   animations: [
     trigger('flyInOut', [
-      state('in', style({transform: 'translateX(0)'})),
+      state('in', style({ transform: 'translateX(0)' })),
       transition('* => *', [
-        style({transform: 'translateX(-100%)'}),
+        style({ transform: 'translateX(-100%)' }),
         animate(100)
       ]),
       transition('* => *', [
-        animate(100, style({transform: 'translateX(100%)'}))
+        animate(100, style({ transform: 'translateX(100%)' }))
       ])
     ])
   ]
 })
 export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;
+  @Input() teams: Team[];
   selectedUser: User;
 
   constructor(private avatarService: AvatarService) {
@@ -42,10 +44,9 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
   // Supprime le pilote de la liste des utilisateurs
   ngOnChanges(changes: SimpleChanges) {
-    this.team.ihniTeam.users.filter(user =>user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
-    console.log(this.team);
     
-
+    if(!isNullOrUndefined(this.team)) {
+      this.team.ihniTeam.users.filter(user => user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
     this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
       this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
     });
@@ -54,6 +55,7 @@ export class TeamUsersComponent implements OnInit, OnChanges {
         myUser.user.avatar = this.avatarService.base64toUrl(img.content);
       });
     }
+  }
   }
   onSelect(user: User): void {
     this.selectedUser = user;

@@ -3,4 +3,5 @@ export class KiUser {
     nbEnfant: number;
     avatar: String;
     ihniId: number;
+    teamH: string;
 }

@@ -50,13 +50,10 @@
               <div class="form-group">
                 <label class="col-sm-6 control-label">Anciennes équipes</label>
                 <div class="col-sm-6">
-                  <select class="form-control multsel" id="input_former_team" multiple="multiple" style="width: 100%" disabled=true>
-                    <option value="CDS JAVA" selected="selected">CDS JAVA</option>
-                    <option value="AT MMA" selected="selected">AT MMA</option>
-                    <option value="AT VINCI">AT VINCI</option>
-                    <option value="DEFIS">DEFIS</option>
-                    <option value="MANU CIAO">MANU CIAO</option>
-                  </select>
+                  <!-- <select class="form-control multsel" id="teamH" style="width: 100%"  name = "teamH" multiple="multiple">
+                    <option *ngFor="let team of teams" [value]="team.ihniTeam.info.id">{{team.ihniTeam.info.name}}</option>                   
+                  </select> -->
+                  <select2 [data] = "exampleData" [options] = "options" [value] = "model.kiUser.teamH ? model.kiUser.teamH.split('|') : ''"  (valueChanged)="changed($event)" [width]="170" name = "value"></select2>
                 </div>
               </div>
               <div class="form-group">
