@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -39,8 +40,13 @@ public class KiTeamController {
 
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
-    public List<MixedTeamService> listTeam() {
-        List<TeamWrapper> allTeam =  ihniService.getAllTeam();
+    public List<MixedTeamService> listTeam(@RequestHeader(value="Cookie") String cookieRaw) {
+        String[] cookieBag = cookieRaw.split(";");
+        String phpSESSID = "";
+        for (String cookieElem : cookieBag){
+            if(cookieElem.contains("PHPSESSID")) phpSESSID = cookieElem;
+        }
+        List<TeamWrapper> allTeam =  ihniService.getAuthAllTeam(phpSESSID);
         List<MixedTeamService> allTeamJson = new ArrayList<>();
         allTeam.forEach(ihniTeam -> {
             TeamInfoWrapper teamInfo = new TeamInfoWrapper();

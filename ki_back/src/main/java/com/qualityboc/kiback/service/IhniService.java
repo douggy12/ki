@@ -15,8 +15,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import java.util.List;
+import java.util.Map;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -41,6 +47,21 @@ public class IhniService {
             userList.add(userWrapper.getUser());
         }
         return userList;
+    }
+    
+    public List<TeamWrapper> getAuthAllTeam(String phpSESSID) {
+                
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange("http://localhost:8000/api/auth/allteam", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
+//        System.out.println(response.getBody());
+        AllTeamWrapper[] teamArray = response.getBody();
+        List<TeamWrapper> teamList = new LinkedList();
+        for (AllTeamWrapper team : teamArray) {
+            teamList.add(team.getTeam());
+        }
+        return teamList;
     }
     
     public List<TeamWrapper> getAllTeam() {
