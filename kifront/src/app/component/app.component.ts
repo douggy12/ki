@@ -1,7 +1,8 @@
-import { UserCService } from './../service/userC.service';
+import { AuthService } from './../service/auth.service';
 import { User } from './../class/User';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
 
@@ -14,13 +15,18 @@ export class AppComponent implements OnInit {
 
   me: User;
   carlos: User;
+  cookieValue : any;
 
-  constructor() { }
+  constructor(private authService: AuthService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    // this.meService.getUserC().then(me => {this.me = me; });
-   //this.meService.getTest().then(carlos => {this.carlos = carlos; console.log(carlos.nom); });
-
+    this.authService.authMe().subscribe(user => {
+      console.log(user);
+    });
+    this.cookieService.set('myCookie', 'this my cookie');
+    this.cookieValue = this.cookieService.getAll();
+    console.log(this.cookieValue);
+    console.log(document.cookie);
   }
 
 }

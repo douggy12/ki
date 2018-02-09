@@ -1,7 +1,8 @@
+import { ConfigService } from './config/config.service';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
 import { AvatarService } from './service/avatar.service';
 import { UserService } from './service/user.service';
-import { UserCService } from './service/userC.service';
+import { AuthService } from './service/auth.service';
 import { TeamUserFormComponent } from './component/team-user-form/team-user-form.component';
 import { TeamDetailFormComponent } from './component/team-detail-form/team-detail-form.component';
 import { TeamSearchComponent } from './component/team-search/team-search.component';
@@ -35,6 +36,7 @@ import { TeamDetailComponent } from './component/team-detail/team-detail.compone
 import {MessageService} from './message.service';
 import { ImgResizeExactService } from 'ng2-img-tools/dist/src/img-resize-exact.service';
 import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -64,8 +66,8 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
-  providers: [ TeamService, UserService, UserCService, MessageService,
-     AvatarService ],
+  providers: [ TeamService, UserService, AuthService, MessageService, ConfigService,
+     AvatarService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

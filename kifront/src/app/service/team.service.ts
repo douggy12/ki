@@ -10,23 +10,28 @@ import {Observable} from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import {MessageService} from '../message.service';
+import { ConfigService } from '../config/config.service';
 
 
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'withCredentials' : 'true' })
 };
 
 @Injectable()
 export class TeamService {
     private teamUrl = 'http://localhost:8080/ihni/team';
 
+    options: any = {'withCredentials' : 'true'};
 
-constructor(private http: HttpClient, private messageService: MessageService) { }
+constructor(private http: HttpClient, private messageService: MessageService, private config: ConfigService) { }
 
 getTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>(this.teamUrl);
+    return this.http.get<Team[]>(this.teamUrl, this.options)
+    .pipe(
+      catchError(this.config.handleError)
+  );
 }
 getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;

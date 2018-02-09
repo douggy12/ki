@@ -85,6 +85,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    this.fileChange = false;
     if (!isNullOrUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
