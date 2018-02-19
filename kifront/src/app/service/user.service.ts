@@ -1,5 +1,6 @@
+import { ConfigService } from './../config/config.service';
 import { IhniUser } from './../class/IhniUser';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { UserInfo } from './../class/UserInfo';
 import { KiUser } from './../class/KiUser';
 import { User } from './../class/User';
@@ -16,12 +17,18 @@ const httpOptions = {
 @Injectable()
 export class UserService {
     private teamUrl = 'http://localhost:8080/ihni/user';
+    options: any = {'withCredentials' : 'true'};
 
-constructor(private http: HttpClient) { }
+
+constructor(private http: HttpClient, private config: ConfigService) { }
 
 get(id: number): Observable<User> {
     const url = `${this.teamUrl}/${id}`;
-    return this.http.get<User>(url);
+    return this.http.get<User>(url, this.options)
+        .pipe(
+            catchError(this.config.handleError)
+        )
+    ;
 }
 update(user: KiUser): Observable<any> {
     const url = `${this.teamUrl}/${user.ihniId}`;
@@ -32,7 +39,11 @@ searchUsers(term: string): Observable<IhniUser[]> {
         // pas de term => return empty array
         return of([]);
     }
-    return this.http.get<IhniUser[]>(this.teamUrl + `?term=${term}`);
+    return this.http.get<IhniUser[]>(this.teamUrl + `?term=${term}`, this.options)
+        .pipe(
+            catchError(this.config.handleError)
+        )
+    ;
 }
 
 }

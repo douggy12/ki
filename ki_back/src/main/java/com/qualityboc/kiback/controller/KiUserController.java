@@ -8,6 +8,7 @@ package com.qualityboc.kiback.controller;
 
 import com.qualityboc.kiback.domain.KiUser;
 import com.qualityboc.kiback.repository.KiUserRepository;
+import com.qualityboc.kiback.service.AuthService;
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.MixedUserService;
 import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
@@ -35,11 +36,14 @@ public class KiUserController {
     MixedUserService mixedUserService;
     @Autowired
     KiUserRepository kiUserRepository;
+    @Autowired
+    AuthService authService;
 
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
-    public MixedUserService get(@PathVariable String id) {
-        mixedUserService.setUser(id);
+    public MixedUserService get(@PathVariable String id,@RequestHeader(value = "Cookie") String cookieRaw) {
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        mixedUserService.setUser(id, phpSESSID);
         return mixedUserService;
     }
     @CrossOrigin
@@ -58,7 +62,8 @@ public class KiUserController {
     }
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
-    public List<UserInfoWrapper> getByName (@RequestParam("term") String string) {
-        return this.mixedUserService.getIhniUserByName(string);
+    public List<UserInfoWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        return this.mixedUserService.getIhniUserByName(string, phpSESSID);
     }
 }

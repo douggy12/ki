@@ -8,6 +8,7 @@ package com.qualityboc.kiback.controller;
 
 import com.qualityboc.kiback.domain.KiTeam;
 import com.qualityboc.kiback.repository.KiTeamRepository;
+import com.qualityboc.kiback.service.AuthService;
 import com.qualityboc.kiback.service.IhniService;
 import com.qualityboc.kiback.service.MixedTeamService;
 import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
@@ -37,16 +38,19 @@ public class KiTeamController {
     MixedTeamService mixedTeamService;
     @Autowired
     KiTeamRepository kiTeamRepository;
+    @Autowired
+    AuthService authService;
 
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
     public List<MixedTeamService> listTeam(@RequestHeader(value="Cookie") String cookieRaw) {
-        String[] cookieBag = cookieRaw.split(";");
-        String phpSESSID = "";
-        for (String cookieElem : cookieBag){
-            if(cookieElem.contains("PHPSESSID")) phpSESSID = cookieElem;
-        }
-        List<TeamWrapper> allTeam =  ihniService.getAuthAllTeam(phpSESSID);
+//        String[] cookieBag = cookieRaw.split(";");
+//        String phpSESSID = "";
+//        for (String cookieElem : cookieBag){
+//            if(cookieElem.contains("PHPSESSID")) phpSESSID = cookieElem;
+//        }
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        List<TeamWrapper> allTeam =  ihniService.getAllTeam(phpSESSID);
         List<MixedTeamService> allTeamJson = new ArrayList<>();
         allTeam.forEach(ihniTeam -> {
             TeamInfoWrapper teamInfo = new TeamInfoWrapper();
@@ -58,8 +62,9 @@ public class KiTeamController {
 
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
-    public MixedTeamService getTeam(@PathVariable String id){
-        mixedTeamService.setTeam(id);
+    public MixedTeamService getTeam(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id){
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        mixedTeamService.setTeam(id,phpSESSID);
         return mixedTeamService;
     }
     @CrossOrigin

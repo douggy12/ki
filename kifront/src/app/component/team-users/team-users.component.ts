@@ -1,3 +1,4 @@
+import { TeamUserFormComponent } from './../team-user-form/team-user-form.component';
 import { tap } from 'rxjs/operators';
 import { AvatarService } from './../../service/avatar.service';
 import { TeamService } from './../../service/team.service';
@@ -13,6 +14,7 @@ import {
   transition
 } from '@angular/animations';
 import { isNullOrUndefined } from 'util';
+import { ViewChild } from '@angular/core/src/metadata/di';
 
 @Component({
   selector: 'app-team-users',
@@ -55,6 +57,8 @@ export class TeamUsersComponent implements OnInit, OnChanges {
           myUser.user.avatar = this.avatarService.base64toUrl(img.content);
         });
       }
+      // Select le premier user de la liste par default pour la modal
+      this.selectedUser = this.team.ihniTeam.users[0].user;
     }
   }
   onSelect(user: User): void {

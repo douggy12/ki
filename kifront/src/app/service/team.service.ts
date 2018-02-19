@@ -35,7 +35,10 @@ getTeams(): Observable<Team[]> {
 }
 getTeam(id: number): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
-    return this.http.get<Team>(url);
+    return this.http.get<Team>(url, this.options)
+    .pipe(
+      catchError(this.config.handleError)
+  );
 }
 update(team: Team): Observable<any>  {
   const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;

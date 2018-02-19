@@ -60,9 +60,9 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   // Transforme un flux Blob en base64 en url image
   blobToUrl(data) {
     const reader = new FileReader();
-    let fileObs = Observable.create((observer: any) => {
+    const fileObs = Observable.create((observer: any) => {
       reader.onload = (event: any) => {
-        let file = event.target.result;
+        const file = event.target.result;
         observer.next(file);
         observer.complete();
       };
@@ -89,21 +89,19 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     if (!isNullOrUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
-        this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
+        this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id)[0]
           .user.avatar;
+
+        // Workaround assigner select2 une fois la variable selectedUser attribué
         // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée
         setTimeout(() => {
-          $('#teamH').val(this.model.kiUser.teamH.split('|')).trigger('change');
+          $('.multsel').select2();
+          if (!isNullOrUndefined(this.model.kiUser.teamH)) {
+            $('#teamH').val(this.model.kiUser.teamH.split('|')).trigger('change');
+          }
         }, 110);
       });
     }
-
-
-    // Workaround assigner select2 une fois la variable selectedUser attribué
-    const select2Timer = Observable.timer(100);
-    select2Timer.subscribe(() => {
-      $('.multsel').select2();
-    });
   }
   getRole(): String {
 

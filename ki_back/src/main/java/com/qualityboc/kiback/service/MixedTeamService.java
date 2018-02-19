@@ -27,8 +27,8 @@ public class MixedTeamService {
         this.ihniTeam = ihniTeam;
     }
 
-    public void setTeam(String kiTeamId) {
-        this.ihniTeam = ihniService.getIhniTeam(kiTeamId);
+    public void setTeam(String kiTeamId, String phpSESSID) {
+        this.ihniTeam = ihniService.getIhniTeam(kiTeamId, phpSESSID);
         Long longId = Long.valueOf(kiTeamId);
         KiTeam kiTeam = kiTeamRepository.findByIhniId(longId);
         if(kiTeam != null) {

@@ -1,3 +1,4 @@
+import { User } from './User';
 import { TeamRole } from './TeamRole';
 export class UserInfo {
     id: number;
@@ -11,7 +12,6 @@ export class UserInfo {
     createdAt: Object;
     avatar: File;
     pilote = false;
-    
     // equipes_old: object;
-   
+
 }

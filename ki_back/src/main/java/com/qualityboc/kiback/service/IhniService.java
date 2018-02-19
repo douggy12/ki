@@ -35,13 +35,21 @@ public class IhniService {
     private String ihniApiKey;
     private String ihniUrl;
 
-    public UserInfoWrapper getIhniUser(String id) {
-        UserInfoWrapper user = new RestTemplate().getForObject("http://devbox/api/user/" + id + "?apikey=9e6babc5542e", UserInfoWrapper.class);
+    public UserInfoWrapper getIhniUser(String id,String phpSESSID) {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<UserInfoWrapper> response = new RestTemplate().exchange("http://localhost:8000/api/user/" + id,HttpMethod.GET, requestEntity, UserInfoWrapper.class);
+        UserInfoWrapper user = response.getBody();
         return user;
     }
 
-    public List<UserWrapper> getAllIhniUser() {
-        AllUserWrapper[] userArray = new RestTemplate().getForObject("http://devbox/api/alluser?apikey=9e6babc5542e", AllUserWrapper[].class);
+    public List<UserWrapper> getAllIhniUser(String phpSESSID) {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<AllUserWrapper[]> response = new RestTemplate().exchange("http://localhost:8000/api/alluser",HttpMethod.GET, requestEntity, AllUserWrapper[].class);
+        AllUserWrapper[] userArray = response.getBody();
         List<UserWrapper> userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
             userList.add(userWrapper.getUser());
@@ -49,12 +57,12 @@ public class IhniService {
         return userList;
     }
     
-    public List<TeamWrapper> getAuthAllTeam(String phpSESSID) {
+    public List<TeamWrapper> getAllTeam(String phpSESSID) {
                 
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange("http://localhost:8000/api/auth/allteam", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
+        ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange("http://localhost:8000/api/team", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
 //        System.out.println(response.getBody());
         AllTeamWrapper[] teamArray = response.getBody();
         List<TeamWrapper> teamList = new LinkedList();
@@ -64,17 +72,13 @@ public class IhniService {
         return teamList;
     }
     
-    public List<TeamWrapper> getAllTeam() {
-        AllTeamWrapper[] teamArray = new RestTemplate().getForObject("http://devbox/api/team?apikey=9e6babc5542e", AllTeamWrapper[].class);
-        List<TeamWrapper> teamList = new LinkedList();
-        for(AllTeamWrapper team : teamArray){
-            teamList.add(team.getTeam());
-        }
-        return teamList;
-    }
     
-    public TeamInfoWrapper getIhniTeam(String id){
-        TeamInfoWrapper team = new RestTemplate().getForObject("http://devbox/api/team/" + id + "?apikey=9e6babc5542e", TeamInfoWrapper.class);
+    public TeamInfoWrapper getIhniTeam(String id,String phpSESSID){
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange("http://localhost:8000/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
+        TeamInfoWrapper team = response.getBody();
         return team;
     }
 
