@@ -29,7 +29,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   file: File;
   model: User;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  avatarUrl: String;
+  avatarUrl: File;
   fileChange: Boolean = false;
   exampleData: Array<Select2OptionData>;
   options: Select2Options;
@@ -48,7 +48,8 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
       // Met à jour la photo dans l'affichage de team-users
       this.blobToUrl(this.file).subscribe(img => {
-        this.selectedTeam.ihniTeam.users.filter(user => user.user.id === this.model.ihniUser.info.id)[0]
+        console.log(this.selectedTeam.ihniTeam.users);
+        this.selectedTeam.ihniTeam.users.filter(wrapper => wrapper.user.id === this.model.ihniUser.info.id)[0]
           .user.avatar = img;
       });
     }
@@ -90,7 +91,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
         this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id)[0]
-          .user.avatar;
+           .user.avatar;
 
         // Workaround assigner select2 une fois la variable selectedUser attribué
         // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée

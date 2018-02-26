@@ -1,3 +1,4 @@
+import { UserInfo } from './../../class/UserInfo';
 import { TeamUserFormComponent } from './../team-user-form/team-user-form.component';
 import { tap } from 'rxjs/operators';
 import { AvatarService } from './../../service/avatar.service';
@@ -36,7 +37,7 @@ import { ViewChild } from '@angular/core/src/metadata/di';
 export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;
   @Input() teams: Team[];
-  selectedUser: User;
+  selectedUser: UserInfo;
 
   constructor(private avatarService: AvatarService) {
   }
@@ -52,7 +53,7 @@ export class TeamUsersComponent implements OnInit, OnChanges {
       this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
         this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
       });
-      for (let myUser of this.team.ihniTeam.users) {
+      for (const myUser of this.team.ihniTeam.users) {
         this.avatarService.getImg(myUser.user.id).subscribe(img => {
           myUser.user.avatar = this.avatarService.base64toUrl(img.content);
         });
@@ -61,7 +62,7 @@ export class TeamUsersComponent implements OnInit, OnChanges {
       this.selectedUser = this.team.ihniTeam.users[0].user;
     }
   }
-  onSelect(user: User): void {
+  onSelect(user: UserInfo): void {
     this.selectedUser = user;
   }
 

@@ -18,7 +18,7 @@ export class TeamDetailComponent implements OnInit {
     // private route: ActivatedRoute,
     // private location: Location
   ) { }
-  
+
   ngOnInit(): void {
     // this.route.paramMap
     // .switchMap((params: ParamMap) => this.teamService.getTeam(+params.get('id')))

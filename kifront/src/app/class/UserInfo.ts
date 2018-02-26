@@ -1,3 +1,4 @@
+import { DateJson } from './DateJson';
 import { User } from './User';
 import { TeamRole } from './TeamRole';
 export class UserInfo {
@@ -7,9 +8,9 @@ export class UserInfo {
     mail: string;
     admin: boolean;
     active: boolean;
-    bornDate: Object;
+    bornDate: DateJson;
     jobName: string;
-    createdAt: Object;
+    createdAt: DateJson;
     avatar: File;
     pilote = false;
     // equipes_old: object;
