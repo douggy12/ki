@@ -1,0 +1,93 @@
+<div class="modal fade" id="user-modal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" *ngIf="model">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" >{{model.ihniUser.info.prenom}} {{model.ihniUser.info.nom}}
+          <small>{{model.ihniUser.info.jobName}}</small>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="user-modal-img">
+              <img class="img-circle" [src]="avatarUrl" alt="User Avatar">
+            </div>
+            <div class="user-modal-control">
+              <input type="file" name="file" id="file" (change)="onFileChange($event)" accept="image/*">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <form class="form-horizontal" (ngSubmit)="onSubmit()" #userForm = "ngForm">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Prénom</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="input_prenom" value="{{model.ihniUser.info.prenom}}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nom</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="input_nom" value="{{model.ihniUser.info.nom}}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Equipe actuelle</label>
+                <div class="col-sm-6">
+                  <select class="form-control multsel" id="input_team" multiple="multiple" style="width: 100%" disabled>
+                    <option *ngFor="let teamRole of model.ihniUser.equipes_role" value="teamRole.equipe.name" selected="selected">{{teamRole.equipe.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Role</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="input_role" value="{{getRole()}}" disabled="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Anciennes équipes</label>
+                <div class="col-sm-6">
+                  <select class="form-control multsel" id="teamH" style="width: 100%"  name = "teamH" multiple="multiple">
+                    <option *ngFor="let team of teams" [value]="team.ihniTeam.info.id">{{team.ihniTeam.info.name}}</option>                   
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Date de naissance</label>
+
+                <div class="col-sm-6" *ngIf="model.ihniUser.info.bornDate">
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input id="datemask" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" value="{{model.ihniUser.info.bornDate.date | date:'dd/MM/yyyy'}}"
+                      disabled>
+                  </div>
+                </div>
+                <!-- /.input group -->
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Nb enfants</label>
+                <div class="col-sm-6">
+                  <select class="form-control" id="nbEnfant" [(ngModel)]="model.kiUser.nbEnfant" name = "nbEnfant">  
+                    <option *ngFor="let number of numbers" [value]="number">{{number}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

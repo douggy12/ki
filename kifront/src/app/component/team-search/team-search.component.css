@@ -1,0 +1,7 @@
+.user-dropdown {
+    left: unset;
+    min-width:222px;
+}
+.user-dropdown small {
+    float: right;
+}

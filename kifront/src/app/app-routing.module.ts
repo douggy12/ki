@@ -6,8 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: 'team/:id', component: TeamDetailComponent}
+    // {path: '', redirectTo: '', pathMatch: 'full'},
+    // {path: 'team/:id', component: TeamDetailComponent}
 ];
 
 @NgModule({

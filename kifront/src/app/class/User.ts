@@ -1,12 +1,6 @@
-import { TeamRole } from './TeamRole';
+import { IhniUser } from './IhniUser';
+import { KiUser } from './KiUser';
 export class User {
-    id: number;
-    nom: string;
-    prenom: string;
-    mail: string;
-    admin: boolean;
-    active: boolean;
-    bornDate: Date;
-    jobName: string;
-    equipes_role: Array<TeamRole>;
+    ihniUser: IhniUser;
+    kiUser: KiUser;
 }

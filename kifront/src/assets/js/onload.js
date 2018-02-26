@@ -35,7 +35,6 @@ $(function () {
     } else {
       if (!$("body").hasClass("control-sidebar-open")) {
         $("body").addClass("control-sidebar-open");
-        console.log("freg");
       }
     }
   }
