@@ -1,3 +1,4 @@
+import { ContextService } from './service/Context.service';
 import { ConfigService } from './config/config.service';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
 import { AvatarService } from './service/avatar.service';
@@ -67,7 +68,7 @@ import { CookieService } from 'ngx-cookie-service';
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
   providers: [ TeamService, UserService, AuthService, MessageService, ConfigService,
-     AvatarService, CookieService],
+     AvatarService, CookieService, ContextService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
