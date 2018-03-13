@@ -1,7 +1,6 @@
   <!-- Site wrapper -->
   <div class="wrapper">
-    <h1 *ngIf='carlos'>Bonjour {{carlos.nom}} !</h1>
-    <app-teams></app-teams>
+    <app-teams *ngIf='me && myTeam'></app-teams>
 
     
   </div>

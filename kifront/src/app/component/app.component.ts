@@ -1,3 +1,4 @@
+import { ContextService } from './../service/Context.service';
 import { AuthService } from './../service/auth.service';
 import { User } from './../class/User';
 import { Component } from '@angular/core';
@@ -14,19 +15,17 @@ declare var $: any;
 export class AppComponent implements OnInit {
 
   me: User;
-  carlos: User;
-  cookieValue : any;
+  myTeam: string;
 
-  constructor(private authService: AuthService, private cookieService: CookieService) { }
+  constructor(private authService: AuthService, private cookieService: CookieService, private context: ContextService) { }
 
   ngOnInit(): void {
     this.authService.authMe().subscribe(user => {
-      console.log(user);
+      this.me = user;
+      this.context.setMe(user);
     });
-    this.cookieService.set('myCookie', 'this my cookie');
-    this.cookieValue = this.cookieService.getAll();
-    console.log(this.cookieValue);
-    console.log(document.cookie);
+    this.myTeam = this.cookieService.get('ihni_context');
+    this.context.setMyTeam(this.myTeam);
   }
 
 }
