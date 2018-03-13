@@ -1,3 +1,4 @@
+import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
@@ -14,15 +15,22 @@ export class TeamsComponent implements OnInit {
   teamIndex: number;
 
   constructor(
-    private teamService: TeamService
+    private teamService: TeamService,
+    private context: ContextService
   ) { }
 
   ngOnInit() {
     this.getTeams();
+    this.teamService.getTeam(+this.context.myTeam).subscribe(team => {
+    this.selectedTeam = team;
+    });
   }
 
   getTeams(): void {
-    this.teamService.getTeams().subscribe(teams => {this.teams = teams; this.teamIndex = 0 ; this.onSelect(teams[0], 0); });
+    this.teamService.getTeams().subscribe(teams => {
+      this.teams = teams;
+      this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
+    });
   }
 
   onSelect(team: Team, teamIndex: number): void {
