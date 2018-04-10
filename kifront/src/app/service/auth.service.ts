@@ -1,3 +1,5 @@
+import { UserInfo } from './../class/UserInfo';
+import { Team } from './../class/Team';
 import { catchError } from 'rxjs/operators';
 import { ConfigService } from './../config/config.service';
 import { Observable } from 'rxjs/Rx';
@@ -20,11 +22,18 @@ export class AuthService {
         // this.options = new RequestOptions({ headers: this.headers, withCredentials: true});
      }
 
-    authMe(): Observable<User> {
-        return this.http.get<User>(this.authUrl, this.options)
+    authMe(): Observable<UserInfo> {
+        return this.http.get<UserInfo>(this.authUrl, this.options)
             .pipe(
                 catchError(this.config.handleError)
             );
+    }
+    isPilote(user: UserInfo, team: Team) {
+        console.log(user);
+        if (team.ihniTeam.info.pilote.id === user.id) {
+            return true;
+        }
+        return false;
     }
 
 }
