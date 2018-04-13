@@ -38,9 +38,9 @@ update(user: KiUser): Observable<any> {
            tap(
                data => {
                    this.message.add('Sauvegardé !');
-                   setTimeout(() => {
-                       this.message.clear();
-                   }, 2000);
+                //    setTimeout(() => {
+                //        this.message.clear();
+                //    }, 1000);
                }
            )
         );
