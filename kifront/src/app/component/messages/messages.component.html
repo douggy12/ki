@@ -1,0 +1,4 @@
+<div class="alert alert-success alert-dismissible" *ngIf="message.messages.length">
+  <button type="button" class="close" (click)="message.clear()">×</button>
+  <h4><i class="icon fa fa-check"></i> <div *ngFor='let message of message.messages'> {{message}} </div></h4>
+</div>
