@@ -1,6 +1,6 @@
 import { ConfigService } from './../config/config.service';
 import { IhniUser } from './../class/IhniUser';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { UserInfo } from './../class/UserInfo';
 import { KiUser } from './../class/KiUser';
 import { User } from './../class/User';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
+import { MessageService } from '../message.service';
 
 
 const httpOptions = {
@@ -20,7 +21,7 @@ export class UserService {
     options: any = {'withCredentials' : 'true'};
 
 
-constructor(private http: HttpClient, private config: ConfigService) { }
+constructor(private http: HttpClient, private config: ConfigService, private message: MessageService) { }
 
 get(id: number): Observable<User> {
     const url = `${this.teamUrl}/${id}`;
@@ -32,7 +33,17 @@ get(id: number): Observable<User> {
 }
 update(user: KiUser): Observable<any> {
     const url = `${this.teamUrl}/${user.ihniId}`;
-    return this.http.put(url, user, httpOptions);
+    return this.http.put(url, user, httpOptions)
+        .pipe(
+           tap(
+               data => {
+                   this.message.add('Sauvegardé !');
+                   setTimeout(() => {
+                       this.message.clear();
+                   }, 2000);
+               }
+           )
+        );
 }
 searchUsers(term: string): Observable<IhniUser[]> {
     if (!term.trim()) {
