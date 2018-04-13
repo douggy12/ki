@@ -31,7 +31,6 @@ export class TeamDetailComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges(): void {
-    console.log(this.context.me);
     this.isPilote = this.auth.isPilote(this.context.me, this.team);
   }
 
