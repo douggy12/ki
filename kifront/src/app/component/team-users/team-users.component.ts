@@ -17,6 +17,8 @@ import {
 import { isNullOrUndefined } from 'util';
 import { ViewChild } from '@angular/core/src/metadata/di';
 
+declare var $: any;
+
 @Component({
   selector: 'app-team-users',
   templateUrl: './team-users.component.html',
