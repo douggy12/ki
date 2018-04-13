@@ -1,4 +1,4 @@
-import { MessageService } from './message.service';
+import { MessageService } from './service/message.service';
 import { MessagesComponent } from './component/messages/messages.component';
 import { ContextService } from './service/Context.service';
 import { ConfigService } from './config/config.service';

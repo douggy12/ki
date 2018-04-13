@@ -1,5 +1,5 @@
 import { AuthService } from './../../service/auth.service';
-import { MessageService } from './../../message.service';
+import { MessageService } from './../../service/message.service';
 import { KiUser } from './../../class/KiUser';
 import { IhniTeam } from './../../class/IhniTeam';
 import { AvatarService } from './../../service/avatar.service';
@@ -41,7 +41,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
 
   constructor(
     private userService: UserService, private avatarService: AvatarService, private message: MessageService, public auth: AuthService
-  ) {  }
+  ) { }
 
   onSubmit() {
     // WorkAround Utilise Jquery pour récupérer les data de select 2 (incompatibilité ANgular)
@@ -97,8 +97,9 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     if (!isNullOrUndefined(this.selectedUser) && !isNullOrUndefined(this.selectedTeam)) {
       this.userService.get(this.selectedUser.id).subscribe(user => {
         this.model = user;
-        this.avatarUrl = this.selectedTeam.ihniTeam.users.filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id)[0]
-           .user.avatar;
+        const selectedTeamUser = this.selectedTeam.ihniTeam.users
+          .filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id).shift();
+        this.avatarUrl = isNullOrUndefined(selectedTeamUser) ? null : selectedTeamUser.user.avatar;
         // Workaround assigner select2 une fois la variable selectedUser attribué
         // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée
         this.loaded = true;

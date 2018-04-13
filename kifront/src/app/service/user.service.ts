@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
-import { MessageService } from '../message.service';
+import { MessageService } from '../service/message.service';
 
 
 const httpOptions = {
@@ -37,10 +37,8 @@ update(user: KiUser): Observable<any> {
         .pipe(
            tap(
                data => {
-                   this.message.add('Sauvegardé !');
-                //    setTimeout(() => {
-                //        this.message.clear();
-                //    }, 1000);
+                this.message.clear();
+                this.message.add('Sauvegardé !');
                }
            )
         );

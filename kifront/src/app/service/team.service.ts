@@ -9,7 +9,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import {MessageService} from '../message.service';
+import {MessageService} from '../service/message.service';
 import { ConfigService } from '../config/config.service';
 
 

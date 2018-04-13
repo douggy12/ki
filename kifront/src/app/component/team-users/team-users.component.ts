@@ -61,7 +61,8 @@ export class TeamUsersComponent implements OnInit, OnChanges {
         });
       }
       // Select le premier user de la liste par default pour la modal
-      this.selectedUser = this.team.ihniTeam.users[0].user;
+      // this.selectedUser = this.team.ihniTeam.users[0].user;
+
     }
   }
   onSelect(user: UserInfo): void {
