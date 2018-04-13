@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { User } from '../class/User';
+import { ContextService } from './Context.service';
 // import { RequestOptions } from '@angular/http/src/base_request_options';
 // import { Headers } from '@angular/http/src/headers';
 
@@ -17,7 +18,7 @@ export class AuthService {
     private authUrl = 'http://localhost:8000/api/authme';
     // headers: Headers;
     options: any = {'withCredentials' : 'true'};
-    constructor(private http: HttpClient, private config: ConfigService) {
+    constructor(private http: HttpClient, private config: ConfigService, private context: ContextService) {
         // this.headers = new Headers( {'Content-Type': 'application/json'});
         // this.options = new RequestOptions({ headers: this.headers, withCredentials: true});
      }
@@ -29,8 +30,13 @@ export class AuthService {
             );
     }
     isPilote(user: UserInfo, team: Team) {
-        console.log(user);
         if (team.ihniTeam.info.pilote.id === user.id) {
+            return true;
+        }
+        return false;
+    }
+    isOwner(user: UserInfo) {
+        if (this.context.me.id === user.id) {
             return true;
         }
         return false;

@@ -1,3 +1,5 @@
+import { MessageService } from './message.service';
+import { MessagesComponent } from './component/messages/messages.component';
 import { ContextService } from './service/Context.service';
 import { ConfigService } from './config/config.service';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
@@ -34,7 +36,6 @@ import { Select2Module } from 'ng2-select2';
 import { AppComponent } from './component/app.component';
 import { TeamsComponent } from './component/teams/teams.component';
 import { TeamDetailComponent } from './component/team-detail/team-detail.component';
-import {MessageService} from './message.service';
 import { ImgResizeExactService } from 'ng2-img-tools/dist/src/img-resize-exact.service';
 import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 import { CookieService } from 'ngx-cookie-service';
@@ -49,7 +50,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppFooterComponent,
     AppScriptComponent,
     TeamSearchComponent,
-    TeamUserFormComponent
+    TeamUserFormComponent,
+    MessagesComponent
 
 
 ],
