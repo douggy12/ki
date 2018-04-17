@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './component/spinner/spinner.component';
 import { MessageService } from './service/message.service';
 import { MessagesComponent } from './component/messages/messages.component';
 import { ContextService } from './service/Context.service';
@@ -51,7 +52,8 @@ import { CookieService } from 'ngx-cookie-service';
     AppScriptComponent,
     TeamSearchComponent,
     TeamUserFormComponent,
-    MessagesComponent
+    MessagesComponent,
+    SpinnerComponent
 
 
 ],
