@@ -1,6 +1,10 @@
-<div *ngIf="message.messages.length">
-<div class="alert alert-success alert-dismissible" *ngFor='let lmessage of message.messages'>
+<div *ngIf="message.messages.OK.length">
+<div class="alert alert-success alert-dismissible" *ngFor="let lmessage of message.messages.OK">
   <button type="button" class="close" (click)="message.clear()">×</button>
   <h5><i class="icon fa fa-check"></i> <span > {{lmessage}} </span></h5>
+</div>
+<div class="alert alert-danger alert-dismissible" *ngFor="let lmessage of message.messages.KO">
+  <button type="button" class="close" (click)="message.clear()">×</button>
+  <h5><i class="icon fa fa-ban"></i> <span > {{lmessage}} </span></h5>
 </div>
 </div>

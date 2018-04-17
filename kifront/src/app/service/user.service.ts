@@ -38,7 +38,12 @@ update(user: KiUser): Observable<any> {
            tap(
                data => {
                 this.message.clear();
-                this.message.add('Sauvegardé !');
+                this.message.addOK('Sauvegardé !');
+                console.log(this.message);
+               },
+               error => {
+                this.message.clear();
+                this.message.addKO('Erreur : contactez le support');
                }
            )
         );

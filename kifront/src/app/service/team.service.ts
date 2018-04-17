@@ -66,7 +66,7 @@ update(team: Team): Observable<any>  {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.addOK('HeroService: ' + message);
   }
 
 }
