@@ -1,3 +1,4 @@
+import { UserInfo } from './../class/UserInfo';
 import { ContextService } from './../service/Context.service';
 import { AuthService } from './../service/auth.service';
 import { User } from './../class/User';
@@ -14,7 +15,7 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-  me: User;
+  me: UserInfo;
   myTeam: string;
 
   constructor(private authService: AuthService, private cookieService: CookieService, private context: ContextService) { }

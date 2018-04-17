@@ -1,0 +1,11 @@
+.alert {
+    margin-bottom : 0;
+    margin-top : 7px;
+    padding : 0 15px 0 15px;
+}
+.close {
+    top : 0;
+    right: 0;
+    margin-top: 0;
+    line-height: unset;
+}

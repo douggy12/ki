@@ -1,22 +1,23 @@
-<div class="modal fade" id="user-modal" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-content" *ngIf="model">
+<div class="modal fade" id="user-modal" style="display: none;" >
+  <div class="modal-dialog" [ngSwitch]="loaded">
+    <div class="modal-content" *ngSwitchCase="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" >{{model.ihniUser.info.prenom}} {{model.ihniUser.info.nom}}
+        <h4 class="modal-title">{{model.ihniUser.info.prenom}} {{model.ihniUser.info.nom}}
           <small>{{model.ihniUser.info.jobName}}</small>
         </h4>
+        <app-messages></app-messages>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-4">
             <div class="user-modal-img">
-              <img class="img-circle" [src]="avatarUrl" alt="User Avatar">
+              <img class="img-circle" [src]="avatarUrl" alt="User Avatar" *ngIf="avatarUrl">
             </div>
             <div class="user-modal-control">
-              <input type="file" name="file" id="file" (change)="onFileChange($event)" accept="image/*">
+              <input type="file" name="file" id="file" (change)="onFileChange($event)" accept="image/*" *ngIf="auth.isOwner(selectedUser)">
             </div>
           </div>
           <div class="col-sm-8">
@@ -50,7 +51,7 @@
               <div class="form-group">
                 <label class="col-sm-6 control-label">Anciennes équipes</label>
                 <div class="col-sm-6">
-                  <select class="form-control multsel" id="teamH" style="width: 100%"  name = "teamH" multiple="multiple">
+                  <select class="form-control multsel" id="teamH" style="width: 100%"  name = "teamH" multiple="multiple" [disabled]="!auth.isOwner(selectedUser)">
                     <option *ngFor="let team of teams" [value]="team.ihniTeam.info.id">{{team.ihniTeam.info.name}}</option>                   
                   </select>
                 </div>
@@ -72,12 +73,12 @@
               <div class="form-group">
                 <label class="col-sm-6 control-label">Nb enfants</label>
                 <div class="col-sm-6">
-                  <select class="form-control" id="nbEnfant" [(ngModel)]="model.kiUser.nbEnfant" name = "nbEnfant">  
+                  <select class="form-control" id="nbEnfant" [(ngModel)]="model.kiUser.nbEnfant" name = "nbEnfant" [disabled]="!auth.isOwner(selectedUser)">  
                     <option *ngFor="let number of numbers" [value]="number">{{number}}</option>
                   </select>
                 </div>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" *ngIf="auth.isOwner(selectedUser)">
                   <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
@@ -86,6 +87,10 @@
         </div>
       </div>
       
+    </div>
+    <div *ngSwitchDefault class="modal-content">
+      
+      <img src="assets/img/loading2.gif" style="margin-left: 200px;padding: 200px 0 200px 0;">
     </div>
     <!-- /.modal-content -->
   </div>

@@ -7,8 +7,8 @@ $(function () {
     team = "AT MMA";
     teamId = 7;
     role = "pilote";
-    apiKey = "9e6babc5542e";
-    qubAdress = "http://qualitybox";
+    apiKey = "f3a7da7e66b0";
+    qubAdress = "http://localhost:8000";
 
     initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress);
 
