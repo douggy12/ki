@@ -1,4 +1,4 @@
-package com.qualityboc.kiback;
+package com.qualitybox.kiback;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
