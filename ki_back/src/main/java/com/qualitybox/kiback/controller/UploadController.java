@@ -56,7 +56,7 @@ public class UploadController {
         String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
 
         if (filename == null) {
-            System.out.println("com.qualityboc.kiback.controller.UploadController.getFile2()");
+            System.out.println("com.qualitybox.kiback.controller.UploadController.getFile2()");
             filename = "def_2.jpeg";
         }
 

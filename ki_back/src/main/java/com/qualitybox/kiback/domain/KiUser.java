@@ -90,7 +90,7 @@ public class KiUser implements Serializable {
 
     @Override
     public String toString() {
-        return "com.qualityboc.kiback.domain.User[ id=" + id + " ]";
+        return "com.qualitybox.kiback.domain.User[ id=" + id + " ]";
     }
     
 }

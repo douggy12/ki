@@ -1,4 +1,4 @@
-package com.qualityboc.kiback;
+package com.qualitybox.kiback;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

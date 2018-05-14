@@ -77,7 +77,7 @@ public class KiTeam implements Serializable {
 
     @Override
     public String toString() {
-        return "com.qualityboc.kiback.domain.KiTeam[ id=" + id + " ]";
+        return "com.qualitybox.kiback.domain.KiTeam[ id=" + id + " ]";
     }
     
 }
