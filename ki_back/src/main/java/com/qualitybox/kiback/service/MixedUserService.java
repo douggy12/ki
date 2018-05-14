@@ -1,9 +1,9 @@
-package com.qualityboc.kiback.service;
+package com.qualitybox.kiback.service;
 
-import com.qualityboc.kiback.domain.KiUser;
-import com.qualityboc.kiback.repository.KiUserRepository;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.UserWrapper;
+import com.qualitybox.kiback.domain.KiUser;
+import com.qualitybox.kiback.repository.KiUserRepository;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.UserWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

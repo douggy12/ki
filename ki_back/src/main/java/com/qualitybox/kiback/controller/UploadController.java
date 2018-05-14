@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.qualityboc.kiback.controller;
+package com.qualitybox.kiback.controller;
 
-import com.qualityboc.kiback.repository.KiUserRepository;
-import com.qualityboc.kiback.service.StorageService;
-import com.qualityboc.kiback.domain.KiUser;
+import com.qualitybox.kiback.repository.KiUserRepository;
+import com.qualitybox.kiback.service.StorageService;
+import com.qualitybox.kiback.domain.KiUser;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

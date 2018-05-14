@@ -1,8 +1,8 @@
-package com.qualityboc.kiback.service;
+package com.qualitybox.kiback.service;
 
-import com.qualityboc.kiback.domain.KiTeam;
-import com.qualityboc.kiback.repository.KiTeamRepository;
-import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualitybox.kiback.domain.KiTeam;
+import com.qualitybox.kiback.repository.KiTeamRepository;
+import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

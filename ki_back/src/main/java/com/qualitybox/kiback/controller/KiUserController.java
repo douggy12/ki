@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.qualityboc.kiback.controller;
+package com.qualitybox.kiback.controller;
 
 
-import com.qualityboc.kiback.domain.KiUser;
-import com.qualityboc.kiback.repository.KiUserRepository;
-import com.qualityboc.kiback.service.AuthService;
-import com.qualityboc.kiback.service.IhniService;
-import com.qualityboc.kiback.service.MixedUserService;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.UserWrapper;
+import com.qualitybox.kiback.domain.KiUser;
+import com.qualitybox.kiback.repository.KiUserRepository;
+import com.qualitybox.kiback.service.AuthService;
+import com.qualitybox.kiback.service.IhniService;
+import com.qualitybox.kiback.service.MixedUserService;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

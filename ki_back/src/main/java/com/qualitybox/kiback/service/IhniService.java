@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.qualityboc.kiback.service;
+package com.qualitybox.kiback.service;
 
-import com.qualityboc.kiback.service.wrapper.AllTeamWrapper;
-import com.qualityboc.kiback.service.wrapper.AllUserWrapper;
-import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.TeamWrapper;
-import com.qualityboc.kiback.service.wrapper.UserWrapper;
-import com.qualityboc.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.AllTeamWrapper;
+import com.qualitybox.kiback.service.wrapper.AllUserWrapper;
+import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.TeamWrapper;
+import com.qualitybox.kiback.service.wrapper.UserWrapper;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
 import java.util.Arrays;
 import java.util.LinkedList;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.qualityboc.kiback.domain;
+package com.qualitybox.kiback.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;

@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.qualityboc.kiback.controller;
+package com.qualitybox.kiback.controller;
 
 
-import com.qualityboc.kiback.domain.KiTeam;
-import com.qualityboc.kiback.repository.KiTeamRepository;
-import com.qualityboc.kiback.service.AuthService;
-import com.qualityboc.kiback.service.IhniService;
-import com.qualityboc.kiback.service.MixedTeamService;
-import com.qualityboc.kiback.service.wrapper.TeamInfoWrapper;
-import com.qualityboc.kiback.service.wrapper.TeamWrapper;
+import com.qualitybox.kiback.domain.KiTeam;
+import com.qualitybox.kiback.repository.KiTeamRepository;
+import com.qualitybox.kiback.service.AuthService;
+import com.qualitybox.kiback.service.IhniService;
+import com.qualitybox.kiback.service.MixedTeamService;
+import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.TeamWrapper;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -78,6 +78,11 @@ public class KiTeamController {
         kiTeamRepository.save(currentTeam);
         System.out.println(kiTeam);
         return ResponseEntity.accepted().build();
+    }
+    @CrossOrigin
+    @RequestMapping( value = "/test", method = GET)
+    public String test() {
+        return "Hola";
     }
     
     
