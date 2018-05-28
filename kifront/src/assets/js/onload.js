@@ -9,8 +9,9 @@ $(function () {
     role = "pilote";
     apiKey = "f3a7da7e66b0";
     qubAdress = "http://localhost:8000";
+    kiAdress = "http://localhost:8080";
 
-    initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress);
+    initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
 
     $('.multsel').select2();
 

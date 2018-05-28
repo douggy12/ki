@@ -21,7 +21,7 @@
         </div>
         <!-- end UpButton -->
         <!-- UserList => TeamUsersComponent -->
-        <app-team-users [team]="selectedTeam" [teams]="teams" [direction]="state"></app-team-users>
+        <app-team-users [team]="selectedTeam" [teams]="teams" [state]="state"></app-team-users>
         <!-- end UserList -->
         <!-- DownButton -->
         <div class="team-nav visible-xs" *ngIf="teams && teamIndex < teams.length-1"  >

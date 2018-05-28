@@ -16,7 +16,7 @@ export class TeamsComponent implements OnInit {
   teamIndex: number;
   loaded: Boolean;
   lerror: Boolean;
-  state = '';
+  state: Boolean = true;
 
   constructor(
     private teamService: TeamService,
@@ -46,14 +46,10 @@ export class TeamsComponent implements OnInit {
 
   onSelect(team: Team, teamIndex: number): void {
     if (this.teamIndex !== teamIndex) {
+      this.state = false;
       this.teamService.getTeam(team.ihniTeam.info.id)
         .subscribe(selectedTeam => {
-
-          if (teamIndex > this.teamIndex) {
-            this.state = 'down';
-          } else {
-            this.state = 'up';
-          }
+          this.state = true;
           this.selectedTeam = selectedTeam;
           this.teamIndex = teamIndex;
         }

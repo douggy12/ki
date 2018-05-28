@@ -19,23 +19,16 @@ declare var $: any;
   styleUrls: ['./team-users.component.css'],
   animations: [
     trigger('flyInOut', [
-      transition('void => down', [
+      transition('void => *', [
         animate(120, keyframes([
-          style({ transform: 'translateY(100%)', opacity: 0, offset: 0 }),
-          style({ transform: 'translateY(0)', opacity: 1, offset: 1 })
-        ])
-        )
-      ]),
-      transition('void => up', [
-        animate(120, keyframes([
-          style({ transform: 'translateY(-100%)', opacity: 0, offset: 0 }),
+          style({ transform: 'translateY(500px)', opacity: 0, offset: 0 }),
           style({ transform: 'translateY(0)', opacity: 1, offset: 1 })
         ])
         )
       ]),
       transition('* => void', [
-        // style({ transform: 'translateX(100%)' }),
-        animate(100, style({  opacity: 0 }))
+        animate(120, style({ transform: 'translateY(-500px)', opacity: 0 })
+        )
       ])
     ])
   ],
@@ -44,25 +37,19 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;
   @Input() teams: Team[];
   @Input() direction: string;
-  state: string;
+  // conditionne l'apparition du composant depuis appel du parent
+  @Input() state: Boolean;
   selectedUser: UserInfo;
-  show: Boolean;
 
   constructor(private avatarService: AvatarService) {
-    this.show = true;
+
   }
 
   ngOnInit() {
+
   }
   // Supprime le pilote de la liste des utilisateurs
   ngOnChanges(changes: SimpleChanges) {
-    this.show = false;
-    setTimeout(
-      () => {
-        this.show = true;
-        // this.state = 'none';
-      }, 500
-    );
     if (!isNullOrUndefined(this.team)) {
       this.team.ihniTeam.users.filter(user => user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
       this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
