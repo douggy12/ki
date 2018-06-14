@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { ConfigService } from './../config/config.service';
 import { IhniUser } from './../class/IhniUser';
 import { tap, catchError, map } from 'rxjs/operators';
@@ -17,7 +18,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-    private teamUrl = 'http://localhost:8080/ihni/user';
+    private teamUrl = environment.kibackUrl + 'user';
     options: any = {'withCredentials' : 'true'};
 
 

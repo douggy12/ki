@@ -8,8 +8,8 @@ $(function () {
     teamId = 7;
     role = "pilote";
     apiKey = "f3a7da7e66b0";
-    qubAdress = "http://localhost:8000";
-    kiAdress = "http://localhost:8080";
+    qubAdress = "http://azr-cds-lemans-01.sodifrance.fr";
+    kiAdress = "http://azr-cds-lemans-01.sodifrance.fr:8080/kiback/";
 
     initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
 

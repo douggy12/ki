@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { TeamInfo } from './../class/TeamInfo';
 import { IhniTeam } from './../class/IhniTeam';
 import { Team } from './../class/Team';
@@ -21,7 +22,7 @@ const httpOptions = {
 
 @Injectable()
 export class TeamService {
-    private teamUrl = 'http://localhost:8080/ihni/team';
+    private teamUrl = environment.kibackUrl + 'team';
 
     options: any = {'withCredentials' : 'true'};
 

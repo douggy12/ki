@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ihniUrl: 'http://localhost:8000/api/',
+  kibackUrl: 'http://localhost:8080/kiback/'
 };

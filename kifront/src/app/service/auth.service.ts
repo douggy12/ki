@@ -9,13 +9,14 @@ import { Injectable } from '@angular/core';
 
 import { User } from '../class/User';
 import { ContextService } from './Context.service';
+import { environment } from '../../environments/environment';
 // import { RequestOptions } from '@angular/http/src/base_request_options';
 // import { Headers } from '@angular/http/src/headers';
 
 
 @Injectable()
 export class AuthService {
-    private authUrl = 'http://localhost:8000/api/authme';
+    private authUrl = environment.ihniUrl + 'authme';
     // headers: Headers;
     options: any = {'withCredentials' : 'true'};
     constructor(private http: HttpClient, private config: ConfigService, private context: ContextService) {
