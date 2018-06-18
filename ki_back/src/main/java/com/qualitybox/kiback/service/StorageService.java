@@ -27,9 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class StorageService {
-
+   String home = System.getenv("CATALINA_BASE");
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
-    private final Path rootLocation = Paths.get("avatar");
+    private final Path rootLocation = Paths.get(home + "/avatar");
 
     public void store(MultipartFile file, String fileName) {
         if (!file.getContentType().contains("image/")) {

@@ -49,9 +49,9 @@ public class UploadController {
     StorageService storageService;
     @Autowired
     KiUserRepository kiUserRepository;
-
-    @RequestMapping(value = "/{id}", method = GET)
+    
     @CrossOrigin
+    @RequestMapping(value = "/{id}", method = GET)
     public Map<String, String> getFile2(@PathVariable String id) throws IOException {
         String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
 

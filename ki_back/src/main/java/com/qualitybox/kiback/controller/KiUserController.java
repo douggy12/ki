@@ -39,14 +39,14 @@ public class KiUserController {
     @Autowired
     AuthService authService;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*",methods = GET)
     @RequestMapping(value = "/{id}", method = GET)
     public MixedUserService get(@PathVariable String id,@RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         mixedUserService.setUser(id, phpSESSID);
         return mixedUserService;
     }
-    @CrossOrigin
+    @CrossOrigin(origins = "*", methods = PUT, allowCredentials = "true", allowedHeaders = "*")
     @RequestMapping(value = "/{id}", method = PUT)
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiUser kiUser) {
         KiUser currentUser = kiUserRepository.findByIhniId(Long.valueOf(id));
@@ -60,7 +60,7 @@ public class KiUserController {
         kiUserRepository.save(currentUser);
         return ResponseEntity.accepted().build(); 
     }
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "", method = GET)
     public List<UserInfoWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);

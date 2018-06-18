@@ -22,7 +22,7 @@ const httpOptions = {
 
 @Injectable()
 export class TeamService {
-    private teamUrl = environment.kibackUrl + 'team';
+    private teamUrl = environment.kibackUrl + 'ihni/team';
 
     options: any = {'withCredentials' : 'true'};
 

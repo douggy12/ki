@@ -18,7 +18,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-    private teamUrl = environment.kibackUrl + 'user';
+    private teamUrl = environment.kibackUrl + 'ihni/user';
     options: any = {'withCredentials' : 'true'};
 
 
@@ -34,7 +34,7 @@ get(id: number): Observable<User> {
 }
 update(user: KiUser): Observable<any> {
     const url = `${this.teamUrl}/${user.ihniId}`;
-    return this.http.put(url, user, httpOptions)
+    return this.http.put(url, user, this.options)
         .pipe(
            tap(
                data => {
