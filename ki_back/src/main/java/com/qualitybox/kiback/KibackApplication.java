@@ -1,6 +1,7 @@
 package com.qualitybox.kiback;
 
 import com.qualitybox.kiback.service.StorageService;
+import java.io.File;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

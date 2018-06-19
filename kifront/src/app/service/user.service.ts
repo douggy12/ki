@@ -1,3 +1,4 @@
+import { debounceTime } from 'rxjs/operators/debounceTime';
 import { environment } from './../../environments/environment';
 import { ConfigService } from './../config/config.service';
 import { IhniUser } from './../class/IhniUser';
@@ -41,11 +42,12 @@ update(user: KiUser): Observable<any> {
                 this.message.clear();
                 this.message.addOK('Sauvegardé !');
                 console.log(this.message);
+                setTimeout( () => {this.message.clear()}, 800);
                },
                error => {
                 this.message.clear();
                 this.message.addKO('Erreur : contactez le support');
-               }
+               },
            )
         );
 }

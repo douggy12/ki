@@ -5,6 +5,7 @@
  */
 package com.qualitybox.kiback.service;
 
+import ch.qos.logback.core.CoreConstants;
 import com.qualitybox.kiback.service.wrapper.AllTeamWrapper;
 import com.qualitybox.kiback.service.wrapper.AllUserWrapper;
 import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
@@ -16,6 +17,8 @@ import java.util.LinkedList;
 
 import java.util.List;
 import java.util.Map;
+import jdk.nashorn.internal.objects.annotations.Property;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -33,14 +36,17 @@ import org.springframework.web.client.RestTemplate;
 public class IhniService {
 
     private String ihniApiKey;
+    @Value("${ihni.url}")
     private String ihniUrl;
 
     public UserInfoWrapper getIhniUser(String id,String phpSESSID) {
+        
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        ResponseEntity<UserInfoWrapper> response = new RestTemplate().exchange("http://localhost:8000/api/user/" + id,HttpMethod.GET, requestEntity, UserInfoWrapper.class);
+        ResponseEntity<UserInfoWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/user/" + id,HttpMethod.GET, requestEntity, UserInfoWrapper.class);
         UserInfoWrapper user = response.getBody();
+                
         return user;
     }
 
@@ -48,7 +54,7 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        ResponseEntity<AllUserWrapper[]> response = new RestTemplate().exchange("http://localhost:8000/api/alluser",HttpMethod.GET, requestEntity, AllUserWrapper[].class);
+        ResponseEntity<AllUserWrapper[]> response = new RestTemplate().exchange(this.ihniUrl + "/api/alluser",HttpMethod.GET, requestEntity, AllUserWrapper[].class);
         AllUserWrapper[] userArray = response.getBody();
         List<UserWrapper> userList = new LinkedList();
         for(AllUserWrapper userWrapper : userArray){
@@ -62,7 +68,7 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange("http://localhost:8000/api/team", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
+        ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange(this.ihniUrl + "/api/team", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
 //        System.out.println(response.getBody());
         AllTeamWrapper[] teamArray = response.getBody();
         List<TeamWrapper> teamList = new LinkedList();
@@ -77,7 +83,7 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange("http://localhost:8000/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
+        ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
         TeamInfoWrapper team = response.getBody();
         return team;
     }
