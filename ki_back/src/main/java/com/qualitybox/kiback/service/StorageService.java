@@ -64,10 +64,14 @@ public class StorageService {
     }
 
     public Path loadPath(String filename) {
-
+        try {
         Path file = rootLocation.resolve(filename);
-
         return file;
+        
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return rootLocation.resolve("def_2.jpeg");
+        }
 
     }
 

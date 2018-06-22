@@ -42,7 +42,7 @@ update(user: KiUser): Observable<any> {
                 this.message.clear();
                 this.message.addOK('Sauvegardé !');
                 console.log(this.message);
-                setTimeout( () => {this.message.clear()}, 800);
+                setTimeout( () => {this.message.clear(); }, 800);
                },
                error => {
                 this.message.clear();

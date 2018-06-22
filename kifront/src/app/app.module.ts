@@ -23,9 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { Select2Module } from 'ng2-select2';
 
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 // Imports for loading & configuring the in-memory web api
 // import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -40,6 +41,8 @@ import { TeamDetailComponent } from './component/team-detail/team-detail.compone
 import { ImgResizeExactService } from 'ng2-img-tools/dist/src/img-resize-exact.service';
 import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 import { CookieService } from 'ngx-cookie-service';
+
+
 
 @NgModule({
   declarations: [
@@ -64,9 +67,8 @@ import { CookieService } from 'ngx-cookie-service';
     // AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     Ng2ImgToolsModule,
+    QuillEditorModule
     // Select2Module
     // module simu APIREST
     // InMemoryWebApiModule.forRoot(InMemoryTeamService),

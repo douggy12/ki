@@ -53,10 +53,15 @@ public class UploadController {
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
     public Map<String, String> getFile2(@PathVariable String id) throws IOException {
-        String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+        String filename;
+        try {
+            filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+        } catch (Exception e) {
+            System.err.println("Pas de user ki trouvé, erreur : " + e.getMessage());
+            filename = "def_2.jpeg";
+        }
 
         if (filename == null) {
-            System.out.println("com.qualitybox.kiback.controller.UploadController.getFile2()");
             filename = "def_2.jpeg";
         }
 
