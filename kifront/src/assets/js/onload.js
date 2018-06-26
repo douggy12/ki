@@ -1,17 +1,17 @@
 $(function () {
-    //Données dures à remplacer par les données envoyées dans le POST 
-    appNom = "Silia";
-    user = "Nils Langen";
-    userId = 2;
-    admin = true;
-    team = "AT MMA";
-    teamId = 7;
-    role = "pilote";
-    apiKey = "f3a7da7e66b0";
-    qubAdress = "http://azr-cds-lemans-01.sodifrance.fr";
-    kiAdress = "http://azr-cds-lemans-01.sodifrance.fr:8080/kiback/";
+    // //Données dures à remplacer par les données envoyées dans le POST 
+    // appNom = "Ki";
+    // user = "Nils Langen";
+    // userId = 2;
+    // admin = true;
+    // team = "AT MMA";
+    // teamId = 7;
+    // role = "pilote";
+    // apiKey = "86834038aa3d";
+    // qubAdress = "http://azr-cds-lemans-01.sodifrance.fr";
+    // kiAdress = "http://azr-cds-lemans-01.sodifrance.fr:8080/kiback/";
 
-    initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
+    // initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
 
     $('.multsel').select2();
 

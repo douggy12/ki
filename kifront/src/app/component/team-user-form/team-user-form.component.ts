@@ -12,7 +12,6 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { isNull, isUndefined, isNullOrUndefined } from 'util';
 import { Ng2ImgMaxModule } from 'ng2-img-max/dist/src/ng2-img-max.module';
-import { Select2OptionData } from 'ng2-select2/ng2-select2.interface';
 
 
 
@@ -33,8 +32,6 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   avatarUrl: File;
   fileChange: Boolean = false;
-  exampleData: Array<Select2OptionData>;
-  options: Select2Options;
   value: string[];
   loaded = false;
   owner: Boolean;
@@ -53,7 +50,6 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
       // Met à jour la photo dans l'affichage de team-users
       this.blobToUrl(this.file).subscribe(img => {
-        console.log(this.selectedTeam.ihniTeam.users);
         this.selectedTeam.ihniTeam.users.filter(wrapper => wrapper.user.id === this.model.ihniUser.info.id)[0]
           .user.avatar = img;
       });

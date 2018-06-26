@@ -13,9 +13,7 @@ import { TeamSearchComponent } from './component/team-search/team-search.compone
 import { AppScriptComponent } from './component/app-script.component';
 import { AppFooterComponent } from './component/app-footer.component';
 import { TeamUsersComponent } from './component/team-users/team-users.component';
-
 import { TeamService } from './service/team.service';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -23,18 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { Select2Module } from 'ng2-select2';
-
 import { QuillEditorModule } from 'ngx-quill-editor';
-
-// Imports for loading & configuring the in-memory web api
-// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryTeamService } from './in-memory-team.service';
-
-
-
-
 import { AppComponent } from './component/app.component';
 import { TeamsComponent } from './component/teams/teams.component';
 import { TeamDetailComponent } from './component/team-detail/team-detail.component';
@@ -64,14 +51,10 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     Ng2ImgToolsModule,
     QuillEditorModule
-    // Select2Module
-    // module simu APIREST
-    // InMemoryWebApiModule.forRoot(InMemoryTeamService),
   ],
   providers: [ TeamService, UserService, AuthService, MessageService, ConfigService,
      AvatarService, CookieService, ContextService],

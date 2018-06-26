@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  ihniUrl: 'http://localhost:8000/api/',
+  ihniUrl: 'http://localhost:8000',
   kibackUrl: 'http://localhost:8080/kiback/'
 };

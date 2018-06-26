@@ -1,3 +1,4 @@
+import { TeamService } from './../service/team.service';
 import { UserInfo } from './../class/UserInfo';
 import { ContextService } from './../service/Context.service';
 import { AuthService } from './../service/auth.service';
@@ -21,9 +22,10 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private cookieService: CookieService, private context: ContextService) { }
 
   ngOnInit(): void {
-    this.authService.authMe().subscribe(user => {
-      this.me = user;
-      this.context.setMe(user);
+    this.authService.authMe().subscribe(userX => {
+      this.me = userX;
+      this.context.setMe(userX);
+
     });
     this.myTeam = this.cookieService.get('ihni_context');
     this.context.setMyTeam(this.myTeam);
