@@ -5,7 +5,7 @@ import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
-declare function  initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress): any;
+declare function initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress): any;
 
 
 @Component({
@@ -53,6 +53,10 @@ export class TeamsComponent implements OnInit {
     this.teamService.getTeams().subscribe(
       teams => {
         this.teams = teams;
+        this.teams.sort((a, b) => {
+          return a.ihniTeam.info.name.localeCompare(b.ihniTeam.info.name);
+        }
+        );
         this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
         this.loaded = true;
       },

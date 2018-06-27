@@ -16,11 +16,10 @@ export class TeamDetailFormComponent implements OnInit {
     modules : {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
-        [{ 'align': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
       ]
-    }
+    },
+    placeholder : 'Votre description ici...'
   };
 
   @Input() team: Team;

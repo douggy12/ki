@@ -46,7 +46,6 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
   }
   // Supprime le pilote de la liste des utilisateurs
   ngOnChanges(changes: SimpleChanges) {

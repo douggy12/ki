@@ -8,6 +8,8 @@ import { debounceTime } from 'rxjs/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { IhniUser } from '../../class/IhniUser';
+import { TeamRole } from '../../class/TeamRole';
+import { ContextService } from '../../service/Context.service';
 
 
 
@@ -20,8 +22,9 @@ export class TeamSearchComponent implements OnInit {
   @Output() submitedTeam = new EventEmitter<TeamInfo>();
   users$: Observable<IhniUser[]>;
   private searchTerms = new Subject<string>();
+  myTeams: TeamRole[];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private context: ContextService) { }
 
   // Push a search term into the observable stream
   search(term: string): void {
@@ -33,6 +36,9 @@ export class TeamSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.get(this.context.me.id).subscribe(user => {
+      this.myTeams = user.ihniUser.equipes_role;
+    });
     this.users$ = this.searchTerms.pipe(
       // attendre 300ms apres chaque entrée avant de lancer une recherche
       debounceTime(300),

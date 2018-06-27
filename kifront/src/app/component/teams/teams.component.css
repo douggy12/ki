@@ -4,3 +4,14 @@
 a.active {
     background: #dcdcdc!important;
 }
+.control-sidebar-heading {
+    margin-top: 5px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+.control-sidebar {
+    padding-top: 0;
+}
+.control-sidebar-menu i {
+    font-style: unset;
+}

@@ -45,7 +45,9 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     this.model.kiUser.teamH = $('#teamH').select2('data').map(obj => {
       return obj.id;
     }).join('|');
-    this.userService.update(this.model.kiUser).subscribe();
+    this.userService.update(this.model.kiUser).subscribe(() => {
+      $('#user-modal').modal('hide');
+    });
     if (this.fileChange) {
       this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
       // Met à jour la photo dans l'affichage de team-users
