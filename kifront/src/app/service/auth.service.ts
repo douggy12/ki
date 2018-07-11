@@ -2,7 +2,7 @@ import { UserInfo } from './../class/UserInfo';
 import { Team } from './../class/Team';
 import { catchError } from 'rxjs/operators';
 import { ConfigService } from './../config/config.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -24,7 +24,7 @@ export class AuthService {
         // this.options = new RequestOptions({ headers: this.headers, withCredentials: true});
      }
 
-    authMe(): Observable<UserInfo> {
+    authMe(): Observable<any> {
         return this.http.get<UserInfo>(this.authUrl, this.options)
             .pipe(
                 catchError(this.config.handleError)

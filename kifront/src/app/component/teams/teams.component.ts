@@ -6,6 +6,7 @@ import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
 declare function initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress): any;
+declare var $: any;
 
 
 @Component({
@@ -44,8 +45,13 @@ export class TeamsComponent implements OnInit {
       const apiKey = '86834038aa3d';
       const qubAdress = environment.ihniUrl;
       const kiAdress = environment.kibackUrl;
+      const appLogo = 'assets/img/cube-m.png';
 
-      initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
+      // initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
+      initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, appLogo);
+    });
+    $(() => {
+      $('.content').height($('.tab-content').height());
     });
   }
 

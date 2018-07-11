@@ -3,7 +3,7 @@ import { TeamService } from './../../service/team.service';
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+
 import { Location } from '@angular/common';
 import { ContextService } from '../../service/Context.service';
 declare var $: any;

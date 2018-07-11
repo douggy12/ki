@@ -1,6 +1,7 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { Ng2ImgMaxService } from 'ng2-img-max/dist/src/ng2-img-max.service';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -42,7 +43,7 @@ export class AvatarService {
     }
 
     private handleError(error: Response | any) {
-        return Observable.throw('API failed');
+        return observableThrowError('API failed');
     }
 
 

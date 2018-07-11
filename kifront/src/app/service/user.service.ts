@@ -1,15 +1,13 @@
-import { debounceTime } from 'rxjs/operators/debounceTime';
+import { debounceTime ,  tap, catchError, map } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { ConfigService } from './../config/config.service';
 import { IhniUser } from './../class/IhniUser';
-import { tap, catchError, map } from 'rxjs/operators';
 import { UserInfo } from './../class/UserInfo';
 import { KiUser } from './../class/KiUser';
 import { User } from './../class/User';
-import { Observable } from 'rxjs/Rx';
+import { Observable ,  of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/observable/of';
 import { MessageService } from '../service/message.service';
 
 
@@ -25,7 +23,7 @@ export class UserService {
 
 constructor(private http: HttpClient, private config: ConfigService, private message: MessageService) { }
 
-get(id: number): Observable<User> {
+get(id: number): Observable<any> {
     const url = `${this.teamUrl}/${id}`;
     return this.http.get<User>(url, this.options)
         .pipe(
@@ -50,7 +48,7 @@ update(user: KiUser): Observable<any> {
            )
         );
 }
-searchUsers(term: string): Observable<IhniUser[]> {
+searchUsers(term: string): Observable<any> {
     if (!term.trim()) {
         // pas de term => return empty array
         return of([]);
