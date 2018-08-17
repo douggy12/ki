@@ -21,6 +21,7 @@ export class TeamsComponent implements OnInit {
   loaded: Boolean;
   lerror: Boolean;
   state: Boolean = true;
+  teamColor: number[];
 
   constructor(
     private teamService: TeamService,
@@ -45,10 +46,9 @@ export class TeamsComponent implements OnInit {
       const apiKey = '86834038aa3d';
       const qubAdress = environment.ihniUrl;
       const kiAdress = environment.kibackUrl;
-      const appLogo = 'assets/img/cube-m.png';
 
-      // initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
-      initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, appLogo);
+      initQubHeader(appNom, user, userId, admin, team, teamId, role, apiKey, qubAdress, kiAdress);
+      // this.initTeamColor();
     });
     $(() => {
       $('.content').height($('.tab-content').height());
@@ -91,5 +91,19 @@ export class TeamsComponent implements OnInit {
           this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
         });
   }
+  // WIP
+  // initTeamColor() {
+  //   let tri = '';
+  //   let n = 1;
+  //   // tslint:disable-next-line:forin
+  //   for (let i in this.teams) {
+  //     if (this.teams[i].ihniTeam.info.name.substr(0, 3) !== tri) {
+  //       tri = this.teams[i].ihniTeam.info.name.substr(0, 3);
+  //       n++;
+  //     }
+  //     this.teamColor.push(n);
+  //   }
+  //   console.log(this.teamColor);
+  // }
 
 }

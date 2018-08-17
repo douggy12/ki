@@ -123,7 +123,7 @@ function initQubHeader(appNom, userName, userId, admin, team, teamId, role, apiK
 
             for (var key in modules) {
                 if (modules[key].nom.toUpperCase() !== this.appNom.toUpperCase()) {
-                    var appUrl = modules[key].url;
+                    var appUrl = self.qubAdress + modules[key].url;
 
                     var $appButton = $("<li appUrl='" + appUrl + "'><button type='button' class='btn btn-primary btn-flat'>" + modules[key].nom + "</button></li>");
 
