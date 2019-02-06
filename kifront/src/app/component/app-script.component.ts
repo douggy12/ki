@@ -1,12 +1,16 @@
+import { ContextService } from './../service/Context.service';
 import { Component, OnInit } from '@angular/core';
-
+declare var $: any;
 @Component({
     selector: 'app-script',
     templateUrl: 'app-script.component.html'
 })
 
 export class AppScriptComponent implements OnInit {
-    constructor() { }
+    user: Object;
 
-    ngOnInit() { }
+    constructor(private context: ContextService) {
+    }
+    ngOnInit() {
+    }
 }

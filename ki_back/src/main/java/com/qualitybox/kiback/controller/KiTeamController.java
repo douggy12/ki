@@ -41,7 +41,7 @@ public class KiTeamController {
     @Autowired
     AuthService authService;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "", method = GET)
     public List<MixedTeamService> listTeam(@RequestHeader(value="Cookie") String cookieRaw) {
 //        String[] cookieBag = cookieRaw.split(";");
@@ -60,14 +60,14 @@ public class KiTeamController {
         return allTeamJson;
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{id}", method = GET)
     public MixedTeamService getTeam(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id){
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         mixedTeamService.setTeam(id,phpSESSID);
         return mixedTeamService;
     }
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{id}", method = PUT)
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiTeam kiTeam) {
         KiTeam currentTeam = kiTeamRepository.findByIhniId(Long.valueOf(id));
@@ -79,7 +79,7 @@ public class KiTeamController {
         System.out.println(kiTeam);
         return ResponseEntity.accepted().build();
     }
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping( value = "/test", method = GET)
     public String test() {
         return "Hola";

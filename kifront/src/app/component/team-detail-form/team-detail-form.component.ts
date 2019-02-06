@@ -11,17 +11,17 @@ declare var $: any;
   styleUrls: ['./team-detail-form.component.css']
 })
 export class TeamDetailFormComponent implements OnInit {
-
-  public options: Object = {
-    toolbarButtons: ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
-    toolbarButtonsMD: ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
-    toolbarButtonsSM: ['bold', 'italic', 'underline', '|', 'outdent', 'indent', 'formatOL', 'formatUL', '|', 'undo', 'redo'],
-    toolbarButtonsXS: ['bold', 'italic', 'underline'],
-    height: 500,
-    heightMax: 500,
-    pluginsEnabled: ['lists']
-
+  config = {
+    theme: 'snow',
+    modules : {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+      ]
+    },
+    placeholder : 'Votre description ici...'
   };
+
   @Input() team: Team;
   model: FormGroup;
   constructor(private fb: FormBuilder, private teamService: TeamService) {
@@ -41,8 +41,8 @@ export class TeamDetailFormComponent implements OnInit {
     });
   }
   ngOnInit() {
-
   }
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges() {
     if (!isNullOrUndefined(this.team)) {
       this.model.reset();

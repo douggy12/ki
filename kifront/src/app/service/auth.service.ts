@@ -2,20 +2,21 @@ import { UserInfo } from './../class/UserInfo';
 import { Team } from './../class/Team';
 import { catchError } from 'rxjs/operators';
 import { ConfigService } from './../config/config.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { User } from '../class/User';
 import { ContextService } from './Context.service';
+import { environment } from '../../environments/environment';
 // import { RequestOptions } from '@angular/http/src/base_request_options';
 // import { Headers } from '@angular/http/src/headers';
 
 
 @Injectable()
 export class AuthService {
-    private authUrl = 'http://localhost:8000/api/authme';
+    private authUrl = environment.ihniUrl + '/api/authme';
     // headers: Headers;
     options: any = {'withCredentials' : 'true'};
     constructor(private http: HttpClient, private config: ConfigService, private context: ContextService) {
@@ -23,7 +24,7 @@ export class AuthService {
         // this.options = new RequestOptions({ headers: this.headers, withCredentials: true});
      }
 
-    authMe(): Observable<UserInfo> {
+    authMe(): Observable<any> {
         return this.http.get<UserInfo>(this.authUrl, this.options)
             .pipe(
                 catchError(this.config.handleError)

@@ -1,14 +1,15 @@
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { TeamInfo } from './../class/TeamInfo';
 import { IhniTeam } from './../class/IhniTeam';
 import { Team } from './../class/Team';
 
-import 'rxjs/add/operator/toPromise';
+
 
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+
+import {Observable,  of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 import {MessageService} from '../service/message.service';
 import { ConfigService } from '../config/config.service';
 
@@ -21,19 +22,19 @@ const httpOptions = {
 
 @Injectable()
 export class TeamService {
-    private teamUrl = 'http://localhost:8080/ihni/team';
+    private teamUrl = environment.kibackUrl + 'ihni/team';
 
     options: any = {'withCredentials' : 'true'};
 
 constructor(private http: HttpClient, private messageService: MessageService, private config: ConfigService) { }
 
-getTeams(): Observable<Team[]> {
+getTeams(): Observable<any> {
     return this.http.get<Team[]>(this.teamUrl, this.options)
     .pipe(
       catchError(this.config.handleError)
   );
 }
-getTeam(id: number): Observable<Team> {
+getTeam(id: number): Observable<any> {
     const url = `${this.teamUrl}/${id}`;
     return this.http.get<Team>(url, this.options)
     .pipe(

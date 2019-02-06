@@ -48,7 +48,7 @@
           <ul class="control-sidebar-menu">
             <li *ngFor="let team of teams; let i=index">
               <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
-                <i class="menu-icon fa fa-hashtag bg-blue"></i>
+                <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
                 <div class="menu-info">
                   <h4 class="control-sidebar-subheading">{{ team.ihniTeam.info.name }}</h4>
 

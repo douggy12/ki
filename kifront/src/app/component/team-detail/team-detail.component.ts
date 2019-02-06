@@ -3,9 +3,10 @@ import { TeamService } from './../../service/team.service';
 import { Team } from './../../class/Team';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+
 import { Location } from '@angular/common';
 import { ContextService } from '../../service/Context.service';
+declare var $: any;
 
 @Component({
   selector: 'app-team-detail',
@@ -32,6 +33,9 @@ export class TeamDetailComponent implements OnInit, OnChanges {
   }
   ngOnChanges(): void {
     this.isPilote = this.auth.isPilote(this.context.me, this.team);
+    $(() => {
+        $('.content-header').height($('.info-equipe').height() + 1);
+    });
   }
 
 

@@ -12,29 +12,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -49,14 +40,19 @@ public class UploadController {
     StorageService storageService;
     @Autowired
     KiUserRepository kiUserRepository;
-
-    @RequestMapping(value = "/{id}", method = GET)
+    
     @CrossOrigin
+    @RequestMapping(value = "/{id}", method = GET)
     public Map<String, String> getFile2(@PathVariable String id) throws IOException {
-        String filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+        String filename;
+        try {
+            filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+        } catch (Exception e) {
+            System.err.println("Pas de user ki trouvé, erreur : " + e.getMessage());
+            filename = "def_2.jpeg";
+        }
 
         if (filename == null) {
-            System.out.println("com.qualitybox.kiback.controller.UploadController.getFile2()");
             filename = "def_2.jpeg";
         }
 

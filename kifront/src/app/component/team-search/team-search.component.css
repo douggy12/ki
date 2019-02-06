@@ -5,3 +5,8 @@
 .user-dropdown small {
     float: right;
 }
+.content-header {
+    background-color: #93afbf;
+    z-index : 1000;
+    padding: 15px 15px 15px 15px;
+}

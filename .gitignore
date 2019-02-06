@@ -4,3 +4,11 @@ MTS_WSPACE/
 JsonServer/
 kilauncher/
 ki_back/avatar/
+
+ki_back/nbactions\.xml
+
+kifront/target/
+
+kifront/\.vscode/
+/PhpProject1/nbproject/private/
+kifront/dist\.zip

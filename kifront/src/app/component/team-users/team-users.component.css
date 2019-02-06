@@ -1,3 +1,14 @@
 .widget-user-header {
     min-height: 110px;
 }
+@media screen and (max-width: 1585px) {
+    .widget-user-header {
+        height: 144px;
+    }
+}
+@media (min-width: @screen-lg-min){
+    .display-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

@@ -1,6 +1,5 @@
 import { UserInfo } from './../class/UserInfo';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 import { Team } from './../class/Team';
 import { User } from './../class/User';
 import { Injectable } from '@angular/core';

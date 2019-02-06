@@ -1,10 +1,13 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
 import { Ng2ImgMaxService } from 'ng2-img-max/dist/src/ng2-img-max.service';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Ng2ImgToolsService } from 'ng2-img-tools';
 import {  DomSanitizer } from '@angular/platform-browser';
+
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
@@ -13,7 +16,7 @@ const httpOptions = {
 
 @Injectable()
 export class AvatarService {
-    private imgUrl = 'http://localhost:8080/img';
+    private imgUrl = environment.kibackUrl + 'img';
 
     private imageType = 'data:image/*;base64,';
 
@@ -32,7 +35,7 @@ export class AvatarService {
     }
 
     uploadImg(data: any, id: string): Observable<Object> {
-        let formData: FormData = new FormData();
+        const formData: FormData = new FormData();
         formData.append('file', data);
         formData.append('id', id);
         const url = `${this.imgUrl}/post`;
@@ -40,7 +43,7 @@ export class AvatarService {
     }
 
     private handleError(error: Response | any) {
-        return Observable.throw('API failed');
+        return observableThrowError('API failed');
     }
 
 

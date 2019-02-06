@@ -5,26 +5,21 @@
   <h4 class="modal-title" *ngIf=team>{{team.ihniTeam.info.name}}</h4>
 </div>
 <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)">
-    <!-- {{ model.get('description')?.errors | json }} -->
-<div class="modal-body" >
-    <div
-    class="error"
-    *ngIf="model.get('description').hasError('required') && model.get('description').touched">
-    description is required
-  </div>
-  <div
-    class="error"
-    *ngIf="model.get('description').hasError('minlength') && model.get('description').touched">
-    Minimum of 2 characters
-  </div>
-  <div class="form-group">
+  <!-- {{ model.get('description')?.errors | json }} -->
+  <div class="modal-body">
+    <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
+      description is required
+    </div>
+    <div class="error" *ngIf="model.get('description').hasError('minlength') && model.get('description').touched">
+      Minimum of 2 characters
+    </div>
+    <div class="form-group">
       <label>Description</label>
-      <textarea [froalaEditor] = 'options' class="form-control" rows="30" formControlName="description" id="team_desc_editor"></textarea>
-    
+      <quill-editor class="form-control" formControlName="description" id="team_desc_editor" name="editor1" [options] ="config"></quill-editor>
+    </div>
   </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-  <button type="submit" [disabled]="model.invalid" class="btn btn-primary">Save changes</button>
-</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+    <button type="submit" [disabled]="model.invalid" class="btn btn-primary">Sauvegarder</button>
+  </div>
 </form>
