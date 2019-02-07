@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 <!-- /btn-group -->
-                <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Rechercher un utilisateur ..."
+                <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Rechercher un collaborateur..."
                     data-toggle="dropdown">
                 <ul class="search-result dropdown-menu user-dropdown">
                     <li *ngFor="let user of users$ | async">
