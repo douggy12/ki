@@ -22,6 +22,7 @@ export class TeamDetailFormComponent implements OnInit {
     placeholder : 'Votre description ici...'
   };
 
+
   @Input() team: Team;
   model: FormGroup;
   constructor(private fb: FormBuilder, private teamService: TeamService) {

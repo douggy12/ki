@@ -29,6 +29,13 @@ export class AppComponent implements OnInit {
     });
     this.myTeam = this.cookieService.get('ihni_context');
     this.context.setMyTeam(this.myTeam);
+
+
+    
+
   }
+  
 
 }
+
+
