@@ -1,8 +1,8 @@
 <section class="content-header">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="">
             <div class="input-group">
-                <div class="input-group-btn">
+                <!-- <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Mes équipes
                         <span class="fa fa-caret-down"></span>
                     </button>
@@ -11,21 +11,20 @@
                             <a href="#" (click)="onSubmitTeam(teamRole.equipe)">{{teamRole.equipe.name}}</a>
                         </li>
                     </ul>
-                </div>
-                <!-- /btn-group -->
+                </div> -->
+                
                 <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Rechercher un collaborateur..."
                     data-toggle="dropdown">
                 <ul class="search-result dropdown-menu user-dropdown">
-                    <li *ngFor="let user of users$ | async">
-
-                        <a *ngFor="let teamRole of user.equipes_role" href="#" (click)="onSubmitTeam(teamRole.equipe)">{{user.info.prenom}} {{user.info.nom}}
-                            <small>{{teamRole.equipe.name}}</small>
-                        </a>
-                    </li>
+                        <li *ngFor="let user of users$ | async">
+                                <a *ngFor="let teamRole of user.equipes_role" href="#" (click)="onSubmitTeam(teamRole.equipe)">{{user.info.prenom}} {{user.info.nom}}
+                                    <small>{{teamRole.equipe.name}}</small>
+                                </a>
+                        </li>
                 </ul>
-
-
             </div>
         </div>
     </div>
 </section>
+
+    
