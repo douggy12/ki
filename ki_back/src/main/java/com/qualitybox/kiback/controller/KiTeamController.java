@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import org.springframework.http.HttpStatus;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -69,21 +70,19 @@ public class KiTeamController {
     }
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{id}", method = PUT)
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiTeam kiTeam) {
+    public ResponseEntity<?> update(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id, @RequestBody KiTeam kiTeam) {
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         KiTeam currentTeam = kiTeamRepository.findByIhniId(Long.valueOf(id));
         if (currentTeam == null) {
             return ResponseEntity.notFound().build();
+        }
+        if(!this.authService.isPilote(this.ihniService.getSessionUser(phpSESSID),this.ihniService.getIhniTeam(id, phpSESSID))){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         currentTeam.setDescription(kiTeam.getDescription());
         kiTeamRepository.save(currentTeam);
         System.out.println(kiTeam);
         return ResponseEntity.accepted().build();
     }
-    @CrossOrigin(origins = "*")
-    @RequestMapping( value = "/test", method = GET)
-    public String test() {
-        return "Hola";
-    }
-    
     
 }

@@ -53,7 +53,9 @@ public class KiUserController {
         if (currentUser == null) {
             return ResponseEntity.notFound().build();
         }
-        
+        if(!currentUser.getId().equals(kiUser.getId())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
         currentUser.setAvatar(kiUser.getAvatar());
         currentUser.setNbEnfant(kiUser.getNbEnfant());
         currentUser.setTeamH(kiUser.getTeamH()); 
