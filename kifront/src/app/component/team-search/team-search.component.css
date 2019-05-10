@@ -1,7 +1,6 @@
 .user-dropdown {
     left: unset;
-    /* min-width:201px; */
-    min-width: 320px;
+    width: 192px;
 }
 
 .user-dropdown small {
@@ -13,15 +12,15 @@
     background-color: black;
     z-index : 1000;
     padding: 15px 15px 15px 15px;
-    position: fixed;
+    
     width: 223px;
-    top: 50px;
+    
 }
 
 .input-group {
     margin: auto;
     width: 15em;
-    position: fixed;
+    
 }
 
 .input-group .form-control {
@@ -46,10 +45,15 @@
 }
 .dropdown-menu>li>a {
     padding: 5px 9px;
+    display: inline-block;
+    width: 100%;
+}
+.dropdown-menu>li>a>span{
+    display: block;
 }
 
 .dropdown-menu>li>a:hover > .user-dropdown {
-    min-width: 320px;
+   
 }
 
 .dropdown-menu>li>a:hover {
