@@ -26,16 +26,24 @@ $(function () {
     $(window).resize(checkSize);
 
   });
-  //Function to the css rule
+  //Function pour réaligner les hauteurs du content wrapper + sidebar
   function checkSize() {
-    if ($(window).width() <= 768) {
-      if ($("body").hasClass("control-sidebar-open")) {
-        $("body").removeClass("control-sidebar-open");
-      }
+    //obsolete depuis refonte graphique
+    // if ($(window).width() <= 768) {
+    //   if ($("body").hasClass("control-sidebar-open")) {
+    //     $("body").removeClass("control-sidebar-open");
+    //   }
 
-    } else {
-      if (!$("body").hasClass("control-sidebar-open")) {
-        $("body").addClass("control-sidebar-open");
-      }
-    }
+    // } else {
+    //   if (!$("body").hasClass("control-sidebar-open")) {
+    //     $("body").addClass("control-sidebar-open");
+    //   }
+    // }
+    
+    var atdHeight = $('app-team-detail').height();
+    var contentHeight = $('.content').height();
+    var sidebarHeight = atdHeight + contentHeight +30 ;
+    $('.sidebar').height(sidebarHeight);
+    $('.sidebar').css('max-height', sidebarHeight);
+    $('.content-wrapper').css('min-height', contentHeight);
   }

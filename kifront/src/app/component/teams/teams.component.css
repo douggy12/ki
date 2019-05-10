@@ -13,8 +13,9 @@
 
 .sidebar {
     
-    margin-top: 64px;
+   max-width: 230px;
     overflow-y: scroll;
+    overflow-x: hidden;
     padding-bottom: 0;
 }
 
