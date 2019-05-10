@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<name>kiback</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Restfull Server pour l'application KI</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

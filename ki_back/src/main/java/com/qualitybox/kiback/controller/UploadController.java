@@ -80,7 +80,7 @@ public class UploadController {
         /*
         Vérification identité avant upload
         */
-        if(!this.ihniService.getSessionUser(phpSESSID).getInfo().getId().equals(Long.valueOf(id))){
+        if(!this.ihniService.getSessionUser(phpSESSID).getId().equals(Long.valueOf(id))){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 //        Upload et met à jour KiUser si pas d'exception'

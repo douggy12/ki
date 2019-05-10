@@ -51,6 +51,7 @@ public class KiTeamController {
 //            if(cookieElem.contains("PHPSESSID")) phpSESSID = cookieElem;
 //        }
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        System.out.println(phpSESSID);
         List<TeamWrapper> allTeam =  ihniService.getAllTeam(phpSESSID);
         List<MixedTeamService> allTeamJson = new ArrayList<>();
         allTeam.forEach(ihniTeam -> {
