@@ -15,7 +15,7 @@
                 <div class="col-md-8">
                     <!-- <p class="desc"><i class="fa fa-question-circle text-aqua"></i>Description :</p> -->
                     <p [innerHTML]="setTDescription(team.kiTeam.description)" class="comment"></p>
-                    <a href="#" *ngIf="expanded" class="btn btn-primary edit" title="Editer la description" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i>Editer</a>
+                    <a href="#" *ngIf="expanded && isPilote" class="btn btn-primary edit" title="Editer la description" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i>Editer</a>
                     
                 </div>
                 <div class="col-md-4"></div>
