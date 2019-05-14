@@ -40,7 +40,7 @@ $(function () {
     //   }
     // }
     
-    var atdHeight = $('app-team-detail').height();
+    var atdHeight = $('.team-detail').height();
     var contentHeight = $('.content').height();
     var sidebarHeight = atdHeight + contentHeight +30 ;
     $('.sidebar').height(sidebarHeight);
