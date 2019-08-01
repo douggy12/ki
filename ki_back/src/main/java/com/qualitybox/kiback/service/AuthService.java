@@ -5,6 +5,9 @@
  */
 package com.qualitybox.kiback.service;
 
+import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.UserWrapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,5 +27,14 @@ public class AuthService {
         return "";
     }
     
+    /**
+     * Vérifie si l'id du user est bien pilote de l'équipe
+     * @param user
+     * @param team
+     * @return 
+     */
+    public Boolean isPilote(UserWrapper user, TeamInfoWrapper team){
+        return team.getInfo().getPilote().getId().equals(user.getId());
+    }
     
 }

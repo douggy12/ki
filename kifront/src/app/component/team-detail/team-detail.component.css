@@ -1,11 +1,81 @@
 .description p {
     word-break: initial;
 }
+
 .main-sidebar {
     padding-top: 0;
 }
+
 .user-panel {
-    padding: 10px 10px 7px 10px;
+    padding: 4px 10px 7px;
     text-align: center;
-    background-color: #7493a0;
+    background-color: #367fa8;
+}
+
+.team-detail {
+    padding: 0;
+    margin-left: 230px;
+    background-color: #3c8dbc;
+}
+
+@media (max-width: 767px){
+    .team-detail {
+        -webkit-transform: translate(-230px, 0);
+        transform: translate(-230px, 0);
+        width: 100%;
+    }
+}
+
+.info-equipe {
+    color: white;
+    text-align: left;
+}
+
+.sidebar-menu>.description {
+    margin-top:0;
+    background: black;
+}
+
+#search-box {
+    box-shadow: none;
+    background-color: #374850!important;
+    border: 1px solid transparent!important;
+    height: 35px!important;
+}
+
+.sidebar-menu li.header, .sidebar-menu>.description {
+    color: #fff;
+    background-color: #3c8dbc;
+}
+
+.text-aqua {
+    color:#e2e8ea!important;
+}
+
+.info-equipe h2 {
+    margin-bottom: 0;
+}
+
+.arrow-down, .arrow-up {
+    padding: 0!important;
+    width: 100%;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    border-left: 0!important;
+    outline: none;
+}
+
+.arrow-down:hover, .arrow-up:hover {
+    background: none!important;
+}
+
+.description .arrow-down, .description .arrow-up {
+    background: none!important;
+}
+
+.edit {
+    border: 1px solid #367fa8;
+    margin-top: 20px;
 }

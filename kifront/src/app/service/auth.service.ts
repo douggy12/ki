@@ -16,7 +16,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-    private authUrl = environment.ihniUrl + '/api/authme';
+    private authUrl = environment.kibackUrl + 'ihni/user/authme';
     // headers: Headers;
     options: any = {'withCredentials' : 'true'};
     constructor(private http: HttpClient, private config: ConfigService, private context: ContextService) {

@@ -4,3 +4,6 @@ input#file {
 .modal-header {
     min-height: 100px;
 }
+.modal-content {
+    border-radius: 3px !important;
+}

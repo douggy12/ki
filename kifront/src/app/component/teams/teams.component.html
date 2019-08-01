@@ -1,5 +1,6 @@
-<div >
+<div>
   <div *ngIf="teams">
+      
     <!-- sideBar => TeamDetailComponent -->
     <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
     <!-- end sideBar -->
@@ -7,11 +8,10 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- SearchBar => teamSearchComponent -->
-      <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+      
       <!-- end SearchBar -->
       <!-- Maincontent -->
       <section class="content">
-
         <!-- UpButton -->
         <div class="team-nav visible-xs" *ngIf="teamIndex > 0" >
           <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
@@ -31,38 +31,37 @@
           </a>
         </div>
         <!-- end DownButton -->
-
       </section>
-
-
     </div>
     <!-- FooterComponent -->
     <app-footer></app-footer>
-
     <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-light">
+    <aside class="main-sidebar">
       <!-- Content of control sidebar goes here -->
+      <section class="sidebar">
       <div class="tab-content" *ngIf="selectedTeam">
-        <div class="tab-pane active">
-          <h3 class="control-sidebar-heading">Liste des équipes</h3>
-          <ul class="control-sidebar-menu">
+          <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+        <!-- <div class="sidebar-menu"> -->
+          
+          <h4 class="header">Liste des équipes</h4>
+          <ul class="sidebar-menu">
             <li *ngFor="let team of teams; let i=index">
               <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
                 <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
                 <div class="menu-info">
-                  <h4 class="control-sidebar-subheading">{{ team.ihniTeam.info.name }}</h4>
-
+                  {{ team.ihniTeam.info.name }}
                 </div>
               </a>
             </li>
           </ul>
-        </div>
+        <!-- </div> -->
       </div>
+      </section>
     </aside>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
+    
 
     <!-- <div>
 

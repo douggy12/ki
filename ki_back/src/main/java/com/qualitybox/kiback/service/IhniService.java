@@ -83,13 +83,19 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        System.out.println(this.ihniUrl);
         ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
-        TeamInfoWrapper team = response.getBody();
-        return team;
+        
+        return response.getBody();
+//        return team;
     }
 
-    public IhniService() {
-
+    public UserWrapper getSessionUser(String phpSESSID) {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<UserWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/authme", HttpMethod.GET, requestEntity, UserWrapper.class);
+        return response.getBody();
     }
-
+    
 }

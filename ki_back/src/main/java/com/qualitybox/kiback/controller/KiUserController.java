@@ -38,6 +38,9 @@ public class KiUserController {
     KiUserRepository kiUserRepository;
     @Autowired
     AuthService authService;
+    @Autowired
+    IhniService ihniService;
+    
 
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
@@ -48,12 +51,15 @@ public class KiUserController {
     }
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = PUT)
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody KiUser kiUser) {
+    public ResponseEntity<?> update(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id, @RequestBody KiUser kiUser) {
         KiUser currentUser = kiUserRepository.findByIhniId(Long.valueOf(id));
         if (currentUser == null) {
             return ResponseEntity.notFound().build();
         }
         
+        if(!kiUser.getIhniId().equals(this.ihniService.getSessionUser(cookieRaw).getId())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
         currentUser.setAvatar(kiUser.getAvatar());
         currentUser.setNbEnfant(kiUser.getNbEnfant());
         currentUser.setTeamH(kiUser.getTeamH()); 
@@ -66,4 +72,15 @@ public class KiUserController {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         return this.mixedUserService.getIhniUserByName(string, phpSESSID);
     }
+    @CrossOrigin
+    @RequestMapping(value = "/test", method = GET)
+    public String test(){
+        return "Hey";
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/authme", method = GET)
+    public UserWrapper authme(@RequestHeader(value = "Cookie") String cookieRaw) {
+        return this.ihniService.getSessionUser(cookieRaw);
+    }
+    
 }

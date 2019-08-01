@@ -12,6 +12,7 @@ import {  DomSanitizer } from '@angular/platform-browser';
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
   };
+ 
 
 
 @Injectable()
@@ -19,6 +20,8 @@ export class AvatarService {
     private imgUrl = environment.kibackUrl + 'img';
 
     private imageType = 'data:image/*;base64,';
+
+    options: any = {'withCredentials' : 'true'};
 
     constructor(private http: HttpClient, private ngITS: Ng2ImgToolsService, private sanitizer: DomSanitizer) { }
 
@@ -39,7 +42,7 @@ export class AvatarService {
         formData.append('file', data);
         formData.append('id', id);
         const url = `${this.imgUrl}/post`;
-        return this.http.post(url, formData).catch(this.handleError);
+        return this.http.post(url, formData, this.options).catch(this.handleError);
     }
 
     private handleError(error: Response | any) {

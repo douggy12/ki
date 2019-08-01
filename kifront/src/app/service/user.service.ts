@@ -33,6 +33,7 @@ get(id: number): Observable<any> {
 }
 update(user: KiUser): Observable<any> {
     const url = `${this.teamUrl}/${user.ihniId}`;
+    console.log(user);
     return this.http.put(url, user, this.options)
         .pipe(
            tap(
