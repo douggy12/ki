@@ -1,6 +1,7 @@
 <div>
   <div *ngIf="teams">
       
+                <div class="menu-info"> {{ team.ihniTeam.info.agence }} - {{ team.ihniTeam.info.name }} </div>
     <!-- sideBar => TeamDetailComponent -->
     <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
     <!-- end sideBar -->

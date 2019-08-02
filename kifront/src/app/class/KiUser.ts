@@ -4,4 +4,5 @@ export class KiUser {
     avatar: String;
     ihniId: number;
     teamH: string;
+    agence: string;
 }

@@ -22,10 +22,11 @@ export class TeamsComponent implements OnInit {
   lerror: Boolean;
   state: Boolean = true;
   teamColor: number[];
+  public me;
 
   constructor(
     private teamService: TeamService,
-    private context: ContextService
+    public context: ContextService
   ) { }
 
   ngOnInit() {
@@ -33,16 +34,16 @@ export class TeamsComponent implements OnInit {
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
       this.selectedTeam = teamX;
 
-      const me = this.context.me;
+      this.me = this.context.me;
 
       // Données dures à remplacer par les données envoyées dans le POST
       const appNom = 'Ki';
-      const user = me.prenom + ' ' + me.nom;
-      const userId = me.id;
-      const admin = me.admin;
+      const user = this.me.prenom + ' ' + this.me.nom;
+      const userId = this.me.id;
+      const admin = this.me.admin;
       const team = this.selectedTeam.ihniTeam.info.name;
       const teamId = this.selectedTeam.ihniTeam.info.id;
-      const role = me.jobName;
+      const role = this.me.jobName;
       const apiKey = '86834038aa3d';
       const qubAdress = environment.ihniUrl;
       const kiAdress = environment.kibackUrl;
@@ -60,7 +61,7 @@ export class TeamsComponent implements OnInit {
       teams => {
         this.teams = teams;
         this.teams.sort((a, b) => {
-          return a.ihniTeam.info.name.localeCompare(b.ihniTeam.info.name);
+            return a.ihniTeam.info.agence.localeCompare(b.ihniTeam.info.agence);
         }
         );
         this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
