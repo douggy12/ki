@@ -1,5 +1,5 @@
 $(function () {
-    // //Données dures à remplacer par les données envoyées dans le POST 
+    // //Données dures à remplacer par les données envoyées dans le POST
     // appNom = "Ki";
     // user = "Nils Langen";
     // userId = 2;
@@ -43,7 +43,7 @@ $(function () {
     var atdHeight = $('.team-detail').height();
     var contentHeight = $('.content').height();
     var sidebarHeight = atdHeight + contentHeight +30 ;
-    $('.sidebar').height(sidebarHeight);
-    $('.sidebar').css('max-height', sidebarHeight);
-    $('.content-wrapper').css('min-height', contentHeight);
+/*    $('.sidebar').height(sidebarHeight);*/
+/*    $('.sidebar').css('max-height', sidebarHeight);
+    $('.content-wrapper').css('min-height', contentHeight);*/
   }

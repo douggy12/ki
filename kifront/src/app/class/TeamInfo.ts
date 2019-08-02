@@ -6,6 +6,7 @@ export class TeamInfo {
     name: string;
     createdAt: DateJson;
     pilote: UserInfo;
+    agence: string;
 
 }
 
