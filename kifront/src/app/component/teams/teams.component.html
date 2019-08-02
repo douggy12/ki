@@ -1,87 +1,71 @@
-<div>
-  <div *ngIf="teams">
-      
-                <div class="menu-info"> {{ team.ihniTeam.info.agence }} - {{ team.ihniTeam.info.name }} </div>
-    <!-- sideBar => TeamDetailComponent -->
-    <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
-    <!-- end sideBar -->
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- SearchBar => teamSearchComponent -->
-      
-      <!-- end SearchBar -->
-      <!-- Maincontent -->
-      <section class="content">
-        <!-- UpButton -->
-        <div class="team-nav visible-xs" *ngIf="teamIndex > 0" >
-          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
-            <i class="fa fa-angle-up"></i>
-            <div>{{ teams[teamIndex - 1].ihniTeam.info.name }}</div>
-          </a>
-        </div>
-        <!-- end UpButton -->
-        <!-- UserList => TeamUsersComponent -->
-        <app-team-users [team]="selectedTeam" [teams]="teams" [state]="state"></app-team-users>
-        <!-- end UserList -->
-        <!-- DownButton -->
-        <div class="team-nav visible-xs" *ngIf="teams && teamIndex < teams.length-1"  >
-          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
-            <i class="fa fa-angle-down"></i>
-            <div>{{teams[teamIndex + 1].ihniTeam.info.name}}</div>
-          </a>
-        </div>
-        <!-- end DownButton -->
-      </section>
-    </div>
-    <!-- FooterComponent -->
-    <app-footer></app-footer>
-    <!-- Control Sidebar -->
-    <aside class="main-sidebar">
-      <!-- Content of control sidebar goes here -->
-      <section class="sidebar">
+  <!-- Sidebar -->
+  <aside class="main-sidebar" *ngIf="teams">
+    <!-- Content of control sidebar goes here -->
+    <section class="sidebar">
       <div class="tab-content" *ngIf="selectedTeam">
-          <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
-        <!-- <div class="sidebar-menu"> -->
-          
-          <h4 class="header">Liste des équipes</h4>
-          <ul class="sidebar-menu">
-            <li *ngFor="let team of teams; let i=index">
+        <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+        <h4 class="header">Liste des équipes</h4>
+        <ul class="sidebar-menu">
+          <ng-container *ngFor="let team of teams; let i=index">
+            <li *ngIf="team.ihniTeam.info.agence">
               <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
                 <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
-                <div class="menu-info">
-                  {{ team.ihniTeam.info.name }}
-                </div>
+                <div class="menu-info"> {{ team.ihniTeam.info.agence }} - {{ team.ihniTeam.info.name }} </div>
               </a>
             </li>
-          </ul>
-        <!-- </div> -->
+          </ng-container>
+        </ul>
       </div>
-      </section>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-    
+    </section>
+  </aside>
 
-    <!-- <div>
+<div class="content-wrapper" *ngIf="teams" id="main-content">
 
-  <ul>
-    <li *ngFor="let team of teams; let i=index" [class.selected]="team === selectedTeam" (click)="onSelect(team, i)">{{ team.name }}</li>
-  </ul>
-</div> -->
+  <div class="container-fluid">
+    <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
+    <section class="content">
+      <!--  TeamDetailComponent -->
 
-    <!-- 
-  <div *ngIf="teamIndex > 0" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">{{ teams[teamIndex - 1].name }}</div>
-  <div *ngIf="teamIndex < teams.length-1" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">{{teams[teamIndex + 1].name}}</div> 
--->
-  </div>
-  <div *ngIf="!loaded">
-    <div class="content-wrapper">
-      <div class="content">
-          <app-spinner></app-spinner>
+
+      <!-- UpButton -->
+      <div class="team-nav visible-xs" *ngIf="teamIndex > 0" >
+        <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
+          <i class="fa fa-angle-up"></i>
+          <div>{{ teams[teamIndex - 1].ihniTeam.info.name }}</div>
+        </a>
       </div>
-    </div>
-   
+      <!-- end UpButton -->
+
+      <!-- UserList => TeamUsersComponent -->
+      <app-team-users [team]="selectedTeam" [teams]="teams" [state]="state"></app-team-users>
+      <!-- end UserList -->
+
+      <!-- DownButton -->
+      <div class="team-nav visible-xs" *ngIf="teams && teamIndex < teams.length-1"  >
+        <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
+          <i class="fa fa-angle-down"></i>
+          <div>{{teams[teamIndex + 1].ihniTeam.info.name}}</div>
+        </a>
+      </div>
+      <!-- end DownButton -->
+
+    </section>
   </div>
 </div>
+
+<!-- FooterComponent -->
+<app-footer></app-footer>
+
+
+
+
+<div *ngIf="!loaded">
+  <div class="content-wrapper">
+    <div class="content">
+        <app-spinner></app-spinner>
+    </div>
+  </div>
+
+</div>
+
+
