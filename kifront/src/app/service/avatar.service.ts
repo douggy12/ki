@@ -42,7 +42,7 @@ export class AvatarService {
         formData.append('file', data);
         formData.append('id', id);
         const url = `${this.imgUrl}/post`;
-        return this.http.post(url, formData, this.options).catch(this.handleError);
+        return this.http.post(url, formData, this.options).pipe(catchError(this.handleError));
     }
 
     private handleError(error: Response | any) {

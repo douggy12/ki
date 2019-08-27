@@ -9,7 +9,7 @@ import { UserService } from './../../service/user.service';
 
 import { User } from './../../class/User';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs';
 import { isNull, isUndefined, isNullOrUndefined } from 'util';
 import { Ng2ImgMaxModule } from 'ng2-img-max/dist/src/ng2-img-max.module';
 
