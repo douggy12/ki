@@ -10,7 +10,7 @@
             <li *ngIf="team.ihniTeam.info.agence">
               <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
                 <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
-                <div class="menu-info"> {{ team.ihniTeam.info.agence }} - {{ team.ihniTeam.info.name }} </div>
+                <div class="menu-info"> {{ team.ihniTeam.info.agence.nom }} - {{ team.ihniTeam.info.name }} </div>
               </a>
             </li>
           </ng-container>
