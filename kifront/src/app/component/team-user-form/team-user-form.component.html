@@ -52,32 +52,11 @@
                 <label class="col-sm-6 control-label">Anciennes équipes</label>
                 <div class="col-sm-6">
                   <select class="form-control multsel" id="teamH" style="width: 100%"  name = "teamH" multiple="multiple" [disabled]="!auth.isOwner(selectedUser)">
-                    <option *ngFor="let team of teams" [value]="team.ihniTeam.info.id">{{team.ihniTeam.info.name}}</option>                   
+                    <option *ngFor="let team of teams" [value]="team.ihniTeam.info.id">{{team.ihniTeam.info.name}}</option>
                   </select>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-6 control-label">Date de naissance</label>
 
-                <div class="col-sm-6" *ngIf="model.ihniUser.info.bornDate">
-                  <div class="input-group date">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar"></i>
-                    </div>
-                    <input id="datemask" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" value="{{model.ihniUser.info.bornDate.date | date:'dd/MM/yyyy'}}"
-                      disabled>
-                  </div>
-                </div>
-                <!-- /.input group -->
-              </div>
-              <div class="form-group">
-                <label class="col-sm-6 control-label">Nb enfants</label>
-                <div class="col-sm-6">
-                  <select class="form-control" id="nbEnfant" [(ngModel)]="model.kiUser.nbEnfant" name = "nbEnfant" [disabled]="!auth.isOwner(selectedUser)">  
-                    <option *ngFor="let number of numbers" [value]="number">{{number}}</option>
-                  </select>
-                </div>
-              </div>
               <div class="modal-footer" *ngIf="auth.isOwner(selectedUser)">
                   <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
                   <button type="submit" class="btn btn-primary">Sauvegarder</button>
@@ -86,10 +65,10 @@
           </div>
         </div>
       </div>
-      
+
     </div>
     <div *ngSwitchDefault class="modal-content">
-      
+
       <img src="assets/img/loading2.gif" style="margin-left: 200px;padding: 200px 0 200px 0;">
     </div>
     <!-- /.modal-content -->

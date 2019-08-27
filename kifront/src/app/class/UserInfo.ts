@@ -13,6 +13,7 @@ export class UserInfo {
     createdAt: DateJson;
     avatar: File;
     pilote = false;
+    agence: string;
     // equipes_old: object;
 
 }

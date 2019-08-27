@@ -28,6 +28,7 @@ public class UserWrapper implements Serializable{
     private Boolean active;
     private DateWrapper bornDate;
     private String jobName;
+    private AgenceWrapper agence;
     
     public UserWrapper(){
         
@@ -121,6 +122,13 @@ public class UserWrapper implements Serializable{
         this.jobName = jobName;
     }
 
+    public AgenceWrapper getAgence() {
+        return agence;
+    }
+
+    public void setAgence( AgenceWrapper agence ) {
+        this.agence = agence;
+    }
 
     @Override
     public String toString() {

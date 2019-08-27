@@ -2,21 +2,12 @@
     background-color: lightgrey;
 }
 
-.content-wrapper{
-    margin-right:0;
-    /* min-height: 641px; */
-}
-
-.content {
-    /* min-height: 671px; */
-}
-
 .sidebar {
-    
-   max-width: 230px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding-bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height:  calc(100vh - 50px) !important;
+  min-height:  calc(100vh - 50px) !important;
+
 }
 
 .sidebar-menu {
@@ -28,11 +19,11 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: black; 
+    background: black;
 }
-  
+
 ::-webkit-scrollbar-thumb {
-    background:#374850; 
+    background:#374850;
 }
 
 .sidebar-menu .menu-icon {
@@ -87,4 +78,4 @@ a.active {
 }
 
 
- 
+
