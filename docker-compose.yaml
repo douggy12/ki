@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+
+  tomcat:
+    build: 
+      context: ./ki_back/docker/
+      dockerfile: Dockerfile
+    container_name: tomcat_ki_back  
+    ports:
+      - "8086:8080"
+    volumes:
+      - './ki_back:/tmp'
+      - './ki_back/webapps:/usr/local/tomcat/webapps/'
+      - './ki_back/logs:/usr/local/tomcat/logs/'
+      - './ki_back/avatar:/usr/local/tomcat/avatar/'
+    environment:
+    - CATALINA_BASE=/usr/local/tomcat
+    depends_on:
+      - "db"
+
+  db:
+    image: mariadb
+    container_name: db_ki
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ki
+      MYSQL_USER: ki-dev
+      MYSQL_PASSWORD: ki-dev
+    ports:
+      - "3366:3306"
+
+
+  node:
+    build: 
+      context: ./kifront/
+      dockerfile: ./docker/Dockerfile
+    container_name: node_ki_front
+    ports:
+      - "4206:4200"
