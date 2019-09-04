@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: tomcat_ki_back  
     ports:
-      - "8086:8080"
+      - "1004:8080"
     volumes:
       - './ki_back:/tmp'
       - './ki_back/webapps:/usr/local/tomcat/webapps/'
@@ -27,7 +27,7 @@ services:
       MYSQL_USER: ki-dev
       MYSQL_PASSWORD: ki-dev
     ports:
-      - "3366:3306"
+      - "3004:3306"
 
 
   node:
@@ -36,4 +36,4 @@ services:
       dockerfile: ./docker/Dockerfile
     container_name: node_ki_front
     ports:
-      - "4206:4200"
+      - "1005:4200"

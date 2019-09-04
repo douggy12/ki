@@ -1,6 +1,6 @@
 
 export const environment = {
     production: true,
-    ihniUrl: 'http://localhost:10080/',
-    kibackUrl: 'http://localhost:8086/kiback/'
+    ihniUrl: 'http://php_ihni',
+    kibackUrl: 'http://localhost:1004/kiback/'
 };
