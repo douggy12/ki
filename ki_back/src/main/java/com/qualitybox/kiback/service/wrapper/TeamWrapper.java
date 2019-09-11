@@ -16,6 +16,7 @@ public class TeamWrapper {
     private String name;
     private DateWrapper createdAt;
     private UserWrapper pilote;
+    private AgenceWrapper agence;
    
 
     public TeamWrapper() {
@@ -53,6 +54,11 @@ public class TeamWrapper {
         this.pilote = pilote;
     }
 
-    
-    
+    public AgenceWrapper getAgence() {
+        return agence;
+    }
+
+    public void setAgence( AgenceWrapper agence ) {
+        this.agence = agence;
+    }
 }
