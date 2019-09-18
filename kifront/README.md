@@ -12,7 +12,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use :
+
+*  the `--prod -c production` flag for a build in CUBEDEV. (You have to rename index.dev.html to index.html in the dist folder before deployment)
+*  the `--prod -c prod2`flag for a build in CUBEPROD.
 
 ## Running unit tests
 
