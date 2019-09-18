@@ -1,15 +1,11 @@
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { UserInfo } from './../../class/UserInfo';
-import { TeamUserFormComponent } from './../team-user-form/team-user-form.component';
-import { tap } from 'rxjs/operators';
-import { AvatarService } from './../../service/avatar.service';
-import { TeamService } from './../../service/team.service';
-import { User } from './../../class/User';
-import { Team } from './../../class/Team';
-import { Component, OnInit, Input, OnChanges} from '@angular/core';
-import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
+import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+
 import { isNullOrUndefined } from 'util';
-import { ViewChild } from '@angular/core/src/metadata/di';
+import { Team } from './../../class/Team';
+import { UserInfo } from './../../class/UserInfo';
+import { AvatarService } from './../../service/avatar.service';
+
 
 declare var $: any;
 

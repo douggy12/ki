@@ -1,11 +1,10 @@
 import { environment } from './../../../environments/environment';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
-declare function initQubHeader(appNom,  teamId, qubAdress, kiAdress): any;
+declare function initQubHeader(appNom, qubAdress, kiAdress): any;
 declare var $: any;
 
 
@@ -42,7 +41,7 @@ export class TeamsComponent implements OnInit {
       const qubAdress = environment.ihniUrl;
       const kiAdress = environment.kibackUrl;
 
-      initQubHeader(appNom, teamId, qubAdress, kiAdress);
+      initQubHeader(appNom, qubAdress, kiAdress);
       // this.initTeamColor();
     });
     $(() => {
