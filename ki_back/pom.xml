@@ -5,7 +5,7 @@
 
 	<groupId>com.qualitybox</groupId>
 	<artifactId>kiback</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<packaging>war</packaging>
 
 	<name>kiback</name>
@@ -70,6 +70,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>kiback</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -78,5 +79,50 @@
 		</plugins>
 	</build>
 
+
+	<profiles>
+		<!--local-->
+		<profile>
+			<id>local</id>
+			<properties>
+				<activatedProperties>local</activatedProperties>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>local</value>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!--dev-->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>dev</value>
+				</property>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<!--prod-->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activatedProperties>prod</activatedProperties>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>prod</value>
+				</property>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 
 </project>
