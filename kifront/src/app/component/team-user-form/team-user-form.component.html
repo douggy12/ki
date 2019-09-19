@@ -16,9 +16,9 @@
             <div class="user-modal-img">
               <img class="img-circle" [src]="avatarUrl" alt="User Avatar" *ngIf="avatarUrl">
             </div>
-            <div class="user-modal-control">
+<!--            <div class="user-modal-control">
               <input type="file" name="file" id="file" (change)="onFileChange($event)" accept="image/*" *ngIf="auth.isOwner(selectedUser)">
-            </div>
+            </div>-->
           </div>
           <div class="col-sm-8">
             <form class="form-horizontal" (ngSubmit)="onSubmit()" #userForm = "ngForm">

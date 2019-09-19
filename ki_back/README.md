@@ -116,9 +116,6 @@ ordinateur distant, il faut transférer le war
 
     -   `cd ki_kack`
 
-
-
-
 -   Générer le WAR en fonction du profil :
 
     -   Générer le fichier WAR avec profil local :
@@ -186,27 +183,27 @@ Déployer directement depuis le serveur
 
     -   Sur la version stable :
 
-        -   `git pull origin/master`
+        -   `git pull origin master`
 
     -   Sur la version en developpement :
 
-        -   `git pull origin/develop`
+        -   `git pull origin develop`
 
 ### Déploiement rapide
 
 -   Commande All-In-One pour le dev :
 
     -   `cd /mnt/resource/Cube_KI/ki_back &&  mvn -Pdev package
-        -Dmaven.test.skip=true && sudo service tomcat stop && sudo rm -r
-        /opt/tomcat/webapps/kiback && sudo rm /opt/tomcat/webapps/kiback.war &&
+        -Dmaven.test.skip=true && sudo service tomcat stop ; sudo rm -r
+        /opt/tomcat/webapps/kiback ; sudo rm /opt/tomcat/webapps/kiback.war ;
         mv target/kiback.war.original /opt/tomcat/webapps/kiback.war && sudo
         service tomcat start`
 
 -   Commande All-In-One pour la prod :
 
     -   `cd /mnt/resource/Cube_KI/ki_back && mvn -Pprod package
-        -Dmaven.test.skip=true && sudo service tomcat stop && sudo rm -r
-        /opt/tomcat/webapps/kiback && sudo rm /opt/tomcat/webapps/kiback.war &&
+        -Dmaven.test.skip=true && sudo service tomcat stop ; sudo rm -r
+        /opt/tomcat/webapps/kiback ; sudo rm /opt/tomcat/webapps/kiback.war ;
         mv target/kiback.war.original /opt/tomcat/webapps/kiback.war && sudo
         service tomcat start`
 
