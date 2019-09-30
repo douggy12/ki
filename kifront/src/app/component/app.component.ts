@@ -1,10 +1,9 @@
+import { Component, OnInit } from '@angular/core';
 import { TeamService } from './../service/team.service';
 import { UserInfo } from './../class/UserInfo';
 import { ContextService } from './../service/Context.service';
 import { AuthService } from './../service/auth.service';
 import { User } from './../class/User';
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CookieService } from 'ngx-cookie-service';
 
 declare var $: any;
