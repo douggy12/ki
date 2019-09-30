@@ -66,12 +66,11 @@ serveur distant, il faut transférer le dossier ‘dist’.
 
 -   Générer le build avec profil dev :
 
-    -   `ng build --configuration=production --base-href=./
-        --output-hashing=all`
+    -   `ng build --configuration=dev --base-href=./ --output-hashing=all`
 
 -   Générer le build avec profil production :
 
-    -   `ng build --configuration=prod2 --base-href=./ --output-hashing=all`
+    -   `ng build --configuration=production --base-href=./ --output-hashing=all`
 
 -   Générer le build avec profil local :
 
@@ -79,10 +78,9 @@ serveur distant, il faut transférer le dossier ‘dist’.
 
 -   Alternativement en utilisant le Angular le cli local :
 
-    -   `npx ng build --configuration=production --base-href=./
-        --output-hashing=all`
+    -   `npx ng build --configuration=dev --base-href=./ --output-hashing=all`
 
-    -   `npx ng build --configuration=prod2 --base-href=./ --output-hashing=all`
+    -   `npx ng build --configuration=production --base-href=./ --output-hashing=all`
 
 -   Le projet est généré dans le dossier '/dist'
 
@@ -144,12 +142,11 @@ Déployer directement depuis le serveur
 
     -   Générer le build avec profil dev :
 
-        -   `ng build --configuration=production --base-href=./
-            --output-hashing=all`
+        -   `ng build --configuration=dev --base-href=./ --output-hashing=all`
 
     -   Générer le build avec profil prod :
 
-        -   `ng build --configuration=prod2 --base-href=./ --output-hashing=all`
+        -   `ng build --configuration=production --base-href=./ --output-hashing=all`
 
 #### Procédure de déploiement
 
@@ -174,14 +171,14 @@ Déployer directement depuis le serveur
 
 -   Commande All-In-One pour le dev :
 
-    -   `cd /mnt/resource/Cube_KI/kifront && ng build --configuration=production
+    -   `cd /mnt/resource/Cube_KI/kifront && ng build --configuration=dev
         --base-href=./ --output-hashing=all && sudo service tomcat stop ; sudo
         rm -r /opt/tomcat/webapps/ki ; sudo mv dist /opt/tomcat/webapps/ki &&
         sudo service tomcat start`
 
 -   Commande All-In-One pour la prod :
 
-    -   `cd /mnt/resource/Cube_KI/kifront && ng build --configuration=prod2
+    -   `cd /mnt/resource/Cube_KI/kifront && ng build --configuration=production
         --base-href=./ --output-hashing=all && sudo service tomcat stop && sudo
         rm -r /opt/tomcat/webapps/ki ; sudo mv dist /opt/tomcat/webapps/ki &&
         sudo service tomcat start`
