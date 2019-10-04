@@ -62,8 +62,8 @@
                   "with": "src/environments/environment.dev.ts"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.dev.html"
+                  "replace": "src/assets/img/cube-s.png",
+                  "with": "src/assets/img/cube-dev-s.png"
                 }
               ]
             },
