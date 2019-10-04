@@ -45,8 +45,8 @@
             ]
           },
           "configurations": {
-            "production": {
-              "optimization": false,
+            "dev": {
+              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": false,
@@ -59,11 +59,15 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.dev.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.dev.html"
                 }
               ]
             },
-            "prod2": {
+            "production": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -76,7 +80,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod2.ts"
+                  "with": "src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -91,8 +95,8 @@
             "production": {
               "browserTarget": "kifront:build:production"
             },
-            "prod2": {
-              "browserTarget": "kifront:build:prod2"
+            "dev": {
+              "browserTarget": "kifront:build:dev"
             }
           }
         },
