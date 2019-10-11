@@ -45,8 +45,30 @@
             ]
           },
           "configurations": {
+            "dev": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "index": "src/index.dev.html",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                },
+                {
+                  "replace": "src/assets/img/cube-s.png",
+                  "with": "src/assets/img/cube-dev-s.png"
+                }
+              ]
+            },
             "production": {
-              "optimization": false,
+              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": false,
@@ -61,23 +83,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
-            },
-            "prod2": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod2.ts"
-                }
-              ]
             }
           }
         },
@@ -90,8 +95,8 @@
             "production": {
               "browserTarget": "kifront:build:production"
             },
-            "prod2": {
-              "browserTarget": "kifront:build:prod2"
+            "dev": {
+              "browserTarget": "kifront:build:dev"
             }
           }
         },
