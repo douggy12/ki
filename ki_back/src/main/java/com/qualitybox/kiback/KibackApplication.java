@@ -12,9 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KibackApplication implements CommandLineRunner{
 
-    @Resource
-    StorageService storageService;
-
     private static final Logger log = LoggerFactory.getLogger(KibackApplication.class);
 
     public static void main(String[] args) {
@@ -23,7 +20,5 @@ public class KibackApplication implements CommandLineRunner{
     }
     @Override
     public void run(String... arg) throws Exception {
-//        storageService.deleteAll();
-        storageService.init();
     }
 }

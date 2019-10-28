@@ -80,11 +80,12 @@ public class StorageService {
     }
 
     public void init() {
+    	
         if (Files.notExists(Paths.get("avatar"))) {
             try {
                 Files.createDirectory(rootLocation);
             } catch (IOException e) {
-                throw new RuntimeException("Could not initialize storage!");
+//                throw new RuntimeException("Could not initialize storage!");
             }
         }
 
