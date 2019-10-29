@@ -4,7 +4,7 @@
   <!-- <h2 class="page-header">Pilote</h2> -->
   <div class="row pilote-type" *ngIf="team && team.ihniTeam.users">
     <div class="col-lg-offset-4 col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
-      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.user.pilote">
+      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
         <div class="box box-widget widget-user-2">
           <div class="widget-user-header bg-green">
             <div class="widget-user-image">
@@ -23,7 +23,7 @@
   <!-- <h2 class="page-header">Utilisateurs</h2> -->
   <div class="row user-type" *ngIf="team && team.ihniTeam.users">
     <div class="col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
-      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="!wrapper.user.pilote">
+      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
         <div class="box box-widget widget-user-2">
           <div class="widget-user-header bg-yellow">
             <div class="widget-user-image">
