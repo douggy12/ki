@@ -5,6 +5,7 @@ import { isNullOrUndefined } from 'util';
 import { Team } from './../../class/Team';
 import { UserInfo } from './../../class/UserInfo';
 import { AvatarService } from './../../service/avatar.service';
+import { Subscription } from 'rxjs';
 
 
 declare var $: any;
@@ -37,6 +38,8 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() state: Boolean;
   selectedUser: UserInfo;
 
+  private subscriptions: Array<Subscription> = [];
+
   constructor(private avatarService: AvatarService) {
 
   }
@@ -45,18 +48,19 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
   // Supprime le pilote de la liste des utilisateurs
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+
+    this.subscriptions = [];
+
+
     if (!isNullOrUndefined(this.team)) {
-      this.team.ihniTeam.users.filter(user => user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
-      this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
-        this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
-      });
       for (const myUser of this.team.ihniTeam.users) {
-        this.avatarService.getImg(myUser.user.id).subscribe(img => {
-          myUser.user.avatar = this.avatarService.base64toUrl(img.content);
-        });
+        this.subscriptions.push(
+          this.avatarService.getImg(myUser.user.id).subscribe(img => {
+            myUser.user.avatar = this.avatarService.base64toUrl(img.content);
+          }));
       }
-      // Select le premier user de la liste par default pour la modal
-      // this.selectedUser = this.team.ihniTeam.users[0].user;
     }
   }
   onSelect(user: UserInfo): void {
