@@ -1,8 +1,9 @@
-import { TeamService } from './../../service/team.service';
-import { Team } from './../../class/Team';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
+import { Team } from './../../class/Team';
+import { TeamService } from './../../service/team.service';
+import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 declare var $: any;
 // new
 @Component({
@@ -22,17 +23,17 @@ export class TeamDetailFormComponent implements OnInit {
     placeholder : 'Votre description ici...'
   };
 
-
   @Input() team: Team;
   model: FormGroup;
-  constructor(private fb: FormBuilder, private teamService: TeamService) {
+
+  constructor(private fb: FormBuilder, private teamService: TeamService, private subscriptionService: SubscriptionCancelService) {
     this.createForm();
   }
 
   onSubmit({ value, valid }: { value, valid: boolean }) {
     this.team.kiTeam.description = value.description;
     $('#team-edit-modal').modal('hide');
-    this.teamService.update(this.team).subscribe();
+    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
 
   }
 

@@ -4,6 +4,7 @@ import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
+import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 declare function initQubHeader(appNom, qubAdress, kiAdress): any;
 declare var $: any;
 
@@ -19,17 +20,19 @@ export class TeamsComponent implements OnInit {
   teamIndex: number;
   loaded: Boolean;
   lerror: Boolean;
-  state: Boolean = true;
+
   teamColor: number[];
   public me;
 
   constructor(
     private teamService: TeamService,
-    public context: ContextService
+    public context: ContextService,
+    public subscriptionService: SubscriptionCancelService
   ) { }
 
   ngOnInit() {
     this.getTeams();
+    this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
       this.selectedTeam = teamX;
 
@@ -43,47 +46,50 @@ export class TeamsComponent implements OnInit {
 
       initQubHeader(appNom, qubAdress, kiAdress);
       // this.initTeamColor();
-    });
+    }));
     $(() => {
       $('.content').height($('.tab-content').height());
     });
   }
 
   getTeams(): void {
-    this.teamService.getTeams().subscribe(
-      teams => {
-        this.teams = teams;
-        this.teams.sort((a, b) => {
+    this.subscriptionService.addSubscription(
+      this.teamService.getTeams().subscribe(
+        teams => {
+          this.teams = teams;
+          this.teams.sort((a, b) => {
             return a.ihniTeam.info.agence.nom.localeCompare(b.ihniTeam.info.agence.nom);
+          }
+          );
+          this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
+          this.loaded = true;
+        },
+        error => {
+          this.lerror = true;
         }
-        );
-        this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
-        this.loaded = true;
-      },
-      error => {
-        this.lerror = true;
-      }
-    );
+      ));
   }
 
   onSelect(team: Team, teamIndex: number): void {
     if (this.teamIndex !== teamIndex) {
-      this.state = false;
-      this.teamService.getTeam(team.ihniTeam.info.id)
-        .subscribe(selectedTeam => {
-          this.state = true;
-          this.selectedTeam = selectedTeam;
-          this.teamIndex = teamIndex;
-        }
-        );
+      this.subscriptionService.cancelSubscriptions();
+      this.subscriptionService.addSubscription(
+        this.teamService.getTeam(team.ihniTeam.info.id)
+          .subscribe(selectedTeam => {
+
+            this.selectedTeam = selectedTeam;
+            this.teamIndex = teamIndex;
+          }
+          ));
     }
   }
   onSubmitedTeam(subTeam: TeamInfo) {
-    this.teamService.getTeam(subTeam.id)
-      .subscribe(
-        selectedTeam => {
-          this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
-        });
+    this.subscriptionService.addSubscription(
+      this.teamService.getTeam(subTeam.id)
+        .subscribe(
+          selectedTeam => {
+            this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
+          }));
   }
   // WIP
   // initTeamColor() {
