@@ -12,7 +12,7 @@ import {  DomSanitizer } from '@angular/platform-browser';
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
   };
- 
+
 
 
 @Injectable()
@@ -31,7 +31,7 @@ export class AvatarService {
 
     getImg(id: number): Observable<any> {
         const url = `${this.imgUrl}/${id}`;
-        return this.http.get<any>(url);
+        return this.http.get<any>(url, this.options);
     }
     base64toUrl(data): any {
         return this.sanitizer.bypassSecurityTrustUrl(this.imageType + data);
