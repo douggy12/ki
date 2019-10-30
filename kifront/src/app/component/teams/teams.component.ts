@@ -1,11 +1,11 @@
-import { environment } from './../../../environments/environment';
+
 import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Component, OnInit } from '@angular/core';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
-declare function initQubHeader(appNom, qubAdress, kiAdress): any;
+
 declare var $: any;
 
 
@@ -19,7 +19,6 @@ export class TeamsComponent implements OnInit {
   selectedTeam: Team;
   teamIndex: number;
   loaded: Boolean;
-  lerror: Boolean;
 
   teamColor: number[];
   public me;
@@ -35,16 +34,8 @@ export class TeamsComponent implements OnInit {
     this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
       this.selectedTeam = teamX;
-
+      this.loaded = true;
       this.me = this.context.me;
-
-      // Données dures à remplacer par les données envoyées dans le POST
-      const appNom = 'Ki';
-      const teamId = this.selectedTeam.ihniTeam.info.id;
-      const qubAdress = environment.ihniUrl;
-      const kiAdress = environment.kibackUrl;
-
-      initQubHeader(appNom, qubAdress, kiAdress);
       // this.initTeamColor();
     }));
     $(() => {
@@ -62,15 +53,12 @@ export class TeamsComponent implements OnInit {
           }
           );
           this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
-          this.loaded = true;
-        },
-        error => {
-          this.lerror = true;
         }
       ));
   }
 
   onSelect(team: Team, teamIndex: number): void {
+    this.loaded = false;
     if (this.teamIndex !== teamIndex) {
       this.subscriptionService.cancelSubscriptions();
       this.subscriptionService.addSubscription(
@@ -79,6 +67,7 @@ export class TeamsComponent implements OnInit {
 
             this.selectedTeam = selectedTeam;
             this.teamIndex = teamIndex;
+            this.loaded = true;
           }
           ));
     }
