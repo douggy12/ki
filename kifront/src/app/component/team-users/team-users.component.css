@@ -9,6 +9,7 @@
   font-weight: bold;
   height: 65px !important;
   width: 65px;
+  float: left;
 }
 
 @media screen and (max-width: 1585px) {

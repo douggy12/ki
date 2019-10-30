@@ -76,8 +76,15 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
         this.model = user;
         const selectedTeamUser = this.selectedTeam.ihniTeam.users
           .filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id).shift();
-        if(!isNullOrUndefined(selectedTeamUser)){
-          this.avatarService.getImg(this.selectedUser.id, 120).subscribe(img => this.avatarUrl = this.avatarService.base64toUrl(img.photo));
+        if (!isNullOrUndefined(selectedTeamUser)) {
+          this.avatarService.getImg(this.selectedUser.id, 120).subscribe((img) => {
+            if (!isNullOrUndefined(img.photo)) {
+              this.avatarUrl = this.avatarService.base64toUrl(img.photo);
+            } else {
+              this.avatarUrl = null;
+            }
+
+          });
         }
         this.avatarUrl = isNullOrUndefined(selectedTeamUser) ? null : selectedTeamUser.user.avatar;
         // Workaround assigner select2 une fois la variable selectedUser attribué
