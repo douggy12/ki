@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="user-modal-img">
-              <img class="img-circle" [src]="avatarUrl" alt="User Avatar" *ngIf="avatarUrl">
+              <img class="img-circle" [src]="avatarUrl" alt="{{model.ihniUser.info.prenom | slice:0:1 | uppercase}} {{model.ihniUser.info.nom | slice:0:1 | uppercase}}" *ngIf="selectedUser">
             </div>
 <!--            <div class="user-modal-control">
               <input type="file" name="file" id="file" (change)="onFileChange($event)" accept="image/*" *ngIf="auth.isOwner(selectedUser)">
