@@ -37,7 +37,8 @@
       <!-- end UpButton -->
 
       <!-- UserList => TeamUsersComponent -->
-      <app-team-users [team]="selectedTeam" [teams]="teams" ></app-team-users>
+      <app-team-users [team]="selectedTeam" [teams]="teams" *ngIf="loaded; else loading"></app-team-users>
+      <ng-template #loading><app-spinner></app-spinner></ng-template>
       <!-- end UserList -->
 
       <!-- DownButton -->
@@ -55,17 +56,4 @@
 
 <!-- FooterComponent -->
 <app-footer></app-footer>
-
-
-
-
-<div *ngIf="!loaded">
-  <div class="content-wrapper">
-    <div class="content">
-        <app-spinner></app-spinner>
-    </div>
-  </div>
-
-</div>
-
 
