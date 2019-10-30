@@ -46,19 +46,26 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.state = false;
-    console.log(changes);
 
     if (!isNullOrUndefined(this.team)) {
-      for (const myUser of this.team.ihniTeam.users) {
-        this.subscriptionService.addSubscription(
-          this.avatarService.getImg(myUser.user.id).subscribe(img => {
-            myUser.user.avatar = this.avatarService.base64toUrl(img.content);
-          }));
+      if (!isNullOrUndefined(this.team.ihniTeam.users[0])) {
+        this.loadImg(0);
       }
-      this.state = true;
     }
+    this.state = true;
   }
+
+  loadImg(id: number) {
+    this.subscriptionService.addSubscription(
+      this.avatarService.getImg(this.team.ihniTeam.users[id].user.id, 64).subscribe(img => {
+        this.team.ihniTeam.users[id].user.avatar = this.avatarService.base64toUrl(img.photo);
+        if (!isNullOrUndefined(this.team.ihniTeam.users[id + 1])) {
+          this.loadImg(id + 1);
+        }
+      })
+    );
+  }
+
   onSelect(user: UserInfo): void {
     this.selectedUser = user;
   }
