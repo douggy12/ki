@@ -48,14 +48,6 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     this.userService.update(this.model.kiUser).subscribe(() => {
       $('#user-modal').modal('hide');
     });
-    if (this.fileChange) {
-      this.avatarService.uploadImg(this.file, this.selectedUser.id.toString()).subscribe();
-      // Met à jour la photo dans l'affichage de team-users
-      this.blobToUrl(this.file).subscribe(img => {
-        this.selectedTeam.ihniTeam.users.filter(wrapper => wrapper.user.id === this.model.ihniUser.info.id)[0]
-          .user.avatar = img;
-      });
-    }
   }
 
   ngOnInit() {
@@ -74,19 +66,6 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
     reader.readAsDataURL(data);
     return fileObs;
   }
-  onFileChange(event): void {
-
-    if (event.target.files.length > 0) {
-      this.avatarService.resizeImg(event.target.files[0]).subscribe(data => {
-        this.file = data;
-        this.blobToUrl(data).subscribe(img => {
-
-          this.avatarUrl = img;
-          this.fileChange = true;
-        });
-      });
-    }
-  }
 
   ngOnChanges(): void {
     this.loaded = false;
@@ -97,6 +76,9 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
         this.model = user;
         const selectedTeamUser = this.selectedTeam.ihniTeam.users
           .filter(teamUser => teamUser.user.id === this.model.ihniUser.info.id).shift();
+        if(!isNullOrUndefined(selectedTeamUser)){
+          this.avatarService.getImg(this.selectedUser.id, 120).subscribe(img => this.avatarUrl = this.avatarService.base64toUrl(img.photo));
+        }
         this.avatarUrl = isNullOrUndefined(selectedTeamUser) ? null : selectedTeamUser.user.avatar;
         // Workaround assigner select2 une fois la variable selectedUser attribué
         // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée
