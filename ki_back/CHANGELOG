@@ -1,4 +1,10 @@
 ****************************************************************
+DME 04/11/19 1.2.3
+
+- gestion des équipes sans pilote
+- optimisation chargement affichage avatar
+
+****************************************************************
 DME 14/10/19 1.2.2
 
 - Création d'un proxy pour service l'avatar depuis Ki
