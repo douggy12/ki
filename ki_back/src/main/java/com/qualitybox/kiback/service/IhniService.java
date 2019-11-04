@@ -80,7 +80,6 @@ public class IhniService {
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
         ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange(this.ihniUrl + "/api/team", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
-//        System.out.println(response.getBody());
         AllTeamWrapper[] teamArray = response.getBody();
         List<TeamWrapper> teamList = new LinkedList();
         for (AllTeamWrapper team : teamArray) {
@@ -94,7 +93,6 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        System.out.println(this.ihniUrl);
         ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
         
         return response.getBody();

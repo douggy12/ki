@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -44,6 +45,7 @@ public class KiTeamController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "", method = GET)
+    @Async
     public List<MixedTeamService> listTeam(@RequestHeader(value="Cookie") String cookieRaw) {
 //        String[] cookieBag = cookieRaw.split(";");
 //        String phpSESSID = "";
@@ -51,7 +53,6 @@ public class KiTeamController {
 //            if(cookieElem.contains("PHPSESSID")) phpSESSID = cookieElem;
 //        }
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
-        System.out.println(phpSESSID);
         List<TeamWrapper> allTeam =  ihniService.getAllTeam(phpSESSID);
         List<MixedTeamService> allTeamJson = new ArrayList<>();
         allTeam.forEach(ihniTeam -> {
@@ -64,6 +65,7 @@ public class KiTeamController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{id}", method = GET)
+    @Async
     public MixedTeamService getTeam(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id){
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         mixedTeamService.setTeam(id,phpSESSID);
@@ -82,7 +84,6 @@ public class KiTeamController {
         }
         currentTeam.setDescription(kiTeam.getDescription());
         kiTeamRepository.save(currentTeam);
-        System.out.println(kiTeam);
         return ResponseEntity.accepted().build();
     }
     

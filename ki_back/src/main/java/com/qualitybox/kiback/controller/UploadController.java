@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -51,13 +52,13 @@ public class UploadController {
 
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
+    @Async
     public Map<String, String> getFile(@PathVariable String id, @RequestHeader(value = "Cookie") String cookieRaw) throws IOException {
 
         String output;
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
 
         output = ihniService.getUserAvatar(id, phpSESSID).getPhoto();
-        System.out.println(output);
 
         if (output == null) {
             Path file = storageService.loadPath("def_2.jpeg");

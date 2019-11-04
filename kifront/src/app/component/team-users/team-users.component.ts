@@ -5,6 +5,8 @@ import { isNullOrUndefined } from 'util';
 import { Team } from './../../class/Team';
 import { UserInfo } from './../../class/UserInfo';
 import { AvatarService } from './../../service/avatar.service';
+import { Subscription } from 'rxjs';
+import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 
 
 declare var $: any;
@@ -33,32 +35,41 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   @Input() team: Team;
   @Input() teams: Team[];
   @Input() direction: string;
-  // conditionne l'apparition du composant depuis appel du parent
-  @Input() state: Boolean;
   selectedUser: UserInfo;
+  public state = false;
 
-  constructor(private avatarService: AvatarService) {
+  constructor(private avatarService: AvatarService, private subscriptionService: SubscriptionCancelService) {
 
   }
 
   ngOnInit() {
   }
-  // Supprime le pilote de la liste des utilisateurs
+
   ngOnChanges(changes: SimpleChanges) {
+
     if (!isNullOrUndefined(this.team)) {
-      this.team.ihniTeam.users.filter(user => user.user.id === this.team.ihniTeam.info.pilote.id)[0].user.pilote = true;
-      this.avatarService.getImg(this.team.ihniTeam.info.pilote.id).subscribe(img => {
-        this.team.ihniTeam.info.pilote.avatar = this.avatarService.base64toUrl(img.content);
-      });
-      for (const myUser of this.team.ihniTeam.users) {
-        this.avatarService.getImg(myUser.user.id).subscribe(img => {
-          myUser.user.avatar = this.avatarService.base64toUrl(img.content);
-        });
+      if (!isNullOrUndefined(this.team.ihniTeam.users[0])) {
+        this.loadImg(0);
       }
-      // Select le premier user de la liste par default pour la modal
-      // this.selectedUser = this.team.ihniTeam.users[0].user;
     }
+    this.state = true;
   }
+
+  loadImg(id: number) {
+    this.subscriptionService.addSubscription(
+      this.avatarService.getImg(this.team.ihniTeam.users[id].user.id, 64).subscribe(img => {
+        if (!isNullOrUndefined(img.photo)) {
+          this.team.ihniTeam.users[id].user.avatar = this.avatarService.base64toUrl(img.photo);
+        } else {
+          this.team.ihniTeam.users[id].user.avatar = null;
+        }
+        if (!isNullOrUndefined(this.team.ihniTeam.users[id + 1])) {
+          this.loadImg(id + 1);
+        }
+      })
+    );
+  }
+
   onSelect(user: UserInfo): void {
     this.selectedUser = user;
   }

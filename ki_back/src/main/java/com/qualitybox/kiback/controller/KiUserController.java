@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.scheduling.annotation.Async;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
@@ -44,6 +45,7 @@ public class KiUserController {
 
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
+    @Async
     public MixedUserService get(@PathVariable String id,@RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         mixedUserService.setUser(id, phpSESSID);
@@ -51,6 +53,7 @@ public class KiUserController {
     }
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = PUT)
+    @Async
     public ResponseEntity<?> update(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id, @RequestBody KiUser kiUser) {
         KiUser currentUser = kiUserRepository.findByIhniId(Long.valueOf(id));
         if (currentUser == null) {
@@ -68,17 +71,15 @@ public class KiUserController {
     }
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
+    @Async
     public List<UserInfoWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         return this.mixedUserService.getIhniUserByName(string, phpSESSID);
     }
-    @CrossOrigin
-    @RequestMapping(value = "/test", method = GET)
-    public String test(){
-        return "Hey";
-    }
+
     @CrossOrigin
     @RequestMapping(value = "/authme", method = GET)
+    @Async
     public UserWrapper authme(@RequestHeader(value = "Cookie") String cookieRaw) {
         return this.ihniService.getSessionUser(cookieRaw);
     }
