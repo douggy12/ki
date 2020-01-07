@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../class/User';
 import { ContextService } from './Context.service';
 import { environment } from '../../environments/environment';
+import { isNullOrUndefined } from 'util';
 // import { RequestOptions } from '@angular/http/src/base_request_options';
 // import { Headers } from '@angular/http/src/headers';
 
@@ -31,7 +32,7 @@ export class AuthService {
             );
     }
     isPilote(user: UserInfo, team: Team) {
-        if (team.ihniTeam.info.pilote.id === user.id) {
+        if (!isNullOrUndefined(team.ihniTeam.info.pilote) && team.ihniTeam.info.pilote.id === user.id) {
             return true;
         }
         return false;

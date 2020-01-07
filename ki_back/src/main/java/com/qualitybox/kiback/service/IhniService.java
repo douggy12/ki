@@ -10,6 +10,7 @@ import com.qualitybox.kiback.service.wrapper.AllTeamWrapper;
 import com.qualitybox.kiback.service.wrapper.AllUserWrapper;
 import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
 import com.qualitybox.kiback.service.wrapper.TeamWrapper;
+import com.qualitybox.kiback.service.wrapper.UserAvatarWrapper;
 import com.qualitybox.kiback.service.wrapper.UserWrapper;
 import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
 import java.util.Arrays;
@@ -49,6 +50,16 @@ public class IhniService {
                 
         return user;
     }
+    
+    public UserAvatarWrapper getUserAvatar(String id, String phpSESSID) {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<UserAvatarWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/user/" + id + "/photo",HttpMethod.GET, requestEntity, UserAvatarWrapper.class);
+        UserAvatarWrapper avatar = response.getBody();
+                
+        return avatar;
+    }
 
     public List<UserWrapper> getAllIhniUser(String phpSESSID) {
         HttpHeaders requestHeaders = new HttpHeaders();
@@ -69,7 +80,6 @@ public class IhniService {
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
         ResponseEntity<AllTeamWrapper[]> response =  new RestTemplate().exchange(this.ihniUrl + "/api/team", HttpMethod.GET, requestEntity, AllTeamWrapper[].class);
-//        System.out.println(response.getBody());
         AllTeamWrapper[] teamArray = response.getBody();
         List<TeamWrapper> teamList = new LinkedList();
         for (AllTeamWrapper team : teamArray) {
@@ -83,7 +93,6 @@ public class IhniService {
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Cookie", phpSESSID);
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-        System.out.println(this.ihniUrl);
         ResponseEntity<TeamInfoWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/team/" + id , HttpMethod.GET, requestEntity, TeamInfoWrapper.class);
         
         return response.getBody();

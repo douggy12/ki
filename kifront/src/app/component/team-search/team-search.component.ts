@@ -1,9 +1,8 @@
 import { TeamInfo } from './../../class/TeamInfo';
 import { UserService } from './../../service/user.service';
 import { UserInfo } from './../../class/UserInfo';
-import { Observable } from 'rxjs/Rx';
+import { Observable ,  Subject } from 'rxjs';
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
-import { Subject } from 'rxjs';
 import { debounceTime ,  distinctUntilChanged ,  switchMap } from 'rxjs/operators';
 import { IhniUser } from '../../class/IhniUser';
 import { TeamRole } from '../../class/TeamRole';

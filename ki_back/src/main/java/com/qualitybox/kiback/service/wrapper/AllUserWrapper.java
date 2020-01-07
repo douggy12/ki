@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class AllUserWrapper implements Serializable{
     
     private UserWrapper user;
+    private String role;
 
     public AllUserWrapper() {
     }
@@ -30,6 +31,16 @@ public class AllUserWrapper implements Serializable{
     public void setInfo(UserWrapper user) {
         this.user = user;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    
 
     @Override
     public String toString() {

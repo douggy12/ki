@@ -12,12 +12,12 @@ import {  DomSanitizer } from '@angular/platform-browser';
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
   };
- 
+
 
 
 @Injectable()
 export class AvatarService {
-    private imgUrl = environment.kibackUrl + 'img';
+    private imgUrl = environment.ihniUrl + '/api/user';
 
     private imageType = 'data:image/*;base64,';
 
@@ -29,25 +29,25 @@ export class AvatarService {
         return this.ngITS.resizeExactCropImage(file, 148, 148);
     }
 
-    getImg(id: number): Observable<any> {
-        const url = `${this.imgUrl}/${id}`;
-        return this.http.get<any>(url);
+    getImg(id: number, size: number): Observable<any> {
+        const url = `${this.imgUrl}/${id}/photo?size=${size}&defaultUserImage=false`;
+        return this.http.get<any>(url, this.options);
     }
     base64toUrl(data): any {
         return this.sanitizer.bypassSecurityTrustUrl(this.imageType + data);
     }
 
-    uploadImg(data: any, id: string): Observable<Object> {
-        const formData: FormData = new FormData();
-        formData.append('file', data);
-        formData.append('id', id);
-        const url = `${this.imgUrl}/post`;
-        return this.http.post(url, formData, this.options).catch(this.handleError);
-    }
+    // uploadImg(data: any, id: string): Observable<Object> {
+    //     const formData: FormData = new FormData();
+    //     formData.append('file', data);
+    //     formData.append('id', id);
+    //     const url = `${this.imgUrl}/post`;
+    //     return this.http.post(url, formData, this.options).pipe(catchError(this.handleError));
+    // }
 
-    private handleError(error: Response | any) {
-        return observableThrowError('API failed');
-    }
+    // private handleError(error: Response | any) {
+    //     return observableThrowError('API failed');
+    // }
 
 
 }

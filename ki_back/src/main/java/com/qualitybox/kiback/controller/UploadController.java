@@ -10,6 +10,7 @@ import com.qualitybox.kiback.service.StorageService;
 import com.qualitybox.kiback.domain.KiUser;
 import com.qualitybox.kiback.service.AuthService;
 import com.qualitybox.kiback.service.IhniService;
+import com.qualitybox.kiback.service.wrapper.UserAvatarWrapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -47,55 +49,74 @@ public class UploadController {
     AuthService authService;
     @Autowired
     IhniService ihniService;
-    
+
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
-    public Map<String, String> getFile2(@PathVariable String id) throws IOException {
-        String filename;
-        try {
-            filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
-        } catch (Exception e) {
-            System.err.println("Pas de user ki trouvé, erreur : " + e.getMessage());
-            filename = "def_2.jpeg";
-        }
+    @Async
+    public Map<String, String> getFile(@PathVariable String id, @RequestHeader(value = "Cookie") String cookieRaw) throws IOException {
 
-        if (filename == null) {
-            filename = "def_2.jpeg";
-        }
+        String output;
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
 
-        Path file = storageService.loadPath(filename);
-        String encodeImg = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file));
+        output = ihniService.getUserAvatar(id, phpSESSID).getPhoto();
+
+        if (output == null) {
+            Path file = storageService.loadPath("def_2.jpeg");
+            String encodedImg = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file));
+            output = encodedImg;
+        }
 
         Map<String, String> jsonMap = new HashMap<>();
-        jsonMap.put("content", encodeImg);
+        jsonMap.put("content", output);
         return jsonMap;
-
     }
+//    @CrossOrigin
+//    @RequestMapping(value = "/{id}", method = GET)
+//    public Map<String, String> getFile2(@PathVariable String id) throws IOException {
+//        String filename;
+//        try {
+//            filename = kiUserRepository.findByIhniId(Long.parseLong(id)).getAvatar();
+//        } catch (Exception e) {
+//            System.err.println("Pas de user ki trouvé, erreur : " + e.getMessage());
+//            filename = "def_2.jpeg";
+//        }
+//
+//        if (filename == null) {
+//            filename = "def_2.jpeg";
+//        }
+//
+//        Path file = storageService.loadPath(filename);
+//        String encodeImg = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file));
+//
+//        Map<String, String> jsonMap = new HashMap<>();
+//        jsonMap.put("content", encodeImg);
+//        return jsonMap;
+//
+//    }
 
-    @CrossOrigin
-    @RequestMapping(value = "/post", method = POST)
-    public ResponseEntity<String> handleFileUpload(@RequestHeader(value = "Cookie") String cookieRaw,@RequestParam("file") MultipartFile file, @RequestParam("id") String id) {
-        String message = "";
-        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
-        /*
-        Vérification identité avant upload
-        */
-        if(!this.ihniService.getSessionUser(phpSESSID).getId().equals(Long.valueOf(id))){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-//        Upload et met à jour KiUser si pas d'exception'
-        try {
-            String fileName = "avatar_" + id + "." + file.getContentType().replace("image/", "");
-            storageService.store(file, fileName);
-            message = "Upload success !";
-            KiUser kiUser = kiUserRepository.findByIhniId(Long.parseLong(id));
-            kiUser.setAvatar(fileName);
-            kiUserRepository.save(kiUser);
-            return ResponseEntity.status(HttpStatus.OK).body(message);
-        } catch (Exception e) {
-            message = "Upload Failed " + file.getOriginalFilename() + "!" + "\n" + e;
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-        }
-    }
-
+//    @CrossOrigin
+//    @RequestMapping(value = "/post", method = POST)
+//    public ResponseEntity<String> handleFileUpload(@RequestHeader(value = "Cookie") String cookieRaw,@RequestParam("file") MultipartFile file, @RequestParam("id") String id) {
+//        String message = "";
+//        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+//        /*
+//        Vérification identité avant upload
+//        */
+//        if(!this.ihniService.getSessionUser(phpSESSID).getId().equals(Long.valueOf(id))){
+//            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//        }
+////        Upload et met à jour KiUser si pas d'exception'
+//        try {
+//            String fileName = "avatar_" + id + "." + file.getContentType().replace("image/", "");
+//            storageService.store(file, fileName);
+//            message = "Upload success !";
+//            KiUser kiUser = kiUserRepository.findByIhniId(Long.parseLong(id));
+//            kiUser.setAvatar(fileName);
+//            kiUserRepository.save(kiUser);
+//            return ResponseEntity.status(HttpStatus.OK).body(message);
+//        } catch (Exception e) {
+//            message = "Upload Failed " + file.getOriginalFilename() + "!" + "\n" + e;
+//            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+//        }
+//    }
 }
