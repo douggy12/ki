@@ -1,31 +1,19 @@
-  <!-- Sidebar -->
-  <aside class="main-sidebar" *ngIf="teams">
-    <!-- Content of control sidebar goes here -->
-    <section class="sidebar">
-      <div class="tab-content" *ngIf="selectedTeam">
-        <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
-        <h4 class="header">Liste des équipes</h4>
-        <ul class="sidebar-menu">
-          <ng-container *ngFor="let team of teams; let i=index">
-            <li *ngIf="team.ihniTeam.info.agence">
-              <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
-                <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
-                <div class="menu-info"> {{ team.ihniTeam.info.agence.nom }} - {{ team.ihniTeam.info.name }} </div>
-              </a>
-            </li>
-          </ng-container>
-        </ul>
-      </div>
-    </section>
-  </aside>
-
 <div class="content-wrapper" *ngIf="teams" id="main-content">
 
   <div class="container-fluid">
     <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
     <section class="content">
       <!--  TeamDetailComponent -->
-
+      <ul class="sidebar-menu">
+        <ng-container *ngFor="let team of teams; let i=index">
+          <li *ngIf="team.ihniTeam.info.agence">
+            <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
+              <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
+              <div class="menu-info"> {{ team.ihniTeam.info.agence.nom }} - {{ team.ihniTeam.info.name }} </div>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
 
       <!-- UpButton -->
       <div class="team-nav visible-xs" *ngIf="teamIndex > 0" >
@@ -36,6 +24,7 @@
       </div>
       <!-- end UpButton -->
 
+      <h3>Equipe sélectionnée : {{selectedTeam.ihniTeam.info.id}}</h3>
       <!-- UserList => TeamUsersComponent -->
       <app-team-users [team]="selectedTeam" [teams]="teams" *ngIf="loaded; else loading"></app-team-users>
       <ng-template #loading><app-spinner></app-spinner></ng-template>

@@ -1,0 +1,22 @@
+<!-- Sidebar -->
+<aside class="main-sidebar" *ngIf="teams">
+    <!-- Content of control sidebar goes here -->
+    <section class="sidebar">
+      <div class="tab-content" *ngIf="selectedTeam">
+        <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+        <h4 class="header">Liste des équipes</h4>
+        <ul class="sidebar-menu">
+          <ng-container *ngFor="let team of teams; let i=index">
+            <li *ngIf="team.ihniTeam.info.agence">
+              <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
+                <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
+                <div class="menu-info"> {{ team.ihniTeam.info.agence.nom }} - {{ team.ihniTeam.info.name }} </div>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </section>
+  </aside>
+
+  <app-teams [selectedTeam]="selectedTeam"></app-teams>

@@ -1,5 +1,7 @@
   <!-- Site wrapper -->
   <div class="wrapper" id="template-global">
+    
+    <app-agences *ngIf='me && myTeam'></app-agences>
     <app-teams *ngIf='me && myTeam'></app-teams>
   </div>
 

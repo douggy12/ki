@@ -1,23 +1,21 @@
-
+import { Component, OnInit } from '@angular/core';
 import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
-import { Component, OnInit, Input } from '@angular/core';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 
 declare var $: any;
 
-
 @Component({
-  selector: 'app-teams',
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css']
+  selector: 'app-agences',
+  templateUrl: './agences.component.html',
+  styleUrls: ['./agences.component.css']
 })
-export class TeamsComponent implements OnInit {
-  //@Input() selectedAgence: number;
+export class AgencesComponent implements OnInit {
+
   teams: Team[];
-  @Input() selectedTeam: Team;
+  selectedTeam: Team;
   teamIndex: number;
   loaded: Boolean;
 
@@ -59,6 +57,7 @@ export class TeamsComponent implements OnInit {
   }
 
   onSelect(team: Team, teamIndex: number): void {
+    console.log('coucou');
     this.loaded = false;
     if (this.teamIndex !== teamIndex) {
       this.subscriptionService.cancelSubscriptions();
