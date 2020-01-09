@@ -3,6 +3,7 @@ import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
+import { Agence } from '../../class/Agence';
 import { Component, OnInit, Input } from '@angular/core';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 
@@ -17,7 +18,8 @@ declare var $: any;
 export class TeamsComponent implements OnInit {
   //@Input() selectedAgence: number;
   teams: Team[];
-  @Input() selectedTeam: Team;
+  selectedTeam: Team;
+  @Input() selectedAgence: Agence;
   teamIndex: number;
   loaded: Boolean;
 

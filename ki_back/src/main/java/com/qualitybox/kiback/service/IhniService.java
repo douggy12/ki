@@ -5,6 +5,7 @@
  */
 package com.qualitybox.kiback.service;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -92,8 +93,7 @@ public class IhniService {
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
         ResponseEntity<BuWrapper[]> response =  new RestTemplate().exchange(this.ihniUrl + "/api/bu", HttpMethod.GET, requestEntity, BuWrapper[].class);
         BuWrapper[] teamArray = response.getBody();
-        List<BuWrapper> teamList = new LinkedList();
-        return teamList;
+        return Arrays.asList(teamArray);
     }
     
     
