@@ -5,29 +5,26 @@
  */
 package com.qualitybox.kiback.service;
 
-import ch.qos.logback.core.CoreConstants;
-import com.qualitybox.kiback.service.wrapper.AllTeamWrapper;
-import com.qualitybox.kiback.service.wrapper.AllUserWrapper;
-import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
-import com.qualitybox.kiback.service.wrapper.TeamWrapper;
-import com.qualitybox.kiback.service.wrapper.UserAvatarWrapper;
-import com.qualitybox.kiback.service.wrapper.UserWrapper;
-import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
-import java.util.Arrays;
 import java.util.LinkedList;
-
 import java.util.List;
-import java.util.Map;
-import jdk.nashorn.internal.objects.annotations.Property;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.client.RestTemplate;
+
+import com.qualitybox.kiback.service.wrapper.AgenceWrapper;
+import com.qualitybox.kiback.service.wrapper.AllTeamWrapper;
+import com.qualitybox.kiback.service.wrapper.AllUserWrapper;
+import com.qualitybox.kiback.service.wrapper.BuWrapper;
+import com.qualitybox.kiback.service.wrapper.TeamInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.TeamWrapper;
+import com.qualitybox.kiback.service.wrapper.UserAvatarWrapper;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.UserWrapper;
 
 /**
  *
@@ -88,6 +85,17 @@ public class IhniService {
         return teamList;
     }
     
+    public List<BuWrapper> getAllBU(String phpSESSID) {
+        
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<BuWrapper[]> response =  new RestTemplate().exchange(this.ihniUrl + "/api/bu", HttpMethod.GET, requestEntity, BuWrapper[].class);
+        BuWrapper[] teamArray = response.getBody();
+        List<BuWrapper> teamList = new LinkedList();
+        return teamList;
+    }
+    
     
     public TeamInfoWrapper getIhniTeam(String id,String phpSESSID){
         HttpHeaders requestHeaders = new HttpHeaders();
@@ -107,4 +115,13 @@ public class IhniService {
         return response.getBody();
     }
     
+    public AgenceWrapper getIhniAgence(String id,String phpSESSID){
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Cookie", phpSESSID);
+        HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+        ResponseEntity<AgenceWrapper> response = new RestTemplate().exchange(this.ihniUrl + "/api/agence/" + id , HttpMethod.GET, requestEntity, AgenceWrapper.class);
+        
+        return response.getBody();
+        //        return team;
+    }
 }

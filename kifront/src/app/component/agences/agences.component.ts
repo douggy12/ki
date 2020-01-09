@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ContextService } from './../../service/Context.service';
 import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
+import { BuService } from '../../service/bu.service';
 import { Team } from '../../class/Team';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
+import { Bu } from '../../class/Bu';
 
 declare var $: any;
 
@@ -13,7 +15,7 @@ declare var $: any;
   styleUrls: ['./agences.component.css']
 })
 export class AgencesComponent implements OnInit {
-
+  bus: Bu[];
   teams: Team[];
   selectedTeam: Team;
   teamIndex: number;
@@ -24,22 +26,39 @@ export class AgencesComponent implements OnInit {
 
   constructor(
     private teamService: TeamService,
+    private buService: BuService,
     public context: ContextService,
     public subscriptionService: SubscriptionCancelService
   ) { }
 
   ngOnInit() {
-    this.getTeams();
-    this.subscriptionService.addSubscription(
+    this.getBus();
+    //this.getTeams();
+    /*this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
       this.selectedTeam = teamX;
       this.loaded = true;
       this.me = this.context.me;
       // this.initTeamColor();
-    }));
+    }));*/
+
     $(() => {
       $('.content').height($('.tab-content').height());
     });
+  }
+
+  getBus(): void {
+    this.subscriptionService.addSubscription(
+      this.buService.getBus().subscribe(
+        bus => {
+          this.bus = bus;
+          /*this.teams.sort((a, b) => {
+            return a.ihniTeam.info.agence.nom.localeCompare(b.ihniTeam.info.agence.nom);
+          }
+          );
+          this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);*/
+        }
+      ));
   }
 
   getTeams(): void {
