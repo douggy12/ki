@@ -6,23 +6,30 @@
 package com.qualitybox.kiback.controller;
 
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.qualitybox.kiback.domain.KiUser;
 import com.qualitybox.kiback.repository.KiUserRepository;
 import com.qualitybox.kiback.service.AuthService;
 import com.qualitybox.kiback.service.IhniService;
 import com.qualitybox.kiback.service.MixedUserService;
-import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
+import com.qualitybox.kiback.service.wrapper.KiSearchWrapper;
 import com.qualitybox.kiback.service.wrapper.UserWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import org.springframework.scheduling.annotation.Async;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 
 /**
@@ -72,9 +79,9 @@ public class KiUserController {
     @CrossOrigin
     @RequestMapping(value = "", method = GET)
     @Async
-    public List<UserInfoWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
+    public List<KiSearchWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
-        return this.mixedUserService.getIhniUserByName(string, phpSESSID);
+        return this.mixedUserService.kiSeachByTerm(string, phpSESSID);
     }
 
     @CrossOrigin

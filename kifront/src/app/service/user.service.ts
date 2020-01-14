@@ -5,6 +5,7 @@ import { IhniUser } from './../class/IhniUser';
 import { UserInfo } from './../class/UserInfo';
 import { KiUser } from './../class/KiUser';
 import { User } from './../class/User';
+import { IhniSearch } from './../class/IhniSearch';
 import { Observable ,  of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -54,7 +55,7 @@ searchUsers(term: string): Observable<any> {
         // pas de term => return empty array
         return of([]);
     }
-    return this.http.get<IhniUser[]>(this.teamUrl + `?term=${term}`, this.options)
+    return this.http.get<IhniSearch[]>(this.teamUrl + `?term=${term}`, this.options)
         .pipe(
             catchError(this.config.handleError)
         )

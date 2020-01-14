@@ -1,10 +1,9 @@
 import { TeamInfo } from './../../class/TeamInfo';
 import { UserService } from './../../service/user.service';
-import { UserInfo } from './../../class/UserInfo';
 import { Observable ,  Subject } from 'rxjs';
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { debounceTime ,  distinctUntilChanged ,  switchMap } from 'rxjs/operators';
-import { IhniUser } from '../../class/IhniUser';
+import { IhniSearch } from '../../class/IhniSearch';
 import { TeamRole } from '../../class/TeamRole';
 import { ContextService } from '../../service/Context.service';
 
@@ -16,8 +15,8 @@ import { ContextService } from '../../service/Context.service';
   styleUrls: ['./team-search.component.css']
 })
 export class TeamSearchComponent implements OnInit {
-  @Output() submitedTeam = new EventEmitter<TeamInfo>();
-  users$: Observable<IhniUser[]>;
+  @Output() submitedTeam = new EventEmitter<number>();
+  users$: Observable<IhniSearch[]>;
   private searchTerms = new Subject<string>();
   myTeams: TeamRole[];
 
@@ -28,8 +27,8 @@ export class TeamSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  onSubmitTeam(team: TeamInfo) {
-    this.submitedTeam.emit(team);
+  onSubmitTeam(teamId: number) {
+    this.submitedTeam.emit(teamId);
   }
 
   ngOnInit(): void {

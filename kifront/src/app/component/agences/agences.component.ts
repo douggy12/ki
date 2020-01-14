@@ -17,10 +17,8 @@ declare var $: any;
 })
 export class AgencesComponent implements OnInit {
   bus: Bu[];
-  teams: Team[];
-  selectedTeam: Team;
+
   selectedAgence: Agence;
-  teamIndex: number;
   agenceIndex: number;
   loaded: Boolean;
 
@@ -60,6 +58,7 @@ export class AgencesComponent implements OnInit {
           }
           );
           this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);*/
+          
         }
       ));
   }
@@ -73,12 +72,14 @@ export class AgencesComponent implements OnInit {
 
     }
   }
-  onSubmitedTeam(subTeam: TeamInfo) {
+  onSubmitedTeam(teamId: number) {
     this.subscriptionService.addSubscription(
-      this.teamService.getTeam(subTeam.id)
+      this.teamService.getTeam(teamId)
         .subscribe(
           selectedTeam => {
-            this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
+            //this.selectedTeam = selectedTeam; 
+            //this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === teamId);
+            console.log("coucou");
           }));
   }
   // WIP

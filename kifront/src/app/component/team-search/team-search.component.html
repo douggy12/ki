@@ -17,9 +17,9 @@
                     data-toggle="dropdown">
                 <ul class="search-result dropdown-menu user-dropdown">
                         <li *ngFor="let user of users$ | async">
-                                <a *ngFor="let teamRole of user.equipes_role" href="#" (click)="onSubmitTeam(teamRole.equipe)">
-                                        <span>{{user.info.prenom}} {{user.info.nom}}</span>
-                                        <small>{{teamRole.equipe.name}}</small>
+                                <a href="#" (click)="onSubmitTeam(user.teamId)">
+                                    <span>{{user.label}}</span>
+                                    <small>{{user.subLabel}}</small>
                                 </a>
                         </li>
                 </ul>

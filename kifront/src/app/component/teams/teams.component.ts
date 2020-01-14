@@ -9,14 +9,12 @@ import { SubscriptionCancelService } from '../../service/subscription-cancel.ser
 
 declare var $: any;
 
-
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
-  //@Input() selectedAgence: number;
   teams: Team[];
   selectedTeam: Team;
   @Input() selectedAgence: Agence;
