@@ -1,44 +1,62 @@
 <div [@flyInOut] = "state">
-  <!-- Pilote -->
 
-  <!-- <h2 class="page-header">Pilote</h2> -->
-  <div class="row pilote-type" *ngIf="team && team.ihniTeam.users">
-    <div class="col-lg-offset-4 col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
-      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
-        <div class="box box-widget widget-user-2">
-          <div class="widget-user-header bg-green">
-            <div class="widget-user-image">
-              <img class="img-circle" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar">
-              <div class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</div>
-            </div>
-            <h3 class="widget-user-username">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
-            <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab_1" data-toggle="tab">Organigramme</a></li>
+      <li><a href="#tab_2" data-toggle="tab">Information</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_1">
+        <!-- Pilote -->
+
+        <!-- <h2 class="page-header">Pilote</h2> -->
+        <div class="row pilote-type" *ngIf="team && team.ihniTeam.users">
+          <div class="col-lg-offset-4 col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
+            <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
+              <div class="box box-widget widget-user-2">
+                <div class="widget-user-header bg-green">
+                  <div class="widget-user-image">
+                    <img class="img-circle" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar">
+                    <div class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</div>
+                  </div>
+                  <h3 class="widget-user-username">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
+                  <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-      </a>
-    </div>
-  </div>
 
-  <!-- end Pilote -->
-  <!-- Utilisateurs -->
-  <!-- <h2 class="page-header">Utilisateurs</h2> -->
-  <div class="row user-type" *ngIf="team && team.ihniTeam.users">
-    <div class="col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
-      <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
-        <div class="box box-widget widget-user-2">
-          <div class="widget-user-header bg-yellow">
-            <div class="widget-user-image">
-              <img class="img-circle" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar">
-              <div class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</div>
-            </div>
-            <!-- /.widget-user-image -->
-            <h3 class="widget-user-username">{{wrapper.user.prenom}} {{wrapper.user.nom}}</h3>
-            <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
+        <!-- end Pilote -->
+        <!-- Utilisateurs -->
+        <!-- <h2 class="page-header">Utilisateurs</h2> -->
+        <div class="row user-type" *ngIf="team && team.ihniTeam.users">
+          <div class="col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
+            <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
+              <div class="box box-widget widget-user-2">
+                <div class="widget-user-header bg-yellow">
+                  <div class="widget-user-image">
+                    <img class="img-circle" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar">
+                    <div class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</div>
+                  </div>
+                  <!-- /.widget-user-image -->
+                  <h3 class="widget-user-username">{{wrapper.user.prenom}} {{wrapper.user.nom}}</h3>
+                  <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-      </a>
+      </div>
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="tab_2">
+        <app-team-informations [team]="team"></app-team-informations>
+      </div>
+      <!-- /.tab-pane -->
     </div>
+    <!-- /.tab-content -->
   </div>
+  
 </div>
 
 <!-- end Utilisateurs -->

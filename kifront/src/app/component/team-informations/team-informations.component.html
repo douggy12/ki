@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-text">Type</span>
+            <span class="info-box-number">Centre de service</span>
+        <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+        <span class="info-box-text">En activité depuis</span>
+        <span class="info-box-number">{{team.ihniTeam.info.createdAt.date}}</span>
+        <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+        
+        <span class="info-box-text">Effectifs</span>
+        <span class="info-box-number">13,648</span>
+
+        <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+</div>
+
+<br/>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-text">Référent applicatif / technique</span>
+            <span class="info-box-number">{{team.ihniTeam.info.pilote.prenom}} {{team.ihniTeam.info.pilote.nom}}</span>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-text">Description de l'activité</span>
+            <span class="info-box-number">
+                <span *ngIf="team.kiTeam.description"> {{team.kiTeam.description}} </span>
+                <span *ngIf="!team.kiTeam.description">Pas de description enregistrée</span>
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-text">Langage / Frameworks</span>
+            <span class="info-box-number">...</span>
+        </div>
+    </div>
+
+</div>

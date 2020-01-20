@@ -4,7 +4,7 @@ import { TeamInfo } from './../../class/TeamInfo';
 import { TeamService } from '../../service/team.service';
 import { Team } from '../../class/Team';
 import { Agence } from '../../class/Agence';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output , EventEmitter,  OnChanges, SimpleChange } from '@angular/core';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
 
 declare var $: any;
@@ -14,11 +14,12 @@ declare var $: any;
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent implements OnInit {
+export class TeamsComponent implements OnInit, OnChanges {
   teams: Team[];
-  selectedTeam: Team;
+  @Input() selectedTeam: Team;
   @Input() selectedAgence: Agence;
-  teamIndex: number;
+  //teamIndex: number;
+  agenceIndex: number;
   loaded: Boolean;
 
   teamColor: number[];
@@ -44,6 +45,12 @@ export class TeamsComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {  
+    if(changes['selectedAgence'] !== undefined){
+      console.log("changes on selectedAgence");
+    }
+  }
+
   getTeams(): void {
     this.subscriptionService.addSubscription(
       this.teamService.getTeams().subscribe(
@@ -53,32 +60,38 @@ export class TeamsComponent implements OnInit {
             return a.ihniTeam.info.agence.nom.localeCompare(b.ihniTeam.info.agence.nom);
           }
           );
-          this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
+          let teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
+          //this.teamIndex = teamIndex;
+          //this.agenceIndex = teams[teamIndex].ihniTeam.info.agence.id;
+          this.selectedAgence = teams[teamIndex].ihniTeam.info.agence
+
+          //this.submitedTeam.emit(teamId);
         }
       ));
   }
 
   onSelect(team: Team, teamIndex: number): void {
     this.loaded = false;
-    if (this.teamIndex !== teamIndex) {
+    //if (this.teamIndex !== teamIndex) {
       this.subscriptionService.cancelSubscriptions();
       this.subscriptionService.addSubscription(
         this.teamService.getTeam(team.ihniTeam.info.id)
           .subscribe(selectedTeam => {
 
             this.selectedTeam = selectedTeam;
-            this.teamIndex = teamIndex;
+            //this.teamIndex = teamIndex;
             this.loaded = true;
           }
           ));
-    }
+    //}
   }
   onSubmitedTeam(subTeam: TeamInfo) {
     this.subscriptionService.addSubscription(
       this.teamService.getTeam(subTeam.id)
         .subscribe(
           selectedTeam => {
-            this.selectedTeam = selectedTeam; this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
+            this.selectedTeam = selectedTeam; 
+            //this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
           }));
   }
   // WIP

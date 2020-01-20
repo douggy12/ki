@@ -3,27 +3,36 @@
   <div class="container-fluid">
     <app-team-detail [team]="selectedTeam" *ngIf="selectedTeam"></app-team-detail>
     <section class="content">
-      <h3>Equipe sélectionnée : </h3>
       <!--  TeamDetailComponent -->
       <div class="col-md-4">
-        <ul class="sidebar-menu">
-          <ng-container *ngFor="let team of teams; let i=index">
-            <li *ngIf="team.ihniTeam.info.agence">
-              <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
-                <i class="menu-icon bg-blue">{{ team.ihniTeam.info.name.substring(0,3)}}</i>
-                <div class="menu-info"> {{ team.ihniTeam.info.agence.nom }} - {{ team.ihniTeam.info.name }} </div>
-              </a>
-            </li>
-          </ng-container>
-        </ul>
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title">Equipe de : <strong>{{selectedAgence.nom}}</strong></h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body" style="">
+            <ul class="sidebar-menu">
+              <ng-container *ngFor="let team of teams; let i=index">
+                <li *ngIf="team.ihniTeam.info.agence.id === selectedAgence.id">
+                  <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
+                    <div class="menu-info">{{ team.ihniTeam.info.name }} </div>
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+
+        
       </div>
       
       <div class="col-md-8">
         <!-- UpButton -->
-        <div class="team-nav visible-xs" *ngIf="teamIndex > 0" >
-          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex - 1], teamIndex - 1)">
+        <div class="team-nav visible-xs" *ngIf="selectedTeam.id > 0" >
+          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[selectedTeam.id - 1], selectedTeam.id - 1)">
             <i class="fa fa-angle-up"></i>
-            <div>{{ teams[teamIndex - 1].ihniTeam.info.name }}</div>
+            <div>{{ teams[selectedTeam.id - 1].ihniTeam.info.name }}</div>
           </a>
         </div>
         <!-- end UpButton -->
@@ -35,10 +44,10 @@
         <!-- end UserList -->
 
         <!-- DownButton -->
-        <div class="team-nav visible-xs" *ngIf="teams && teamIndex < teams.length-1"  >
-          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[teamIndex + 1], teamIndex + 1)">
+        <div class="team-nav visible-xs" *ngIf="teams && selectedTeam.id < teams.length-1"  >
+          <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[selectedTeam.id + 1], selectedTeam.id + 1)">
             <i class="fa fa-angle-down"></i>
-            <div>{{teams[teamIndex + 1].ihniTeam.info.name}}</div>
+            <div>{{teams[selectedTeam.id + 1].ihniTeam.info.name}}</div>
           </a>
         </div>
         <!-- end DownButton -->

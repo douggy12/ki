@@ -17,10 +17,11 @@ declare var $: any;
 })
 export class AgencesComponent implements OnInit {
   bus: Bu[];
-
+  selectedTeam: Team
   selectedAgence: Agence;
+  teamIndex: number;
   agenceIndex: number;
-  loaded: Boolean;
+  //loaded: Boolean;
 
   teamColor: number[];
   public me;
@@ -34,6 +35,7 @@ export class AgencesComponent implements OnInit {
 
   ngOnInit() {
     this.getBus();
+
     //this.getTeams();
     /*this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
@@ -48,6 +50,7 @@ export class AgencesComponent implements OnInit {
     });
   }
 
+  // Webservice to get all the Business Units
   getBus(): void {
     this.subscriptionService.addSubscription(
       this.buService.getBus().subscribe(
@@ -63,24 +66,39 @@ export class AgencesComponent implements OnInit {
       ));
   }
 
+  /**
+   * Callback when an Agence is selected
+   * @param agence 
+   * @param agenceIndex 
+   */
   onSelect(agence: Agence, agenceIndex: number): void {
-    this.loaded = false;
-    if (this.agenceIndex !== agenceIndex) {
+    this.selectedAgence = agence;
+    /*if (this.agenceIndex !== agenceIndex) {
       this.selectedAgence = agence;
       this.agenceIndex = agenceIndex;
       this.loaded = true;
-
-    }
+    }*/
   }
+
+  /**
+   * Callback when an item is selected in the search field (team-seach component)
+   * @param teamId the ID of the selected team
+   */
   onSubmitedTeam(teamId: number) {
     this.subscriptionService.addSubscription(
       this.teamService.getTeam(teamId)
         .subscribe(
           selectedTeam => {
-            //this.selectedTeam = selectedTeam; 
+            this.selectedTeam = selectedTeam; 
+            this.selectedAgence = selectedTeam.ihniTeam.info.agence;
+            this.teamIndex = teamId;
+            this.agenceIndex = selectedTeam.ihniTeam.info.agence.id;
             //this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === teamId);
-            console.log("coucou");
           }));
+  }
+
+  onSelectAgenceFromTeams(agenceId: number){
+    console.log("onSelectAgenceFromTeams");
   }
   // WIP
   // initTeamColor() {

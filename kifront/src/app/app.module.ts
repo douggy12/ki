@@ -30,6 +30,7 @@ import { ImgResizeExactService } from 'ng2-img-tools/dist/src/img-resize-exact.s
 import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 import { CookieService } from 'ngx-cookie-service';
 import { AgencesComponent } from './component/agences/agences.component';
+import { TeamInformationsComponent } from './component/team-informations/team-informations.component';
 
 
 
@@ -46,7 +47,8 @@ import { AgencesComponent } from './component/agences/agences.component';
     TeamUserFormComponent,
     MessagesComponent,
     SpinnerComponent,
-    AgencesComponent
+    AgencesComponent,
+    TeamInformationsComponent
 
 
 ],

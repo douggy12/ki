@@ -1,5 +1,6 @@
 <!-- Sidebar -->
 <aside class="main-sidebar" *ngIf="bus">
+    Agence Index : {{agenceIndex}}
     <!-- Content of control sidebar goes here -->
     <section class="sidebar">
       <div class="tab-content">
@@ -22,4 +23,4 @@
     </section>
   </aside>
 
-  <app-teams [selectedAgence]="selectedAgence"></app-teams>
+  <app-teams [selectedAgence]="selectedAgence" [selectedTeam] = "selectedTeam"></app-teams>
