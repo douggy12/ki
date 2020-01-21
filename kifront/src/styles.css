@@ -112,13 +112,10 @@ textarea {
 .info-equipe {
   white-space: normal;
 }
-
-.sidebar-menu li {
-  white-space: normal;
-  padding: 5px 10px 5px 10px;
-  color: #b8c7ce;
+.main-sidebar{
+  padding-top: 0;
+  margin-top: -20px;
 }
-
 .sidebar-menu > li .fa {
   width: 20px
 }
@@ -224,6 +221,10 @@ textarea {
 
 .invisible {
   visibility: hidden;
+}
+
+.content{
+  padding-left: 0;
 }
 
 /*

@@ -3,13 +3,10 @@
 }
 .img-circle {
   background-color: lightgrey;
-  text-align: center;
-  line-height: 220%;
   font-size: 2em;
   font-weight: bold;
-  height: 65px !important;
-  width: 65px;
-  float: left;
+  padding: 25px;
+  line-height: 3em;
 }
 
 @media screen and (max-width: 1585px) {

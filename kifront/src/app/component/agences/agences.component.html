@@ -3,12 +3,12 @@
     Agence Index : {{agenceIndex}}
     <!-- Content of control sidebar goes here -->
     <section class="sidebar">
-      <div class="tab-content">
-        <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+      <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
+      <ul class="sidebar-menu tree">
         <ng-container *ngFor="let bu of bus; let i=index">
-          <div>
-            <h3>{{ bu.nom }}</h3>
-            <ul class="sidebar-menu">
+          <li class="treeview">
+            <a href="#">{{ bu.nom }}</a>
+            <ul class="sidebar-menu tree treeview-menu">
               <ng-container *ngFor="let agence of bu.agences; let i=index">
                 <li>
                   <a href="#" (click)="onSelect(agence, i)">
@@ -17,9 +17,9 @@
                 </li>
               </ng-container>
             </ul>
-          </div>
+          </li>
         </ng-container>
-      </div>
+      </ul>
     </section>
   </aside>
 

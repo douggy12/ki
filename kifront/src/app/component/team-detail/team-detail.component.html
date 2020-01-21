@@ -1,32 +1,9 @@
-<div class="row team-detail" *ngIf="team">   
-<!-- <aside class="main-sidebar" *ngIf="team"> -->
-    <!-- <section class="sidebar" > -->
-        <div class="user-panel">
-            <div class="info-equipe">
-                <h2>{{ team.ihniTeam.info.name }}</h2>
-            </div>
-        </div>
-        <ul class="sidebar-menu">
-            <li class="header">INFO de L'EQUIPE</li>
-            <!-- <li><i class="fa fa-paw text-aqua"></i>Pilote : {{team.ihniTeam.info.pilote.prenom}} {{team.ihniTeam.info.pilote.nom}}</li>
-             <li><i class="fa fa-calendar text-aqua"></i>Créé le : {{team.ihniTeam.info.createdAt.date | date:'dd/MM/yyyy'}}</li>
-            <li><i class="fa fa-users text-aqua"></i>Nb user : {{ team.ihniTeam.users.length }}</li> -->
-            <li class="description">
-                <div class="col-md-8">
-                    <!-- <p class="desc"><i class="fa fa-question-circle text-aqua"></i>Description :</p> -->
-                    <p [innerHTML]="setTDescription(team.kiTeam.description)" class="comment"></p>
-                    <a href="#" *ngIf="expanded && isPilote" class="btn btn-primary edit" title="Editer la description" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i>Editer</a>
-                    
-                </div>
-                <div class="col-md-4"></div>
-                <button  class="arrow-down" (click)="resetExpanded()">
-                    <i class="fa" [ngClass]="{'fa-caret-up':expanded,'fa-caret-down':!expanded}"></i>
-                </button>
-            </li>
-        </ul>
-    <!-- </section> -->
-  <!-- /.content -->
-<!-- </aside> -->
+<div *ngIf="team">   
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-fw fa-group text-red"></i> {{ team.ihniTeam.info.name }}
+        </h1>
+    </section>
 </div>
 <!--Team edit Modal-->
 <div class="modal fade" id="team-edit-modal" style="display: none;">

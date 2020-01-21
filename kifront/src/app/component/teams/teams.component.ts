@@ -85,6 +85,22 @@ export class TeamsComponent implements OnInit, OnChanges {
           ));
     //}
   }
+  onSelectTeam(teamId: number){
+
+    this.loaded = false;
+      this.subscriptionService.cancelSubscriptions();
+      this.subscriptionService.addSubscription(
+      this.teamService.getTeam(teamId)
+      .subscribe(selectedTeam => {
+
+        this.selectedTeam = selectedTeam;
+        this.loaded = true;
+      }
+      ));
+  }
+  onAlert(i : string){
+    console.log(i);
+  }
   onSubmitedTeam(subTeam: TeamInfo) {
     this.subscriptionService.addSubscription(
       this.teamService.getTeam(subTeam.id)

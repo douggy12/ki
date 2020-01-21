@@ -39,10 +39,6 @@ h4.header {
     padding-left: 13px;
 }
 
-.sidebar-menu li {
-    padding: 5px 0px 5px 0px;
-}
-
 .sidebar-menu>li>a{
     border-left:0;
     padding: 5px 5px 17px 12px;
@@ -58,13 +54,15 @@ h4.header {
 }
 
 .menu-info {
-    padding-left: 3.5em;
-    padding-top: 0.5em;
+    padding : 10px 0 10px 15px
 }
 
-a.active {
-    background: #2c3b41;
-    color: white;
+a > div {
+    color : #333333;
+}
+
+a.active > div{
+    background: #605ca833;
 }
 
 .skin-blue .sidebar a {
@@ -75,7 +73,20 @@ a.active {
     .main-footer {
         margin-right: 0;
     }
+    .TeamSelectorOptions{
+        display: none;
+    }
+    .TeamSelector{
+        display: block;
+    }
 }
 
-
-
+@media (max-width: 768px){
+    
+    .TeamSelectorOptions{
+        display: block;
+    }
+    .TeamSelector{
+        display: none;
+    }
+}
