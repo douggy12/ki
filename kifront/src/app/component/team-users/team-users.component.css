@@ -2,13 +2,26 @@
     min-height: 110px;
 }
 .img-circle {
-  background-color: lightgrey;
+  background-color: #605ca855;
   font-size: 2em;
   font-weight: bold;
   padding: 25px;
-  line-height: 3em;
+  margin-bottom: 10px;
+  color: white;
 }
-
+.users-list-name{
+    margin-top: 30px;
+}
+.users-list{
+    margin-top: 30px;
+    text-align: center;
+}
+.user-puce{
+    margin-bottom: 30px;
+}
+.color-invisible{
+    color: #ffffff00;
+}
 @media screen and (max-width: 1585px) {
     .widget-user-header {
         height: 144px;
@@ -18,5 +31,10 @@
     .display-flex {
         display: flex;
         flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 340px ){
+    .img-circle{
+        padding: 20px;
     }
 }

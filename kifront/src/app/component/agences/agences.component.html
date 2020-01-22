@@ -8,7 +8,7 @@
         <ng-container *ngFor="let bu of bus; let i=index">
           <li class="treeview">
             <a href="#">{{ bu.nom }}</a>
-            <ul class="sidebar-menu tree treeview-menu">
+            <ul class="treeview-menu">
               <ng-container *ngFor="let agence of bu.agences; let i=index">
                 <li>
                   <a href="#" (click)="onSelect(agence, i)">

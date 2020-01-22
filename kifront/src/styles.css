@@ -248,7 +248,9 @@ textarea {
 .clearfix:after {
   clear: both;
 }
-
+a:active, a:focus  {
+  background-color: #ffffff00;
+}
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
