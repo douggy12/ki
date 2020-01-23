@@ -45,6 +45,12 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  randomColorForImgCircle(){
+    let colorList = ['blue-1','blue-2','blue-3','blue-4'];
+    return colorList[Math.floor(Math.random() * colorList.length)];
+    
+  }
+
   ngOnChanges(changes: SimpleChanges) {
 
     if (!isNullOrUndefined(this.team)) {

@@ -8,25 +8,6 @@
     <div class="tab-content overflow-box">
       <div class="tab-pane active" id="tab_1">
         <!-- Pilote -->
-
-        <!-- <h2 class="page-header">Pilote</h2> -->
-        <!-- <div class="row pilote-type users-list clearfix" *ngIf="team && team.ihniTeam.users">
-          <div class="col-lg-offset-4 col-lg-4" *ngFor="let wrapper of team.ihniTeam.users">
-            <a href="#" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
-              <div class="box box-widget widget-user-2">
-                <div class="widget-user-header bg-green">
-                  <div class="widget-user-image">
-                    <img class="img-circle" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar">
-                    <div class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</div>
-                  </div>
-                  <h3 class="widget-user-username">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
-                  <h5 class="widget-user-desc">{{ wrapper.user.jobName }}</h5>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div> -->
-
         <ul class="users-list clearfix">
             <div *ngFor="let wrapper of team.ihniTeam.users">
               <li *ngIf="wrapper.role !== 'pilote'" style="display: none;">
@@ -34,7 +15,7 @@
               <li *ngIf="wrapper.role == 'pilote'">
                   <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
                       <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
-                      <span class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
+                      <span class="img-circle pilot-img" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                       <h3 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
                       <h4 class="users-list-job">{{ wrapper.user.jobName }}</h4>
                   </a>
@@ -50,7 +31,7 @@
             <li *ngIf="wrapper.role !== 'pilote'">
                 <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
                   <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
-                  <span id="{{i}}" class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
+                  <span class="img-circle {{randomColorForImgCircle()}}" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                   <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
                   <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
                   <h5 class="users-list-job color-invisible" *ngIf="wrapper.user.jobName == null">na</h5>
