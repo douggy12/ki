@@ -29,6 +29,7 @@ import com.qualitybox.kiback.service.AuthService;
 import com.qualitybox.kiback.service.IhniService;
 import com.qualitybox.kiback.service.MixedUserService;
 import com.qualitybox.kiback.service.wrapper.KiSearchWrapper;
+import com.qualitybox.kiback.service.wrapper.UserInfoWrapper;
 import com.qualitybox.kiback.service.wrapper.UserWrapper;
 
 
@@ -76,10 +77,19 @@ public class KiUserController {
         kiUserRepository.save(currentUser);
         return ResponseEntity.accepted().build(); 
     }
+    
     @CrossOrigin
-    @RequestMapping(value = "", method = GET)
+    @RequestMapping(value = "/searchUserByName", method = GET)
     @Async
-    public List<KiSearchWrapper> getByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
+    public List<UserInfoWrapper> getUserByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
+        String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
+        return this.mixedUserService.getIhniUserByName(string, phpSESSID);
+    }
+    
+    @CrossOrigin
+    @RequestMapping(value = "/searchUserAndTeamByName", method = GET)
+    @Async
+    public List<KiSearchWrapper> getUserAndTeamByName (@RequestParam("term") String string, @RequestHeader(value = "Cookie") String cookieRaw) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
         return this.mixedUserService.kiSeachByTerm(string, phpSESSID);
     }

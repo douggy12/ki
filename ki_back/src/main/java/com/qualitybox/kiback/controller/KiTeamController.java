@@ -43,7 +43,7 @@ public class KiTeamController {
     @Autowired
     AuthService authService;
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @RequestMapping(value = "", method = GET)
     @Async
     public List<MixedTeamService> listTeam(@RequestHeader(value="Cookie") String cookieRaw) {
@@ -63,7 +63,7 @@ public class KiTeamController {
         return allTeamJson;
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = GET)
     @Async
     public MixedTeamService getTeam(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id){
@@ -71,7 +71,7 @@ public class KiTeamController {
         mixedTeamService.setTeam(id,phpSESSID);
         return mixedTeamService;
     }
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = PUT)
     public ResponseEntity<?> update(@RequestHeader(value = "Cookie") String cookieRaw,@PathVariable String id, @RequestBody KiTeam kiTeam) {
         String phpSESSID = this.authService.getPHPSESSID(cookieRaw);
@@ -83,6 +83,7 @@ public class KiTeamController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         currentTeam.setDescription(kiTeam.getDescription());
+        currentTeam.setReferentIhniId(kiTeam.getReferentIhniId());
         kiTeamRepository.save(currentTeam);
         return ResponseEntity.accepted().build();
     }
