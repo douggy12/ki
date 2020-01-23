@@ -1,0 +1,34 @@
+.input-group .form-control {
+    background: white;
+    border-radius: 3px;
+    border: none;
+    width: 95%;
+    margin: auto;
+    color: #b8c7ce;
+    float:none;
+}
+
+.input-group .form-control:focus{
+    background: white;
+}
+
+.dropdown-menu {
+    padding:0;
+    border:0;
+    /*margin: 2px 3px 0;*/
+    background-color:lightgray;
+}
+.dropdown-menu>li>a {
+    padding: 5px 9px;
+    display: inline-block;
+    width: 100%;
+}
+.dropdown-menu>li>a>span{
+    display: block;
+}
+
+.dropdown-menu>li>a:hover {
+    color: white;
+    /* background-color:#374850; */
+    background-color:grey;
+}

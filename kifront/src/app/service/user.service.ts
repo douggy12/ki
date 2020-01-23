@@ -18,14 +18,16 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-    private teamUrl = environment.kibackUrl + 'ihni/user';
+    private userUrl = environment.kibackUrl + 'ihni/user';
+    private urlSearchUser = environment.kibackUrl + 'ihni/user/searchUserByName';
+    private urlSearchUserAndTeam = environment.kibackUrl + 'ihni/user/searchUserAndTeamByName';
     options: any = {'withCredentials' : 'true'};
 
 
 constructor(private http: HttpClient, private config: ConfigService, private message: MessageService) { }
 
 get(id: number): Observable<any> {
-    const url = `${this.teamUrl}/${id}`;
+    const url = `${this.userUrl}/${id}`;
     return this.http.get<User>(url, this.options)
         .pipe(
             catchError(this.config.handleError)
@@ -33,7 +35,7 @@ get(id: number): Observable<any> {
     ;
 }
 update(user: KiUser): Observable<any> {
-    const url = `${this.teamUrl}/${user.ihniId}`;
+    const url = `${this.userUrl}/${user.ihniId}`;
     console.log(user);
     return this.http.put(url, user, this.options)
         .pipe(
@@ -50,12 +52,25 @@ update(user: KiUser): Observable<any> {
            )
         );
 }
+
 searchUsers(term: string): Observable<any> {
     if (!term.trim()) {
         // pas de term => return empty array
         return of([]);
     }
-    return this.http.get<IhniSearch[]>(this.teamUrl + `?term=${term}`, this.options)
+    return this.http.get<IhniUser[]>(this.urlSearchUser + `?term=${term}`, this.options)
+        .pipe(
+            catchError(this.config.handleError)
+        )
+    ;
+}
+
+searchUsersAndTeams(term: string): Observable<any> {
+    if (!term.trim()) {
+        // pas de term => return empty array
+        return of([]);
+    }
+    return this.http.get<IhniSearch[]>(this.urlSearchUserAndTeam + `?term=${term}`, this.options)
         .pipe(
             catchError(this.config.handleError)
         )

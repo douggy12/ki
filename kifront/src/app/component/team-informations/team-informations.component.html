@@ -7,11 +7,16 @@
         </div>
         <!-- /.info-box -->
     </div>
+
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
         <span class="info-box-text">En activité depuis</span>
         <span class="info-box-number">{{team.ihniTeam.info.createdAt.date}}</span>
+
+        
+        
+
         <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
@@ -30,12 +35,29 @@
 
 </div>
 
+
 <br/>
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="info-box">
             <span class="info-box-text">Référent applicatif / technique</span>
-            <span class="info-box-number">{{team.ihniTeam.info.pilote.prenom}} {{team.ihniTeam.info.pilote.nom}}</span>
+            <span *ngIf="referent" class="info-box-number"> {{team.kiTeam.description}} </span>
+            <span *ngIf="!referent" class="info-box-number">Pas de référent renseigné</span>
+            <span class="info-box-number">{{referent}}</span>
+
+
+                <div class="input-group" *ngIf="pilote">
+                    <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Changer le référent..."
+                        data-toggle="dropdown">
+                    <ul class="search-result dropdown-menu user-dropdown">
+                            <li *ngFor="let user of users$ | async">
+                                    <a href="#" (click)="onSubmitUser(user)">
+                                        <span>{{user.info.prenom}} {{user.info.nom}}</span>
+                                        <small></small>
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
         </div>
     </div>
 

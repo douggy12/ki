@@ -17,7 +17,7 @@ import { ConfigService } from '../config/config.service';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'withCredentials' : 'true' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
 @Injectable()
@@ -43,7 +43,7 @@ export class TeamService {
     }
     update(team: Team): Observable<any>  {
       const url = `${this.teamUrl}/${team.ihniTeam.info.id}`;
-      return this.http.put(url, team.kiTeam, httpOptions);
+      return this.http.put(url, team.kiTeam, this.options);
     }
     /**
      * Handle Http operation that failed.

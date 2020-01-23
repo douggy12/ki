@@ -1,12 +1,11 @@
 import { TeamInfo } from './../../class/TeamInfo';
 import { UserService } from './../../service/user.service';
+import { ContextService } from '../../service/Context.service';
 import { Observable ,  Subject } from 'rxjs';
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { debounceTime ,  distinctUntilChanged ,  switchMap } from 'rxjs/operators';
 import { IhniSearch } from '../../class/IhniSearch';
 import { TeamRole } from '../../class/TeamRole';
-import { ContextService } from '../../service/Context.service';
-
 
 
 @Component({
@@ -41,7 +40,7 @@ export class TeamSearchComponent implements OnInit {
       // ignore term si pareil que le précédent
       distinctUntilChanged(),
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.userService.searchUsers(term)),
+      switchMap((term: string) => this.userService.searchUsersAndTeams(term)),
     );
   }
 

@@ -6,6 +6,10 @@
 package com.qualitybox.kiback.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +30,38 @@ public class KiTeam implements Serializable {
     @Column(length = 2500)
     private String description;
     private Long ihniId;
+    @Column
+    private String type;
+    @Column
+    private Long referentIhniId;
+    @Column
+    private LocalDateTime activitySince;
     
-    public Long getId() {
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public LocalDateTime getActivitySince() {
+		return activitySince;
+	}
+
+	public Long getReferentIhniId() {
+		return referentIhniId;
+	}
+
+	public void setReferentIhniId(Long referentIhniId) {
+		this.referentIhniId = referentIhniId;
+	}
+
+	public void setActivitySince(LocalDateTime activitySince) {
+		this.activitySince = activitySince;
+	}
+
+	public Long getId() {
         return id;
     }
 
