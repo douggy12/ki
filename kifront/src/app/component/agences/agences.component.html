@@ -12,14 +12,15 @@
               <ng-container *ngFor="let agence of bu.agences; let i=index">
                 <li>
                   <a href="#" (click)="onSelect(agence, i)" class="agenceHref">
-                    <div class="menu-info"> {{ agence.nom }} </div>
+                      <div *ngIf="selectedAgence && selectedAgence.nom == agence.nom" class="menu-info selected-agence">{{ agence.nom }} </div>
+                    <div *ngIf="!selectedAgence || selectedAgence.nom !== agence.nom" class="menu-info"> {{ agence.nom }} </div>
                   </a>
                 </li>
               </ng-container>
             </ul>
           </li>
         </ng-container>
-        <li *ngIf="(selectedAgence | json) != ({} | json)">{{selectedAgence | json}}</li>
+        <!-- <li *ngIf="selectedAgence" style="color: red;">{{ selectedAgence | json }} </li> -->
       </ul>
     </section>
   </aside>
