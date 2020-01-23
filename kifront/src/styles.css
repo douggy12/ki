@@ -113,8 +113,7 @@ textarea {
   white-space: normal;
 }
 .main-sidebar{
-  padding-top: 0;
-  margin-top: -20px;
+  margin-top: -50px;
 }
 .sidebar-menu > li .fa {
   width: 20px
@@ -250,6 +249,23 @@ textarea {
 }
 a:active, a:focus  {
   background-color: #ffffff00;
+}
+
+.overflow-box{
+  overflow: auto;
+  height: 50em;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3c8dbc00;
+}
+
+::-webkit-scrollbar-thumb {
+  background:#3c8dbc45;
 }
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
