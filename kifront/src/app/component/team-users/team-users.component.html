@@ -1,11 +1,11 @@
 <div [@flyInOut] = "state">
 
-  <div class="nav-tabs-custom">
+  <div class="nav-tabs-custom ">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab_1" data-toggle="tab">Organigramme</a></li>
-      <li><a href="#tab_2" data-toggle="tab">Information</a></li>
+      <li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-fw fa-sitemap fontIcon"></i> Organigramme</a></li>
+      <li><a href="#tab_2" data-toggle="tab"><i class="fa fa-fw fa-address-card fontIcon"></i> Information</a></li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content overflow-box">
       <div class="tab-pane active" id="tab_1">
         <!-- Pilote -->
 
@@ -36,7 +36,7 @@
                       <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
                       <span class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                       <h3 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
-                      <h4 class="users-list-date">{{ wrapper.user.jobName }}</h4>
+                      <h4 class="users-list-job">{{ wrapper.user.jobName }}</h4>
                   </a>
               </li>
             </div>
@@ -46,14 +46,14 @@
         <!-- Utilisateurs -->
         <!-- <h2 class="page-header">Utilisateurs</h2> -->
         <ul class="users-list clearfix row">
-          <div *ngFor="let wrapper of team.ihniTeam.users" class="col-xs-6 col-md-3 user-puce">
+          <div *ngFor="let wrapper of team.ihniTeam.users; let i=index;" class="col-xs-6 col-md-2 user-puce">
             <li *ngIf="wrapper.role !== 'pilote'">
                 <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
                   <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
-                  <span class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
+                  <span id="{{i}}" class="img-circle" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                   <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
-                  <h5 class="users-list-date" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
-                  <h5 class="users-list-date color-invisible" *ngIf="wrapper.user.jobName == null">N/A</h5>
+                  <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
+                  <h5 class="users-list-job color-invisible" *ngIf="wrapper.user.jobName == null">na</h5>
                 </a>
             </li>
           </div>

@@ -2,7 +2,7 @@
     min-height: 110px;
 }
 .img-circle {
-  background-color: #605ca855;
+  background-color: #3c8dbc45;
   font-size: 2em;
   font-weight: bold;
   padding: 25px;
@@ -12,15 +12,26 @@
 .users-list-name{
     margin-top: 30px;
 }
+.users-list-job{
+    color: #999;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .users-list{
     margin-top: 30px;
     text-align: center;
 }
 .user-puce{
-    margin-bottom: 30px;
+    height: 180px;
 }
 .color-invisible{
     color: #ffffff00;
+}
+.fontIcon{
+    font-size: 25px;
+    color: #3c8dbc;
 }
 @media screen and (max-width: 1585px) {
     .widget-user-header {

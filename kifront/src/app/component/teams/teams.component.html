@@ -21,16 +21,16 @@
         </div>
       </div>
       <!-- fin du select-->
-      <div class="col-md-4 TeamSelector">
+      <div class="col-md-3 TeamSelector">
         <div class="box box-default">
           <div class="box-header with-border">
             <h3 class="box-title">Equipe de : <strong>{{selectedAgence.nom}}</strong></h3>
           </div>
           <!-- /.box-header -->
-          <div class="box-body" style="">
+          <div class="box-body overflow-box" style="">
             <ul class="products-list product-list-in-box">
               <ng-container *ngFor="let team of teams; let i=index">
-                <li class="" *ngIf="team.ihniTeam.info.agence.id === selectedAgence.id">
+                <li class="box-teams" *ngIf="team.ihniTeam.info.agence.id === selectedAgence.id">
                   <a href="#" (click)="onSelect(team, i)" [class.active]="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
                     <div class="menu-info">{{ team.ihniTeam.info.name }}</div>
                   </a>
@@ -41,7 +41,7 @@
           <!-- /.box-body -->
         </div>        
       </div>
-      <div class="col-md-8 col-xs-12">
+      <div class="col-md-9 col-xs-12">
         <!-- UpButton -->
         <div class="team-nav visible-xs" *ngIf="selectedTeam.id > 0" >
           <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[selectedTeam.id - 1], selectedTeam.id - 1)">

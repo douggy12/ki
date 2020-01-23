@@ -14,17 +14,6 @@
     font-size: 0.9em;
 }
 
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: black;
-}
-
-::-webkit-scrollbar-thumb {
-    background:#374850;
-}
 
 .sidebar-menu .menu-icon {
     float: left;
@@ -62,11 +51,20 @@ a > div {
 }
 
 a.active > div{
-    background: #605ca833;
+    background: #3c8dbc45;
+    border: 1px solid #3c8dbc65;
+    border-radius: 5px;
 }
 
 .skin-blue .sidebar a {
     color: #8aa4af;
+}
+.box-teams{
+    background-color: #605CA805;
+    border: 1px solid #605CA825;
+    border-radius: 5px;
+    margin: 5px 0 5px 0;
+
 }
 
 @media (min-width: 768px){
