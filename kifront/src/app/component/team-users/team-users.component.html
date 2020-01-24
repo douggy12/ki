@@ -27,16 +27,18 @@
         <!-- Utilisateurs -->
         <!-- <h2 class="page-header">Utilisateurs</h2> -->
         <ul class="users-list clearfix row">
-          <div *ngFor="let wrapper of team.ihniTeam.users; let i=index;" class="col-xs-6 col-md-2 user-puce">
-            <li *ngIf="wrapper.role !== 'pilote'">
-                <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
-                  <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
-                  <span class="img-circle {{randomColorForImgCircle()}}" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
-                  <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
-                  <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
-                  <h5 class="users-list-job color-invisible" *ngIf="wrapper.user.jobName == null">na</h5>
-                </a>
-            </li>
+          <div *ngFor="let wrapper of team.ihniTeam.users; let i=index;" >
+            <div class="col-xs-6 col-md-2 user-puce" *ngIf="wrapper.user.pilote !== true && wrapper.user.active">
+              <li >
+                  <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
+                    <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
+                    <span class="img-circle {{randomColorForImgCircle()}}" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
+                    <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
+                    <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
+                    <h5 class="users-list-job color-invisible" *ngIf="wrapper.user.jobName == null">na</h5>
+                  </a>
+              </li>
+            </div>
           </div>
           </ul>
       </div>

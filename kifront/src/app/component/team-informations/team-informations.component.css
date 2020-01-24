@@ -7,7 +7,10 @@
     color: #b8c7ce;
     float:none;
 }
-
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
 .input-group .form-control:focus{
     background: white;
 }
