@@ -84,6 +84,7 @@ public class KiTeamController {
         }
         currentTeam.setDescription(kiTeam.getDescription());
         currentTeam.setReferentIhniId(kiTeam.getReferentIhniId());
+        currentTeam.setActivitySince(kiTeam.getActivitySince());
         kiTeamRepository.save(currentTeam);
         return ResponseEntity.accepted().build();
     }

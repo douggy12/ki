@@ -8,12 +8,14 @@ import { debounceTime ,  distinctUntilChanged ,  switchMap } from 'rxjs/operator
 import { IhniUser } from '../../class/IhniUser';
 import { User } from '../../class/User';
 import { Team } from './../../class/Team';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-team-informations',
   templateUrl: './team-informations.component.html',
   styleUrls: ['./team-informations.component.css']
 })
+
 export class TeamInformationsComponent implements OnInit {
   @Input() team: Team;
   users$: Observable<IhniUser[]>;
@@ -40,6 +42,11 @@ export class TeamInformationsComponent implements OnInit {
       });
     }
     
+  }
+
+  onDateSelect(ngbDate: NgbDate){
+    this.team.kiTeam.activitySince = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
+    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
   onSubmitUser(user: IhniUser) {

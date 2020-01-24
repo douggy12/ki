@@ -12,10 +12,11 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
         <span class="info-box-text">En activité depuis</span>
-        <span class="info-box-number">{{team.ihniTeam.info.createdAt.date}}</span>
-
+        <span *ngIf="team.kiTeam.activitySince" class="info-box-number">{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}} </span>
+        <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
         
-        
+        <input *ngIf="pilote" ngbDatepicker (click)="datePicker.toggle()" #datePicker="ngbDatepicker" formControlName="startDate" placeholder="yyyy-mm-dd" 
+            (dateSelect)="onDateSelect($event)">
 
         <!-- /.info-box-content -->
         </div>
@@ -26,7 +27,7 @@
         <div class="info-box">
         
         <span class="info-box-text">Effectifs</span>
-        <span class="info-box-number">13,648</span>
+        <span class="info-box-number">{{ team.ihniTeam.users.length }}</span>
 
         <!-- /.info-box-content -->
         </div>
@@ -71,7 +72,7 @@
             <span class="info-box-text">Description de l'activité</span>
             <span class="info-box-number">
                 <span *ngIf="team.kiTeam.description"> {{team.kiTeam.description}} </span>
-                <span *ngIf="!team.kiTeam.description">Pas de description enregistrée</span>
+                <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
             </span>
         </div>
     </div>
