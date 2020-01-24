@@ -31,6 +31,7 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 import { CookieService } from 'ngx-cookie-service';
 import { AgencesComponent } from './component/agences/agences.component';
 import { TeamInformationsComponent } from './component/team-informations/team-informations.component';
+import {NgbAlertModule, NgbModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap'; 
 
 
 
@@ -59,7 +60,8 @@ import { TeamInformationsComponent } from './component/team-informations/team-in
     FormsModule,
     ReactiveFormsModule,
     Ng2ImgToolsModule,
-    QuillEditorModule
+    QuillEditorModule,
+    NgbModule
   ],
   providers: [ TeamService, UserService, AuthService, MessageService, ConfigService,
      AvatarService, CookieService, ContextService],
