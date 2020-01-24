@@ -46,7 +46,7 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   }
 
   randomColorForImgCircle(){
-    let colorList = ['blue-1','blue-2','blue-3','blue-4'];
+    let colorList = ['blue-1','blue-2','blue-3','blue-4','blue-5','blue-6','blue-7','blue-8','blue-9','blue-10'];
     return colorList[Math.floor(Math.random() * colorList.length)];
     
   }
