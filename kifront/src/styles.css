@@ -361,3 +361,8 @@ a:active, a:focus  {
     page-break-after: avoid;
   }
 }
+@media (max-width: 767px){
+  .main-sidebar{
+    padding-top:50px;
+  }
+}

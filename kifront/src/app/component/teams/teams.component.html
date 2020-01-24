@@ -12,8 +12,11 @@
             <label>Equipe de : <strong>{{selectedAgence.nom}}</strong></label>
             <select class="form-control" (change)="onSelectTeam($event.target.value)">
               <ng-container *ngFor="let team of teams; let i=index">
-                <option value="{{team.ihniTeam.info.id}}" (click)="onSelect(team, i)" *ngIf="team.ihniTeam.info.agence.id === selectedAgence.id" >
+                <option value="{{team.ihniTeam.info.id}}" (click)="onSelect(team, i)" *ngIf="team.ihniTeam.info.agence.id === selectedAgence.id && team.ihniTeam.info.id !== selectedTeam.ihniTeam.info.id" >
                   {{ team.ihniTeam.info.name }}
+                </option>
+                <option value="{{team.ihniTeam.info.id}}" selected (click)="onSelect(team, i)" *ngIf="team.ihniTeam.info.id === selectedTeam.ihniTeam.info.id">
+                    {{ team.ihniTeam.info.name }}
                 </option>
               </ng-container>
             </select>

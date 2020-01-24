@@ -6,9 +6,9 @@
       <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
       <ul class="sidebar-menu tree">
         <ng-container *ngFor="let bu of bus; let i=index">
-          <li class="treeview">
+          <li class="treeview" [class.active]="selectedAgence && selectedAgence.bu.nom == bu.nom">
             <a href="#">{{ bu.nom }}</a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu" [class.menu-open]="selectedAgence && selectedAgence.bu.nom == bu.nom">
               <ng-container *ngFor="let agence of bu.agences; let i=index">
                 <li>
                   <a href="#" (click)="onSelect(agence, i)" class="agenceHref">
@@ -20,7 +20,6 @@
             </ul>
           </li>
         </ng-container>
-        <!-- <li *ngIf="selectedAgence" style="color: red;">{{ selectedAgence | json }} </li> -->
       </ul>
     </section>
   </aside>

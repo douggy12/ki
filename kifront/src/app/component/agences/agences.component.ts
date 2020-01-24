@@ -37,13 +37,12 @@ export class AgencesComponent implements OnInit {
     this.getBus();
 
     //this.getTeams();
-    /*this.subscriptionService.addSubscription(
+    this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
-      this.selectedTeam = teamX;
-      this.loaded = true;
+      this.selectedAgence = teamX.ihniTeam.info.agence;
       this.me = this.context.me;
-      // this.initTeamColor();
-    }));*/
+      console.log(this.selectedTeam);
+    }));
 
     $(() => {
       $('.content').height($('.tab-content').height());
