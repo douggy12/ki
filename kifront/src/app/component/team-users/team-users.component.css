@@ -2,12 +2,13 @@
     min-height: 110px;
 }
 .img-circle {
-  background-color: #3c8dbc45;
-  font-size: 2em;
-  font-weight: bold;
-  padding: 25px;
-  margin-bottom: 10px;
-  color: white;
+    font-size: 2em;
+    font-weight: 700;
+    padding: 25px 0 25px 0;
+    margin-left: 25%;
+    width: 90px;
+    color: #fff;
+    display: block;
 }
 .img-circle-avatar-pilot{
     border-radius: 50%;
