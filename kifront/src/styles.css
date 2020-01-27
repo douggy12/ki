@@ -274,7 +274,7 @@ a:active, a:focus  {
   height: 100%;
 }
 .height50em{
-  height: 50em;
+  height: 53em;
 }
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -385,5 +385,8 @@ a:active, a:focus  {
   }
   #main-content {
     min-height: calc(100vh - 175px) !important;
+  }
+  .height50em{
+    height: 45em;
   }
 }
