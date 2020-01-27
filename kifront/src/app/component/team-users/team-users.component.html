@@ -32,7 +32,7 @@
               <li >
                   <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
                     <img class="img-circle-avatar" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
-                    <span class="img-circle {{randomColorForImgCircle()}}" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
+                    <span class="img-circle blue-8" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                     <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
                     <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>
                     <h5 class="users-list-job color-invisible" *ngIf="wrapper.user.jobName == null">na</h5>
