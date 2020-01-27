@@ -267,6 +267,9 @@ a:active, a:focus  {
 ::-webkit-scrollbar-thumb {
   background:#3c8dbc45;
 }
+.mobile-br {
+    display: none;
+}
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -364,5 +367,17 @@ a:active, a:focus  {
 @media (max-width: 767px){
   .main-sidebar{
     padding-top:50px;
+  }
+  .mobile-br {
+      display: block;
+  }
+  .main-footer {
+      text-align: center;
+  }
+  .overflow-box {
+    height: 40em;
+  }
+  #main-content {
+    min-height: calc(100vh - 175px) !important;
   }
 }
