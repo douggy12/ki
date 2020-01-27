@@ -22,11 +22,13 @@ export class TeamInformationsComponent implements OnInit {
   private searchTerms = new Subject<string>();
   referent: string;
   pilote: boolean = false;
+  teamType: string;
 
   constructor(private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
     this.pilote = (this.context.me.id === this.team.ihniTeam.info.pilote.id);
+    this.teamType = this.team.kiTeam.type;
     this.users$ = this.searchTerms.pipe(
       // attendre 300ms apres chaque entrée avant de lancer une recherche
       debounceTime(300),
@@ -55,6 +57,11 @@ export class TeamInformationsComponent implements OnInit {
     });*/
     this.referent = user.info.prenom + " " + user.info.nom;
     this.team.kiTeam.referentIhniId = user.info.id;
+    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+  }
+
+  submitType() {
+    this.team.kiTeam.type = this.teamType;
     this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
