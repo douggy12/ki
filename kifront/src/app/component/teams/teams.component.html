@@ -24,8 +24,8 @@
         </div>
       </div>
       <!-- fin du select-->
-      <div class="col-md-3 TeamSelector">
-        <div class="box box-default">
+      <div class="col-md-3 TeamSelector height50em">
+        <div class="box box-default height100">
           <div class="box-header with-border">
             <h3 class="box-title">Equipe de : <strong>{{selectedAgence.nom}}</strong></h3>
           </div>
@@ -44,7 +44,7 @@
           <!-- /.box-body -->
         </div>        
       </div>
-      <div class="col-md-9 col-xs-12">
+      <div class="col-md-9 col-xs-12 height50em">
         <!-- UpButton -->
         <div class="team-nav visible-xs" *ngIf="selectedTeam.id > 0" >
           <a href="#" class="btn btn-default btn-block btn-flat" (click)="onSelect(teams[selectedTeam.id - 1], selectedTeam.id - 1)">

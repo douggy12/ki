@@ -253,7 +253,7 @@ a:active, a:focus  {
 
 .overflow-box{
   overflow: auto;
-  height: 50em;
+  height: 90%;
 }
 
 ::-webkit-scrollbar {
@@ -269,6 +269,12 @@ a:active, a:focus  {
 }
 .mobile-br {
     display: none;
+}
+.height100{
+  height: 100%;
+}
+.height50em{
+  height: 50em;
 }
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
