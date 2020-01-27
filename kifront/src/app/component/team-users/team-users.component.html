@@ -14,7 +14,7 @@
               </li>
               <li *ngIf="wrapper.role == 'pilote'">
                   <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role == 'pilote'">
-                      <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
+                      <img class="img-circle-avatar-pilot" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
                       <span class="img-circle pilot-img" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                       <h3 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h3>
                       <h4 class="users-list-job">{{ wrapper.user.jobName }}</h4>
@@ -31,7 +31,7 @@
             <div class="col-xs-6 col-md-2 user-puce" *ngIf="wrapper.user.pilote !== true && wrapper.user.active">
               <li >
                   <a href="#" class="user-link" data-toggle="modal" data-target="#user-modal" (click)="onSelect(wrapper.user)" *ngIf="wrapper.role !== 'pilote'">
-                    <img [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
+                    <img class="img-circle-avatar" [src]="wrapper.user.avatar" alt="{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}" *ngIf="wrapper.user.avatar"/>
                     <span class="img-circle {{randomColorForImgCircle()}}" *ngIf="!wrapper.user.avatar">{{wrapper.user.prenom | slice:0:1 | uppercase}} {{wrapper.user.nom | slice:0:1 | uppercase}}</span>
                     <h4 class="users-list-name">{{ wrapper.user.prenom }} {{ wrapper.user.nom }}</h4>
                     <h5 class="users-list-job" *ngIf="wrapper.user.jobName !== ''">{{ wrapper.user.jobName }}</h5>

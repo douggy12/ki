@@ -63,7 +63,7 @@ export class TeamUsersComponent implements OnInit, OnChanges {
 
   loadImg(id: number) {
     this.subscriptionService.addSubscription(
-      this.avatarService.getImg(this.team.ihniTeam.users[id].user.id, 64).subscribe(img => {
+      this.avatarService.getImg(this.team.ihniTeam.users[id].user.id, 150).subscribe(img => {
         if (!isNullOrUndefined(img.photo)) {
           this.team.ihniTeam.users[id].user.avatar = this.avatarService.base64toUrl(img.photo);
         } else {
