@@ -32,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AgencesComponent } from './component/agences/agences.component';
 import { TeamInformationsComponent } from './component/team-informations/team-informations.component';
 import {NgbAlertModule, NgbModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap'; 
+import {SafeHtmlPipe} from './pipes/sanitizeHtml.pipe';
 
 
 
@@ -49,9 +50,8 @@ import {NgbAlertModule, NgbModule, NgbPopoverModule} from '@ng-bootstrap/ng
     MessagesComponent,
     SpinnerComponent,
     AgencesComponent,
-    TeamInformationsComponent
-
-
+    TeamInformationsComponent,
+    SafeHtmlPipe
 ],
   imports: [
     BrowserModule,
