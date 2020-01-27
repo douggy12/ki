@@ -20,7 +20,7 @@
         <span *ngIf="team.kiTeam.activitySince" class="info-box-number">{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}} </span>
         <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
         
-        <input *ngIf="pilote" ngbDatepicker (click)="datePicker.toggle()" #datePicker="ngbDatepicker" formControlName="startDate" placeholder="Changer la date..." 
+        <input *ngIf="pilote" ngbDatepicker (click)="datePicker.toggle()" #datePicker="ngbDatepicker" placeholder="Changer la date..." 
             (dateSelect)="onDateSelect($event)">
 
         <!-- /.info-box-content -->
