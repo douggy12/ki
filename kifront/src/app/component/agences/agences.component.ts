@@ -18,6 +18,7 @@ declare var $: any;
 export class AgencesComponent implements OnInit {
   bus: Bu[];
   selectedTeam: Team
+  selectedBu : Bu;
   selectedAgence: Agence;
   teamIndex: number;
   agenceIndex: number;
@@ -40,10 +41,9 @@ export class AgencesComponent implements OnInit {
     this.subscriptionService.addSubscription(
     this.teamService.getTeam(+this.context.myTeam).subscribe(teamX => {
       this.selectedAgence = teamX.ihniTeam.info.agence;
+      this.selectedBu = this.selectedAgence.bu;
       this.me = this.context.me;
-      console.log(this.selectedTeam);
     }));
-
     $(() => {
       $('.content').height($('.tab-content').height());
     });
@@ -55,12 +55,6 @@ export class AgencesComponent implements OnInit {
       this.buService.getBus().subscribe(
         bus => {
           this.bus = bus;
-          /*this.teams.sort((a, b) => {
-            return a.ihniTeam.info.agence.nom.localeCompare(b.ihniTeam.info.agence.nom);
-          }
-          );
-          this.teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);*/
-          
         }
       ));
   }
@@ -70,13 +64,9 @@ export class AgencesComponent implements OnInit {
    * @param agence 
    * @param agenceIndex 
    */
-  onSelect(agence: Agence, agenceIndex: number): void {
+  onSelect(agence: Agence, bu: Bu, agenceIndex: number): void {
+    this.selectedBu = bu;
     this.selectedAgence = agence;
-    /*if (this.agenceIndex !== agenceIndex) {
-      this.selectedAgence = agence;
-      this.agenceIndex = agenceIndex;
-      this.loaded = true;
-    }*/
   }
 
   /**
@@ -99,19 +89,5 @@ export class AgencesComponent implements OnInit {
   onSelectAgenceFromTeams(agenceId: number){
     console.log("onSelectAgenceFromTeams");
   }
-  // WIP
-  // initTeamColor() {
-  //   let tri = '';
-  //   let n = 1;
-  //   // tslint:disable-next-line:forin
-  //   for (let i in this.teams) {
-  //     if (this.teams[i].ihniTeam.info.name.substr(0, 3) !== tri) {
-  //       tri = this.teams[i].ihniTeam.info.name.substr(0, 3);
-  //       n++;
-  //     }
-  //     this.teamColor.push(n);
-  //   }
-  //   console.log(this.teamColor);
-  // }
 
 }

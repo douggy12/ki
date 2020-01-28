@@ -6,12 +6,12 @@
       <app-team-search (submitedTeam)="onSubmitedTeam($event)"></app-team-search>
       <ul class="sidebar-menu tree">
         <ng-container *ngFor="let bu of bus; let i=index">
-          <li class="treeview" [class.active]="selectedAgence && selectedAgence.bu.nom == bu.nom">
+          <li class="treeview" [class.active]="selectedBu && selectedBu.nom == bu.nom">
             <a href="#">{{ bu.nom }}</a>
-            <ul class="treeview-menu" [class.menu-open]="selectedAgence && selectedAgence.bu.nom == bu.nom">
+            <ul class="treeview-menu" [class.menu-open]="selectedBu && selectedBu.nom == bu.nom">
               <ng-container *ngFor="let agence of bu.agences; let i=index">
                 <li>
-                  <a href="#" (click)="onSelect(agence, i)" class="agenceHref">
+                  <a href="#" (click)="onSelect(agence, bu, i)" class="agenceHref">
                       <div *ngIf="selectedAgence && selectedAgence.nom == agence.nom" class="menu-info selected-agence">{{ agence.nom }} </div>
                     <div *ngIf="!selectedAgence || selectedAgence.nom !== agence.nom" class="menu-info"> {{ agence.nom }} </div>
                   </a>
