@@ -45,12 +45,6 @@ export class TeamUsersComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  randomColorForImgCircle(){
-    let colorList = ['blue-1','blue-2','blue-3','blue-4','blue-5','blue-6','blue-7','blue-8','blue-9','blue-10'];
-    return colorList[Math.floor(Math.random() * colorList.length)];
-    
-  }
-
   ngOnChanges(changes: SimpleChanges) {
 
     if (!isNullOrUndefined(this.team)) {
@@ -74,7 +68,19 @@ export class TeamUsersComponent implements OnInit, OnChanges {
         }
       })
     );
+    // this.onLoadImg();
   }
+  // WIP
+  // onLoadImg(){
+  //   console.log("fini de charger les images");
+  //   let divs = document.getElementsByClassName("blue-1");
+  //   let numDivs = document.getElementsByClassName("blue-1").length;
+  //   for (let i = 0; i < divs.length; i++) {
+  //     const element = divs[i];
+  //     element.classList.remove("blue-1");
+  //     element.classList.add("blue-8");
+  //   }
+  // }
 
   onSelect(user: UserInfo): void {
     this.selectedUser = user;
