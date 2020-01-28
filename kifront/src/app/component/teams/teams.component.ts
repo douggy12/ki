@@ -18,7 +18,6 @@ export class TeamsComponent implements OnInit, OnChanges {
   teams: Team[];
   @Input() selectedTeam: Team;
   @Input() selectedAgence: Agence;
-  //teamIndex: number;
   agenceIndex: number;
   loaded: Boolean;
 
@@ -38,7 +37,6 @@ export class TeamsComponent implements OnInit, OnChanges {
       this.selectedTeam = teamX;
       this.loaded = true;
       this.me = this.context.me;
-      // this.initTeamColor();
     }));
     $(() => {
       $('.content').height($('.tab-content').height());
@@ -46,9 +44,7 @@ export class TeamsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {  
-    if(changes['selectedAgence'] !== undefined){
-      console.log("changes on selectedAgence");
-    }
+
   }
 
   getTeams(): void {
@@ -61,29 +57,19 @@ export class TeamsComponent implements OnInit, OnChanges {
           }
           );
           let teamIndex = teams.findIndex(team => team.ihniTeam.info.id === +this.context.myTeam);
-          //this.teamIndex = teamIndex;
-          //this.agenceIndex = teams[teamIndex].ihniTeam.info.agence.id;
           this.selectedAgence = teams[teamIndex].ihniTeam.info.agence
-
-          //this.submitedTeam.emit(teamId);
         }
       ));
   }
 
   onSelect(team: Team, teamIndex: number): void {
     this.loaded = false;
-    //if (this.teamIndex !== teamIndex) {
-      this.subscriptionService.cancelSubscriptions();
-      this.subscriptionService.addSubscription(
-        this.teamService.getTeam(team.ihniTeam.info.id)
-          .subscribe(selectedTeam => {
-
-            this.selectedTeam = selectedTeam;
-            //this.teamIndex = teamIndex;
-            this.loaded = true;
-          }
-          ));
-    //}
+    this.subscriptionService.cancelSubscriptions();
+    this.subscriptionService.addSubscription(
+    this.teamService.getTeam(team.ihniTeam.info.id).subscribe(selectedTeam => {
+      this.selectedTeam = selectedTeam;
+      this.loaded = true;
+    }));
   }
   onSelectTeam(teamId: number){
 
@@ -107,22 +93,7 @@ export class TeamsComponent implements OnInit, OnChanges {
         .subscribe(
           selectedTeam => {
             this.selectedTeam = selectedTeam; 
-            //this.teamIndex = this.teams.findIndex(team => team.ihniTeam.info.id === subTeam.id);
           }));
   }
-  // WIP
-  // initTeamColor() {
-  //   let tri = '';
-  //   let n = 1;
-  //   // tslint:disable-next-line:forin
-  //   for (let i in this.teams) {
-  //     if (this.teams[i].ihniTeam.info.name.substr(0, 3) !== tri) {
-  //       tri = this.teams[i].ihniTeam.info.name.substr(0, 3);
-  //       n++;
-  //     }
-  //     this.teamColor.push(n);
-  //   }
-  //   console.log(this.teamColor);
-  // }
 
 }
