@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit , Input, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from './../../service/user.service';
 import { TeamService } from './../../service/team.service';
 import { ContextService } from '../../service/Context.service';
@@ -9,6 +9,11 @@ import { IhniUser } from '../../class/IhniUser';
 import { User } from '../../class/User';
 import { Team } from './../../class/Team';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { isNullOrUndefined } from 'util';
+import { NgForm } from '@angular/forms';
+
+declare var $: any;
 
 @Component({
   selector: 'app-team-informations',
@@ -22,11 +27,38 @@ export class TeamInformationsComponent implements OnInit {
   private searchTerms = new Subject<string>();
   referent: string;
   pilote: boolean = false;
+  edit: boolean = false;
   teamType: string;
+  model: FormGroup;
+  datePickerControl = new FormControl(); // date selector for the "activity since" field
+  //searchReferent: string = ""; // search field for the referent
+  formatedDatePickerStartDate: string;
+  formatedDatePickerStartDatee: number;
+  @ViewChild('teamTypeInput', {static: false}) teamTypeInput: ElementRef;
+  @ViewChild('searchReferent', {static: false}) searchReferent: ElementRef;
+  @ViewChild('datePickerInput', {static: false}) datePickerInput: ElementRef;
+  
 
-  constructor(private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
+  config = {
+    theme: 'snow',
+    modules : {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+      ]
+    },
+    placeholder : 'Votre description ici...'
+  };
+
+  constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
+    
+    let formatedDate = new Date(this.team.kiTeam.activitySince);
+    this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
+    
+    //this.formatedDatePickerStartDatee = this.team.kiTeam.activitySince.getFullYear();
+
     this.pilote = (this.context.me.id === this.team.ihniTeam.info.pilote.id);
     this.teamType = this.team.kiTeam.type;
     this.users$ = this.searchTerms.pipe(
@@ -44,11 +76,23 @@ export class TeamInformationsComponent implements OnInit {
       });
     }
     
+    this.createForm();
+
+    this.model.patchValue({
+      description: this.team.kiTeam.description ? this.team.kiTeam.description : ''
+    });
+  }
+
+  createForm() {
+    this.model = this.fb.group({
+      description: ['', [Validators.required, Validators.minLength(10)]]
+    });
   }
 
   onDateSelect(ngbDate: NgbDate){
-    this.team.kiTeam.activitySince = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
-    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    let dateee = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
+    //dateee.setDate(dateee.getDate()+1);
+    this.team.kiTeam.activitySince = dateee;
   }
 
   onSubmitUser(user: IhniUser) {
@@ -57,17 +101,45 @@ export class TeamInformationsComponent implements OnInit {
     });*/
     this.referent = user.info.prenom + " " + user.info.nom;
     this.team.kiTeam.referentIhniId = user.info.id;
-    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    this.searchReferent.nativeElement.value = '';
+    //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
   submitType() {
     this.team.kiTeam.type = this.teamType;
-    this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
   // Push a search term into the observable stream
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  submitEdit(buttonType: string): void{
+    if(buttonType==="edit") {
+      this.edit = true;
+    }
+    if(buttonType==="save"){
+      this.team.kiTeam.type = this.teamTypeInput.nativeElement.value;
+      this.teamType = this.teamTypeInput.nativeElement.value;
+      //this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
+      this.edit = false;
+      this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    }
+  }
+
+  submitSave(): void{
+    this.edit = false;
+  }
+
+  ngOnChanges() {
+    if (!isNullOrUndefined(this.team)) {
+      this.model.reset();
+      this.model.patchValue({
+        description: this.team.kiTeam.description ? this.team.kiTeam.description : ''
+      });
+    }
+
   }
 
 }

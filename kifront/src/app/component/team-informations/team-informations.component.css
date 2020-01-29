@@ -1,3 +1,20 @@
+.bg-primary {
+    color: black;
+}
+
+input{
+    width: 80%;
+}
+
+.form-control {
+    display: inline;
+    border: 0;
+}
+
+.info-box{
+    min-height: 110px;
+}
+
 .input-group .form-control {
     background: white;
     border-radius: 3px;
@@ -16,7 +33,7 @@
 }
 
 .dropdown-menu {
-    padding:0;
+    padding:10px;
     border:0;
     /*margin: 2px 3px 0;*/
     background-color:lightgray;
