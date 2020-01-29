@@ -63,24 +63,13 @@ export class TeamUsersComponent implements OnInit, OnChanges {
         } else {
           this.team.ihniTeam.users[id].user.avatar = null;
         }
+        this.team.ihniTeam.users[id].user.loaded = true;
         if (!isNullOrUndefined(this.team.ihniTeam.users[id + 1])) {
           this.loadImg(id + 1);
         }
       })
-    );
-    // this.onLoadImg();
+      );
   }
-  // WIP
-  // onLoadImg(){
-  //   console.log("fini de charger les images");
-  //   let divs = document.getElementsByClassName("blue-1");
-  //   let numDivs = document.getElementsByClassName("blue-1").length;
-  //   for (let i = 0; i < divs.length; i++) {
-  //     const element = divs[i];
-  //     element.classList.remove("blue-1");
-  //     element.classList.add("blue-8");
-  //   }
-  // }
 
   onSelect(user: UserInfo): void {
     this.selectedUser = user;

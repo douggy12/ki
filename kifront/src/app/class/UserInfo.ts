@@ -14,6 +14,7 @@ export class UserInfo {
     avatar: File;
     pilote = false;
     agence: string;
+    loaded: boolean;
     // equipes_old: object;
 
 }
