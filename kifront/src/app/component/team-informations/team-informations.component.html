@@ -9,7 +9,7 @@
                 </div>
                 <!--<form (ngSubmit)="submitType()" *ngIf="pilote && edit">-->
                 <div *ngIf="pilote && edit">
-                    <input name="title" type="text" value={{teamType}}>
+                    <input name="title" type="text" value={{teamType}} #teamTypeInput>
                     <!--<button type="submit">Modifier</button>-->
                 </div>
                 <!--</form>-->
@@ -27,7 +27,7 @@
             
             <input *ngIf="pilote && edit" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
                 #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
-                [formControl]="datePickerControl">
+                [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
 
             <!-- /.info-box-content -->
             </div>

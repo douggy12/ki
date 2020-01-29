@@ -32,8 +32,11 @@ export class TeamInformationsComponent implements OnInit {
   model: FormGroup;
   datePickerControl = new FormControl(); // date selector for the "activity since" field
   //searchReferent: string = ""; // search field for the referent
+  formatedDatePickerStartDate: string;
+  formatedDatePickerStartDatee: number;
+  @ViewChild('teamTypeInput', {static: false}) teamTypeInput: ElementRef;
   @ViewChild('searchReferent', {static: false}) searchReferent: ElementRef;
-  @ViewChild('datePicker', {static: false}) datePicker: ElementRef;
+  @ViewChild('datePickerInput', {static: false}) datePickerInput: ElementRef;
   
 
   config = {
@@ -51,6 +54,10 @@ export class TeamInformationsComponent implements OnInit {
 
   ngOnInit() {
     
+    let formatedDate = new Date(this.team.kiTeam.activitySince);
+    this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
+    
+    //this.formatedDatePickerStartDatee = this.team.kiTeam.activitySince.getFullYear();
 
     this.pilote = (this.context.me.id === this.team.ihniTeam.info.pilote.id);
     this.teamType = this.team.kiTeam.type;
@@ -83,9 +90,9 @@ export class TeamInformationsComponent implements OnInit {
   }
 
   onDateSelect(ngbDate: NgbDate){
-    this.team.kiTeam.activitySince = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
-    this.datePicker.nativeElement.value = '';
-    //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    let dateee = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
+    //dateee.setDate(dateee.getDate()+1);
+    this.team.kiTeam.activitySince = dateee;
   }
 
   onSubmitUser(user: IhniUser) {
@@ -113,9 +120,9 @@ export class TeamInformationsComponent implements OnInit {
       this.edit = true;
     }
     if(buttonType==="save"){
-      this.team.kiTeam.type = this.teamType;
-      this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
-      //this.referent = user.info.prenom + " " + user.info.nom;
+      this.team.kiTeam.type = this.teamTypeInput.nativeElement.value;
+      this.teamType = this.teamTypeInput.nativeElement.value;
+      //this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
       this.edit = false;
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
     }
