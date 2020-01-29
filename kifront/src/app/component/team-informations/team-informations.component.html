@@ -1,59 +1,64 @@
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-text">Type</span>
-            <span class="info-box-number">{{teamType}}</span>
-            <span *ngIf="!teamType" class="info-box-number">Type non renseigné</span>
-            <form (ngSubmit)="submitType()" *ngIf="pilote">
-                <input name="title" type="text" [(ngModel)]="teamType">
-                <button type="submit">Modifier</button>
-            </form>
-        <!-- /.info-box-content -->
+<form (ngSubmit)="submitEdit(buttonType, event)">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-text">Type</span>
+                <div *ngIf="!edit">
+                    <span class="info-box-number">{{teamType}}</span>
+                    <span *ngIf="!teamType" class="info-box-number">Type non renseigné</span>
+                </div>
+                <!--<form (ngSubmit)="submitType()" *ngIf="pilote && edit">-->
+                <div *ngIf="pilote && edit">
+                    <input name="title" type="text" value={{teamType}}>
+                    <!--<button type="submit">Modifier</button>-->
+                </div>
+                <!--</form>-->
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
         </div>
-        <!-- /.info-box -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            <span class="info-box-text">En activité depuis</span>
+            <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}} </span>
+            <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
+            
+            <input *ngIf="pilote && edit" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
+                #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
+                [formControl]="datePickerControl">
+
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+            
+            <span class="info-box-text">Effectifs</span>
+            <span class="info-box-number">{{ team.ihniTeam.users.length }}</span>
+
+            <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
     </div>
 
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-        <span class="info-box-text">En activité depuis</span>
-        <span *ngIf="team.kiTeam.activitySince" class="info-box-number">{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}} </span>
-        <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
-        
-        <input *ngIf="pilote" ngbDatepicker (click)="datePicker.toggle()" #datePicker="ngbDatepicker" placeholder="Changer la date..." 
-            (dateSelect)="onDateSelect($event)">
 
-        <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-        
-        <span class="info-box-text">Effectifs</span>
-        <span class="info-box-number">{{ team.ihniTeam.users.length }}</span>
+    <br/>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-text">Référent applicatif / technique</span>
+                <span *ngIf="!referent" class="info-box-number">Pas de référent renseigné</span>
+                <span *ngIf="!edit"class="info-box-number">{{referent}}</span>
 
-        <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-    </div>
-
-</div>
-
-
-<br/>
-<div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-text">Référent applicatif / technique</span>
-            <span *ngIf="!referent" class="info-box-number">Pas de référent renseigné</span>
-            <span class="info-box-number">{{referent}}</span>
-
-
-                <div class="input-group" *ngIf="pilote">
-                    <input type="text" class="form-control" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Changer le référent..."
-                        data-toggle="dropdown">
+                <div class="input-group" *ngIf="pilote && edit">
+                    <input type="text" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder={{referent}}
+                        data-toggle="dropdown" #searchReferent>
                     <ul class="search-result dropdown-menu user-dropdown">
                             <li *ngFor="let user of users$ | async">
                                     <a href="#" (click)="onSubmitUser(user)">
@@ -63,34 +68,48 @@
                             </li>
                     </ul>
                 </div>
+            </div>
         </div>
+
     </div>
 
-</div>
 
 
-
-<div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-text">Description de l'activité</span>
-            <span class="info-box-number">
-                <span *ngIf="team.kiTeam.description">{{team.kiTeam.pilote}} {{team.kiTeam.description | safeHtml}} </span>
-                <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
-                <a href="#" *ngIf="pilote" class="btn btn-primary edit" title="Editer la description" data-toggle="modal" data-target="#team-edit-modal"><i class="fa fa-pencil"></i>Editer</a>
-            </span>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-text">Description de l'activité</span>
+                <span class="info-box-number">
+                    <span *ngIf="team.kiTeam.description && !edit">{{team.kiTeam.pilote}} {{team.kiTeam.description | safeHtml}} </span>
+                    <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
+                    <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
+                        <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
+                            description is required
+                        </div>
+                        <div class="error" *ngIf="model.get('description').hasError('minlength') && model.get('description').touched">
+                            Minimum of 2 characters
+                        </div>
+                        <div class="form-group">
+                            <quill-editor class="form-control" formControlName="description" id="team_desc_editor" name="editor1" [options] ="config"></quill-editor>
+                        </div>
+                    </form>
+                </span>
+            </div>
         </div>
+
     </div>
 
-</div>
-
-<!--
-<div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-text">Langage / Frameworks</span>
-            <span class="info-box-number">...</span>
+    <!--
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-text">Langage / Frameworks</span>
+                <span class="info-box-number">...</span>
+            </div>
         </div>
-    </div>
 
-</div>-->
+    </div>-->
+
+    <button *ngIf="pilote && !edit" class="btn btn-primary edit" type="submit" (click)="submitEdit('edit')"><i class="fa fa-pencil"></i>&nbsp;Editer</button>
+    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('save')"><i class="fa fa-save"></i>&nbsp;Sauvegarder</button>
+</form>
