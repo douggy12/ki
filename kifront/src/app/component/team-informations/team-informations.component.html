@@ -1,4 +1,5 @@
 <form (ngSubmit)="submitEdit('edit')">
+<form (ngSubmit)="submitEdit(buttonType, event)">
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
@@ -22,8 +23,8 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
-            <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{displayedDate}} </span>
-            <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
+            <span *ngIf="team.kiTeam.displayedDate && !edit" class="info-box-number">{{displayedDate}} </span>
+            <span *ngIf="!team.kiTeam.displayedDate && !edit" class="info-box-number">Date non renseignée</span>
             <div  *ngIf="pilote && edit" class="input-group date">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>

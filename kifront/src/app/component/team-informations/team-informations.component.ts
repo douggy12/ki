@@ -36,7 +36,7 @@ export class TeamInformationsComponent implements OnInit {
   //searchReferent: string = ""; // search field for the referent
   previousDate: Date;
   nextDate: Date
-  displayedDate: Date;
+  displayedDate: String;
   formatedDatePickerStartDate: string;
   formatedDatePickerStartDatee: number;
 
@@ -59,7 +59,10 @@ export class TeamInformationsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
-    this.displayedDate = this.team.kiTeam.activitySince;
+    if (this.team.kiTeam.activitySince){
+      let date = new Date(this.team.kiTeam.activitySince);
+      this.displayedDate = date.getDate().toString().padStart(2, "0") + "/" + (date.getMonth()+1).toString().padStart(2, "0") + "/" + date.getFullYear();
+    }
     this.previousDate = new Date(this.team.kiTeam.activitySince);
     let formatedDate = new Date(this.team.kiTeam.activitySince);
     this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
@@ -100,7 +103,7 @@ export class TeamInformationsComponent implements OnInit {
   onDateSelect(ngbDate: NgbDate){
     //let dateNextDay = 
     //dateee.setDate(dateee.getDate()+1);
-    this.nextDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
+    this.nextDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day, 8, 0, 0);
     //this.nextDate = new Date(2020, 1, 1);
     //this.team.kiTeam.activitySince = dateee;
   }
@@ -144,6 +147,7 @@ export class TeamInformationsComponent implements OnInit {
       
       // Save the date
       this.team.kiTeam.activitySince = this.nextDate;
+      this.displayedDate = this.nextDate.getDate().toString().padStart(2, "0") + "/" + (this.nextDate.getMonth()+1).toString().padStart(2, "0") + "/" + this.nextDate.getFullYear();
 
       // Save in database
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
