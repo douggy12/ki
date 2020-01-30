@@ -75,3 +75,6 @@ input{
     /* background-color:#374850; */
     background-color:grey;
 }
+.input-group-addon{
+    padding: 4px 12px;
+}

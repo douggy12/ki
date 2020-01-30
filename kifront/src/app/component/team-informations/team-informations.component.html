@@ -24,10 +24,14 @@
             <span class="info-box-text">En activité depuis</span>
             <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{displayedDate}} </span>
             <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
-            
-            <input *ngIf="pilote && edit" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
+            <div  *ngIf="pilote && edit" class="input-group date">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <input id="datepicker" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
                 #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
                 [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
+            </div>
 
             <!-- /.info-box-content -->
             </div>
