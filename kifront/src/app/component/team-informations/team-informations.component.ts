@@ -123,8 +123,12 @@ export class TeamInformationsComponent implements OnInit {
       this.team.kiTeam.type = this.teamTypeInput.nativeElement.value;
       this.teamType = this.teamTypeInput.nativeElement.value;
       //this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
+      this.team.kiTeam.description = this.model.controls.description.value;
       this.edit = false;
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    }
+    if(buttonType==="annule"){
+      this.edit = false;
     }
   }
 
