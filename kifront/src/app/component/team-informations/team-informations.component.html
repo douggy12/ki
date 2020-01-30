@@ -22,7 +22,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
-            <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}} </span>
+            <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{displayedDate}} </span>
             <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
             
             <input *ngIf="pilote && edit" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
@@ -110,7 +110,9 @@
 
     </div>-->
 
-    <button *ngIf="pilote && !edit" class="btn btn-primary edit" type="submit" (click)="submitEdit('edit')"><i class="fa fa-pencil"></i>&nbsp;Editer</button>
-    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('save')"><i class="fa fa-save"></i>&nbsp;Sauvegarder</button>&nbsp;
-    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('annule')"><i class="fa fa-undo"></i>&nbsp;Annuler</button>
+    <div class="buttons">
+        <button *ngIf="pilote && !edit" class="btn btn-primary edit" type="submit" (click)="submitEdit('edit')"><i class="fa fa-pencil"></i>&nbsp;Editer</button>
+        <button *ngIf="pilote && edit" class="btn btn-success save" (click)="submitEdit('save')"><i class="fa fa-save"></i>&nbsp;Sauvegarder</button>&nbsp;
+        <button *ngIf="pilote && edit" class="btn btn-default" (click)="submitEdit('annule')"><i class="fa fa-undo "></i>&nbsp;Annuler</button>
+    </div>
 </form>

@@ -34,7 +34,9 @@ export class TeamInformationsComponent implements OnInit {
   model: FormGroup;
   datePickerControl = new FormControl(); // date selector for the "activity since" field
   //searchReferent: string = ""; // search field for the referent
-  oldDate: Date;
+  previousDate: Date;
+  nextDate: Date
+  displayedDate: Date;
   formatedDatePickerStartDate: string;
   formatedDatePickerStartDatee: number;
 
@@ -57,7 +59,8 @@ export class TeamInformationsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
-    this.oldDate = new Date(this.team.kiTeam.activitySince);
+    this.displayedDate = this.team.kiTeam.activitySince;
+    this.previousDate = new Date(this.team.kiTeam.activitySince);
     let formatedDate = new Date(this.team.kiTeam.activitySince);
     this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
     
@@ -95,9 +98,11 @@ export class TeamInformationsComponent implements OnInit {
   }
 
   onDateSelect(ngbDate: NgbDate){
-    let dateee = new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day);
+    //let dateNextDay = 
     //dateee.setDate(dateee.getDate()+1);
-    this.team.kiTeam.activitySince = dateee;
+    this.nextDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
+    //this.nextDate = new Date(2020, 1, 1);
+    //this.team.kiTeam.activitySince = dateee;
   }
 
   onSubmitUser(user: IhniUser) {
@@ -133,22 +138,29 @@ export class TeamInformationsComponent implements OnInit {
       this.edit = false;
 
       // Save referent
-      this.team.kiTeam.referentIhniId = this.nextReferent.info.id;
+      if (this.nextReferent){
+        this.team.kiTeam.referentIhniId = this.nextReferent.info.id;
+      }
+      
+      // Save the date
+      this.team.kiTeam.activitySince = this.nextDate;
+
+      // Save in database
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
     }
     if(buttonType==="annule"){
       this.edit = false;
 
       // Switch back to the previous date
-      //this.datePickerInput.nativeElement.value = this.oldDate;
-      this.team.kiTeam.activitySince = this.oldDate;
-      //this.datePickerControl.value.year = this.oldDate;
+      //this.datePickerInput.nativeElement.value = this.previousDate;
+      this.team.kiTeam.activitySince = this.previousDate;
+      //this.datePickerControl.value.year = this.previousDate;
 
       // Switch back to the previous referent
       this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
 
       // Switch back to previous description
-      this.model.controls.description.value = this.team.kiTeam.description;
+      //this.model.controls.description.value = this.team.kiTeam.description;
     }
   }
 
