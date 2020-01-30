@@ -1,5 +1,22 @@
+form{
+    height: 100%;
+}
+
 .bg-primary {
     color: black;
+}
+
+.info-box-text{
+    font-weight: bold;
+}
+
+.info-box-number{
+    font-weight: normal;
+}
+
+.error{
+    color: red;
+    font-size: smaller;
 }
 
 input{

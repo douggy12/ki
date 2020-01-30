@@ -26,14 +26,18 @@ export class TeamInformationsComponent implements OnInit {
   users$: Observable<IhniUser[]>;
   private searchTerms = new Subject<string>();
   referent: string;
+  previousReferent: User;
+  nextReferent: IhniUser;
   pilote: boolean = false;
   edit: boolean = false;
   teamType: string;
   model: FormGroup;
   datePickerControl = new FormControl(); // date selector for the "activity since" field
   //searchReferent: string = ""; // search field for the referent
+  oldDate: Date;
   formatedDatePickerStartDate: string;
   formatedDatePickerStartDatee: number;
+
   @ViewChild('teamTypeInput', {static: false}) teamTypeInput: ElementRef;
   @ViewChild('searchReferent', {static: false}) searchReferent: ElementRef;
   @ViewChild('datePickerInput', {static: false}) datePickerInput: ElementRef;
@@ -53,7 +57,7 @@ export class TeamInformationsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
-    
+    this.oldDate = new Date(this.team.kiTeam.activitySince);
     let formatedDate = new Date(this.team.kiTeam.activitySince);
     this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
     
@@ -72,6 +76,7 @@ export class TeamInformationsComponent implements OnInit {
     
     if (this.team.kiTeam.referentIhniId){
       this.userService.get(this.team.kiTeam.referentIhniId).subscribe(user => {
+        this.previousReferent = user;
         this.referent = user.ihniUser.info.prenom + " " + user.ihniUser.info.nom;
       });
     }
@@ -100,7 +105,8 @@ export class TeamInformationsComponent implements OnInit {
       $('#user-modal').modal('hide');
     });*/
     this.referent = user.info.prenom + " " + user.info.nom;
-    this.team.kiTeam.referentIhniId = user.info.id;
+    this.nextReferent = user;
+    //this.team.kiTeam.referentIhniId = user.info.id;
     this.searchReferent.nativeElement.value = '';
     //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
@@ -123,8 +129,26 @@ export class TeamInformationsComponent implements OnInit {
       this.team.kiTeam.type = this.teamTypeInput.nativeElement.value;
       this.teamType = this.teamTypeInput.nativeElement.value;
       //this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
+      this.team.kiTeam.description = this.model.controls.description.value;
       this.edit = false;
+
+      // Save referent
+      this.team.kiTeam.referentIhniId = this.nextReferent.info.id;
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
+    }
+    if(buttonType==="annule"){
+      this.edit = false;
+
+      // Switch back to the previous date
+      //this.datePickerInput.nativeElement.value = this.oldDate;
+      this.team.kiTeam.activitySince = this.oldDate;
+      //this.datePickerControl.value.year = this.oldDate;
+
+      // Switch back to the previous referent
+      this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
+
+      // Switch back to previous description
+      this.model.controls.description.value = this.team.kiTeam.description;
     }
   }
 
@@ -140,6 +164,10 @@ export class TeamInformationsComponent implements OnInit {
       });
     }
 
+  }
+
+  getDescription(): String {
+    return this.team.kiTeam.description;
   }
 
 }

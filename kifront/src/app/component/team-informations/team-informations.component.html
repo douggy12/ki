@@ -80,7 +80,7 @@
             <div class="info-box">
                 <span class="info-box-text">Description de l'activité</span>
                 <span class="info-box-number">
-                    <span *ngIf="team.kiTeam.description && !edit">{{team.kiTeam.pilote}} {{team.kiTeam.description | safeHtml}} </span>
+                    <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
                     <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
                     <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
                         <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
@@ -111,5 +111,6 @@
     </div>-->
 
     <button *ngIf="pilote && !edit" class="btn btn-primary edit" type="submit" (click)="submitEdit('edit')"><i class="fa fa-pencil"></i>&nbsp;Editer</button>
-    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('save')"><i class="fa fa-save"></i>&nbsp;Sauvegarder</button>
+    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('save')"><i class="fa fa-save"></i>&nbsp;Sauvegarder</button>&nbsp;
+    <button *ngIf="pilote && edit" class="btn btn-primary save" (click)="submitEdit('annule')"><i class="fa fa-undo"></i>&nbsp;Annuler</button>
 </form>
