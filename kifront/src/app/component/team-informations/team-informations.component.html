@@ -22,8 +22,8 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
-            <span *ngIf="team.kiTeam.activitySince && !edit" class="info-box-number">{{displayedDate}} </span>
-            <span *ngIf="!team.kiTeam.activitySince" class="info-box-number">Date non renseignée</span>
+            <span *ngIf="team.kiTeam.displayedDate && !edit" class="info-box-number">{{displayedDate}} </span>
+            <span *ngIf="!team.kiTeam.displayedDate && !edit" class="info-box-number">Date non renseignée</span>
             
             <input *ngIf="pilote && edit" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
                 #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
