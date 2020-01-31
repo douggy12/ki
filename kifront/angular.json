@@ -94,7 +94,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "index": "src/index.valid.html",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -112,9 +111,6 @@
           "configurations": {
             "production": {
               "browserTarget": "kifront:build:production"
-            },
-            "validation": {
-              "browserTarget": "kifront:build:validation"
             },
             "dev": {
               "browserTarget": "kifront:build:dev"
