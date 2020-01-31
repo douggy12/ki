@@ -113,6 +113,9 @@
             "production": {
               "browserTarget": "kifront:build:production"
             },
+            "validation": {
+              "browserTarget": "kifront:build:validation"
+            },
             "dev": {
               "browserTarget": "kifront:build:dev"
             }
