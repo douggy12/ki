@@ -123,6 +123,20 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 		</profile>
+		<!--valid-->
+		<profile>
+			<id>valid</id>
+			<properties>
+				<activatedProperties>valid</activatedProperties>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>valid</value>
+				</property>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
 	</profiles>
 
 </project>
