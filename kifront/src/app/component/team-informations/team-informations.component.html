@@ -4,8 +4,8 @@
             <div class="info-box">
                 <span class="info-box-text">Type</span>
                 <div *ngIf="!edit">
-                    <span class="info-box-number">{{teamType}}</span>
-                    <span *ngIf="!teamType" class="info-box-number">Type non renseigné</span>
+                    <span class="">{{teamType}}</span>
+                    <span *ngIf="!teamType" class="">Type non renseigné</span>
                 </div>
                 <!--<form (ngSubmit)="submitType()" *ngIf="pilote && edit">-->
                 <div *ngIf="pilote && edit">
@@ -22,8 +22,8 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
-            <span *ngIf="displayedDate && !edit" class="info-box-number">{{displayedDate}} </span>
-            <span *ngIf="!displayedDate && !edit" class="info-box-number">Date non renseignée</span>
+            <span *ngIf="displayedDate && !edit" class="">{{displayedDate}} </span>
+            <span *ngIf="!displayedDate && !edit" class="">Date non renseignée</span>
             <div  *ngIf="pilote && edit" class="input-group date">
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
@@ -42,7 +42,7 @@
             <div class="info-box">
             
             <span class="info-box-text">Effectifs</span>
-            <span class="info-box-number">{{ team.ihniTeam.users.length }}</span>
+            <span class="">{{ team.ihniTeam.users.length }}</span>
 
             <!-- /.info-box-content -->
             </div>
@@ -57,8 +57,8 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Référent applicatif / technique</span>
-                <span *ngIf="!referent" class="info-box-number">Pas de référent renseigné</span>
-                <span *ngIf="!edit"class="info-box-number">{{referent}}</span>
+                <span *ngIf="!referent" class="">Pas de référent renseigné</span>
+                <span *ngIf="!edit"class="">{{referent}}</span>
 
                 <div class="input-group" *ngIf="pilote && edit">
                     <input type="text" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder={{referent}}
@@ -83,7 +83,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Description de l'activité</span>
-                <span class="info-box-number">
+                <span class="">
                     <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
                     <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
                     <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
@@ -108,7 +108,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Langage / Frameworks</span>
-                <span class="info-box-number">...</span>
+                <span class="">...</span>
             </div>
         </div>
 
