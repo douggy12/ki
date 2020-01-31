@@ -146,8 +146,8 @@ export class TeamInformationsComponent implements OnInit {
       }
       
       // Save the date
-      this.team.kiTeam.activitySince = this.nextDate;
       if (this.nextDate){
+        this.team.kiTeam.activitySince = this.nextDate;
         this.displayedDate = this.nextDate.getDate().toString().padStart(2, "0") + "/" + (this.nextDate.getMonth()+1).toString().padStart(2, "0") + "/" + this.nextDate.getFullYear();
       }
       
