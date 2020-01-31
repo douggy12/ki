@@ -85,7 +85,7 @@
                 <span class="info-box-text">Description de l'activité</span>
                 <span class="">
                     <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
-                    <span *ngIf="!team.kiTeam.description">Pas de description renseignée</span>
+                    <span *ngIf="!team.kiTeam.description && !edit">Pas de description renseignée</span>
                     <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
                         <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
                             description is required
