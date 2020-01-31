@@ -29,7 +29,7 @@
                     <i class="fa fa-calendar"></i>
                 </div>
                 <input id="datepicker" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
-                #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
+                #datePicker="ngbDatepicker" value="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}" 
                 [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
             </div>
 
