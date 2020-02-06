@@ -10,10 +10,9 @@
             <a href="#">{{ bu.nom }}</a>
             <ul class="treeview-menu" [class.menu-open]="selectedBu && selectedBu.nom == bu.nom">
               <ng-container *ngFor="let agence of bu.agences; let i=index">
-                <li>
+                <li [class.active]="selectedAgence && selectedAgence.nom == agence.nom">
                   <a href="#" (click)="onSelect(agence, bu, i)" class="agenceHref">
-                      <div *ngIf="selectedAgence && selectedAgence.nom == agence.nom" class="menu-info selected-agence">{{ agence.nom }} </div>
-                    <div *ngIf="!selectedAgence || selectedAgence.nom !== agence.nom" class="menu-info"> {{ agence.nom }} </div>
+                    <div class="menu-info" id="{{agence.id}}"> {{ agence.nom }} </div>
                   </a>
                 </li>
               </ng-container>

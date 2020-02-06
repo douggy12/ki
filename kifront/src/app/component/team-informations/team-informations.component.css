@@ -34,10 +34,6 @@ input{
     border: 0;
 }
 
-.info-box{
-    min-height: 110px;
-}
-
 .input-group .form-control {
     background: white;
     border-radius: 3px;
@@ -46,6 +42,12 @@ input{
     margin: auto;
     color: #b8c7ce;
     float:none;
+}
+.input-group-addon i{
+    cursor: default;
+}
+.input-group-addon{
+    border-color: #a9a9a9;
 }
 .row {
     margin-right: 0;

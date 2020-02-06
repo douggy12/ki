@@ -276,6 +276,10 @@ a:active, a:focus  {
 .height50em{
   height: 53em;
 }
+
+.nav-tabs-custom>.tab-content {
+  padding: 10px 10px 0px 10px;
+}
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
