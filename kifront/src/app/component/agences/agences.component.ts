@@ -7,7 +7,6 @@ import { Team } from '../../class/Team';
 import { Bu } from '../../class/Bu';
 import { Agence } from '../../class/Agence';
 import { SubscriptionCancelService } from '../../service/subscription-cancel.service';
-import { cpus } from 'os';
 
 declare var $: any;
 
