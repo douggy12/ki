@@ -67,8 +67,6 @@ export class TeamInformationsComponent implements OnInit {
     let formatedDate = new Date(this.team.kiTeam.activitySince);
     this.formatedDatePickerStartDate = "{year: " + formatedDate.getFullYear() + ", month: " + formatedDate.getMonth()+1 + ", day: " + "01" + "}";
     
-    //this.formatedDatePickerStartDatee = this.team.kiTeam.activitySince.getFullYear();
-
     this.pilote = (this.context.me.id === this.team.ihniTeam.info.pilote.id);
     this.teamType = this.team.kiTeam.type;
     this.users$ = this.searchTerms.pipe(
@@ -101,27 +99,17 @@ export class TeamInformationsComponent implements OnInit {
   }
 
   onDateSelect(ngbDate: NgbDate){
-    //let dateNextDay = 
-    //dateee.setDate(dateee.getDate()+1);
     this.nextDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day, 8, 0, 0);
-    //this.nextDate = new Date(2020, 1, 1);
-    //this.team.kiTeam.activitySince = dateee;
   }
 
   onSubmitUser(user: IhniUser) {
-    /*this.userService.update(this.model.kiUser).subscribe(() => {
-      $('#user-modal').modal('hide');
-    });*/
     this.referent = user.info.prenom + " " + user.info.nom;
     this.nextReferent = user;
-    //this.team.kiTeam.referentIhniId = user.info.id;
     this.searchReferent.nativeElement.value = '';
-    //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
   submitType() {
     this.team.kiTeam.type = this.teamType;
-    //this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
   }
 
   // Push a search term into the observable stream
@@ -136,13 +124,14 @@ export class TeamInformationsComponent implements OnInit {
     if(buttonType==="save"){
       this.team.kiTeam.type = this.teamTypeInput.nativeElement.value;
       this.teamType = this.teamTypeInput.nativeElement.value;
-      //this.team.kiTeam.activitySince = new Date(this.datePickerControl.value.year, this.datePickerControl.value.month - 1, this.datePickerControl.value.day);
       this.team.kiTeam.description = this.model.controls.description.value;
       this.edit = false;
-
+      
       // Save referent
       if (this.nextReferent){
         this.team.kiTeam.referentIhniId = this.nextReferent.info.id;
+      }else{
+        this.team.kiTeam.referentIhniId = null;
       }
       
       // Save the date
@@ -151,23 +140,19 @@ export class TeamInformationsComponent implements OnInit {
         this.displayedDate = this.nextDate.getDate().toString().padStart(2, "0") + "/" + (this.nextDate.getMonth()+1).toString().padStart(2, "0") + "/" + this.nextDate.getFullYear();
       }
       
-
       // Save in database
       this.subscriptionService.addSubscription(this.teamService.update(this.team).subscribe());
     }
     if(buttonType==="annule"){
       this.edit = false;
-
+      this.model.patchValue({
+        description: this.team.kiTeam.description ? this.team.kiTeam.description : ''
+      });
       // Switch back to the previous date
-      //this.datePickerInput.nativeElement.value = this.previousDate;
       this.team.kiTeam.activitySince = this.previousDate;
-      //this.datePickerControl.value.year = this.previousDate;
-
+      
       // Switch back to the previous referent
       this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
-
-      // Switch back to previous description
-      //this.model.controls.description.value = this.team.kiTeam.description;
     }
   }
 
