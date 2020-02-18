@@ -90,12 +90,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
         // Workaround assigner select2 une fois la variable selectedUser attribué
         // Workaround Reinit les valeurs de ancienne Equipe une fois la modal chargée
         this.loaded = true;
-        setTimeout(() => {
-          $('.multsel').select2();
-          if (!isNullOrUndefined(this.model.kiUser.teamH)) {
-            $('#teamH').val(this.model.kiUser.teamH.split('|')).trigger('change');
-          }
-        }, 110);
+        this.changeSelectedAncienneEquipe();
       });
     }
   }
@@ -107,6 +102,19 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
       return this.model.ihniUser.equipes_role[idTeamRole].role;
     }
     return '';
+  }
+
+  onClose(){
+    this.changeSelectedAncienneEquipe();
+  }
+
+  changeSelectedAncienneEquipe(){
+    setTimeout(() => {
+      $('.multsel').select2();
+      if (!isNullOrUndefined(this.model.kiUser.teamH)) {
+        $('#teamH').val(this.model.kiUser.teamH.split('|')).trigger('change');
+      }
+    }, 110);
   }
 
 }
