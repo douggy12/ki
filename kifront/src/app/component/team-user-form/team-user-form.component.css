@@ -18,3 +18,10 @@ input#file {
   color: white;
   display: block;
 }
+.users-list-name{
+    text-align: center;
+    margin-top: 10px;
+}
+.user-modal-img{
+    width: 140px;
+}

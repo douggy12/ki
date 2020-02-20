@@ -6,6 +6,7 @@ import { AvatarService } from './../../service/avatar.service';
 import { Team } from './../../class/Team';
 import { UserInfo } from './../../class/UserInfo';
 import { UserService } from './../../service/user.service';
+import { environment } from '../../../environments/environment';
 
 import { User } from './../../class/User';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
@@ -27,6 +28,7 @@ export class TeamUserFormComponent implements OnInit, OnChanges {
   @Input() selectedUser: UserInfo;
   @Input() selectedTeam: Team;
   @Input() teams: Team[];
+  urlSkillex =  environment.ihniUrl + "/skillex/#/collaborateur/";
   file: File;
   model: User;
   numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
