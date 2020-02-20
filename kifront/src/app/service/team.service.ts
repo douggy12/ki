@@ -3,7 +3,7 @@ import { environment } from './../../environments/environment';
 import { TeamInfo } from './../class/TeamInfo';
 import { IhniTeam } from './../class/IhniTeam';
 import { Team } from './../class/Team';
-
+import { Competence } from './../class/Competence';
 
 
 import { Injectable } from '@angular/core';
@@ -23,7 +23,7 @@ const httpOptions = {
 @Injectable()
 export class TeamService {
     private teamUrl = environment.kibackUrl + 'ihni/team';
-
+    private skillexUrl = environment.ihniUrl + '/skillexapi/api/equipe';
     options: any = {'withCredentials' : 'true'};
 
     constructor(private http: HttpClient, private messageService: MessageService, private config: ConfigService) { }
@@ -68,6 +68,13 @@ export class TeamService {
     /** Log a HeroService message with the MessageService */
     private log(message: string) {
       this.messageService.addOK('HeroService: ' + message);
+    }
+    getCompTeam(id: number): Observable<any> {
+        const url = `${this.skillexUrl}/${id}/competence-requise/savoirs`;
+        return this.http.get<Competence[]>(url, this.options)
+        .pipe(
+          catchError(this.config.handleError)
+      );
     }
 
 }

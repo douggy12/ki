@@ -1,6 +1,6 @@
 <form (ngSubmit)="submitEdit('edit')">
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-12"  *ngIf="(!teamType && pilote) || teamType">
             <div class="info-box">
                 <span class="info-box-text">Type</span>
                 <div *ngIf="!edit">
@@ -19,7 +19,7 @@
         </div>
 
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="(!displayedDate && pilote) || displayedDate">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
             <span *ngIf="displayedDate && !edit" class="">{{displayedDate}} </span>
@@ -32,7 +32,6 @@
                 #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
                 [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
             </div>
-
             <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
@@ -40,10 +39,8 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
-            
-            <span class="info-box-text">Effectifs</span>
-            <span class="">{{ team.ihniTeam.users.length }}</span>
-
+                <span class="info-box-text">Effectifs</span>
+                <span class="">{{ team.ihniTeam.users.length }}</span>
             <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
@@ -51,35 +48,31 @@
 
     </div>
 
-
     <br/>
-    <div class="row">
+    <div class="row" *ngIf="(!referent && pilote) || referent">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Référent applicatif / technique</span>
-                <span *ngIf="!referent" class="">Pas de référent renseigné</span>
+                <span *ngIf="!referent && !edit" class="">Pas de référent renseigné</span>
                 <span *ngIf="!edit"class="">{{referent}}</span>
 
                 <div class="input-group" *ngIf="pilote && edit">
                     <input type="text" #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder={{referent}}
                         data-toggle="dropdown" #searchReferent>
                     <ul class="search-result dropdown-menu user-dropdown">
-                            <li *ngFor="let user of users$ | async">
-                                    <a href="#" (click)="onSubmitUser(user)">
-                                        <span>{{user.info.prenom}} {{user.info.nom}}</span>
-                                        <small></small>
-                                    </a>
-                            </li>
+                        <li *ngFor="let user of users$ | async">
+                            <a href="#" (click)="onSubmitUser(user)">
+                                <span>{{user.info.prenom}} {{user.info.nom}}</span>
+                                <small></small>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-
     </div>
 
-
-
-    <div class="row">
+    <div class="row" *ngIf="(!team.kiTeam.description && pilote) || team.kiTeam.description">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Description de l'activité</span>
@@ -100,19 +93,21 @@
                 </span>
             </div>
         </div>
-
     </div>
-
-    <!--
-    <div class="row">
+    
+    <div class="row" >
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
-                <span class="info-box-text">Langage / Frameworks</span>
-                <span class="">...</span>
+                <span class="info-box-text">Compétences</span>
+                <div *ngIf="competences.length > 0">
+                    <span *ngFor="let competence of competences" class=""><ng-template [ngIf]="competence.principale">{{competence.libelle}} <br> </ng-template></span>
+                </div>
+                <div  *ngIf="!competences || competences.length == 0" >
+                    <span class="">language et Frameworks non renseigné</span>
+                </div>
             </div>
         </div>
-
-    </div>-->
+    </div> 
 
     <div class="buttons">
         <button *ngIf="pilote && !edit" class="btn btn-primary edit" type="submit" (click)="submitEdit('edit')"><i class="fa fa-pencil"></i>&nbsp;Editer</button>

@@ -10,6 +10,7 @@ import { Observable ,  of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from '../service/message.service';
+import { Team } from './../class/Team';
 
 
 const httpOptions = {
@@ -18,6 +19,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
+    private skillexUrl = environment.kibackUrl + 'skillexapi/api/collaborateur';
     private userUrl = environment.kibackUrl + 'ihni/user';
     private urlSearchUser = environment.kibackUrl + 'ihni/user/searchUserByName';
     private urlSearchUserAndTeam = environment.kibackUrl + 'ihni/user/searchUserAndTeamByName';
@@ -77,4 +79,11 @@ searchUsersAndTeams(term: string): Observable<any> {
     ;
 }
 
+getCompUser(id: number): Observable<any> {
+    const url = `${this.skillexUrl}/${id}/competence-acquise/savoirs`;
+    return this.http.get<Team>(url, this.options)
+    .pipe(
+      catchError(this.config.handleError)
+  );
+}
 }

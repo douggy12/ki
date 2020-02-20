@@ -12,6 +12,7 @@ import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
 import { NgForm } from '@angular/forms';
+import { Competence } from '../../class/Competence';
 
 declare var $: any;
 
@@ -33,12 +34,12 @@ export class TeamInformationsComponent implements OnInit {
   teamType: string;
   model: FormGroup;
   datePickerControl = new FormControl(); // date selector for the "activity since" field
-  //searchReferent: string = ""; // search field for the referent
   previousDate: Date;
   nextDate: Date
   displayedDate: String;
   formatedDatePickerStartDate: string;
   formatedDatePickerStartDatee: number;
+  competences : Competence[];
 
   @ViewChild('teamTypeInput', {static: false}) teamTypeInput: ElementRef;
   @ViewChild('searchReferent', {static: false}) searchReferent: ElementRef;
@@ -59,6 +60,8 @@ export class TeamInformationsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
+
+    this.getCompetences(this.team.ihniTeam.info.id);
     if (this.team.kiTeam.activitySince){
       let date = new Date(this.team.kiTeam.activitySince);
       this.displayedDate = date.getDate().toString().padStart(2, "0") + "/" + (date.getMonth()+1).toString().padStart(2, "0") + "/" + date.getFullYear();
@@ -174,4 +177,14 @@ export class TeamInformationsComponent implements OnInit {
     return this.team.kiTeam.description;
   }
 
+  getCompetences(id:number): void {
+    this.teamService.getCompTeam(this.team.ihniTeam.info.id).pipe;
+    this.subscriptionService.addSubscription(
+      this.teamService.getCompTeam(id).subscribe(
+        competences => {
+          this.competences = competences;
+        }
+      )
+    );
+  }
 }
