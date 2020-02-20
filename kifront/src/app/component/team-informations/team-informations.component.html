@@ -1,57 +1,58 @@
 <form (ngSubmit)="submitEdit('edit')">
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12"  *ngIf="(!teamType) || teamType">
-            <div class="info-box">
-                <span class="info-box-text">Type</span>
-                <div *ngIf="!edit">
-                    <span class="">{{teamType}}</span>
-                    <span *ngIf="!teamType" class="">Type non renseigné</span>
+        <div>
+            <div class="col-md-4 col-sm-4 col-xs-12 "  *ngIf="(!teamType) || teamType">
+                <div class="info-team">
+                    <span class="info-box-text">Type</span>
+                    <div *ngIf="!edit">
+                        <span class="">{{teamType}}</span>
+                        <span *ngIf="!teamType" class="">Type non renseigné</span>
+                    </div>
+                    <!--<form (ngSubmit)="submitType()" *ngIf="pilote && edit">-->
+                    <div *ngIf="pilote && edit">
+                        <input name="title" type="text" value={{teamType}} #teamTypeInput>
+                        <!--<button type="submit">Modifier</button>-->
+                    </div>
+                    <!--</form>-->
+                <!-- /.info-box-content -->
                 </div>
-                <!--<form (ngSubmit)="submitType()" *ngIf="pilote && edit">-->
-                <div *ngIf="pilote && edit">
-                    <input name="title" type="text" value={{teamType}} #teamTypeInput>
-                    <!--<button type="submit">Modifier</button>-->
-                </div>
-                <!--</form>-->
-            <!-- /.info-box-content -->
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
-        </div>
 
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="(!displayedDate) || displayedDate">
-            <div class="info-box">
-            <span class="info-box-text">En activité depuis</span>
-            <span *ngIf="displayedDate && !edit" class="">{{displayedDate}} </span>
-            <span *ngIf="!displayedDate && !edit" class="">Date non renseignée</span>
-            <div  *ngIf="pilote && edit" class="input-group date">
-                <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-4 col-xs-12 " *ngIf="(!displayedDate) || displayedDate">
+                <div class="info-team">
+                <span class="info-box-text">En activité depuis</span>
+                <span *ngIf="displayedDate && !edit" class="">{{displayedDate}} </span>
+                <span *ngIf="!displayedDate && !edit" class="">Date non renseignée</span>
+                <div  *ngIf="pilote && edit" class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input id="datepicker" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
+                    #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
+                    [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
                 </div>
-                <input id="datepicker" ngbDatepicker dateFormat="dd-MMM-yyyy" (click)="datePicker.toggle()" 
-                #datePicker="ngbDatepicker" placeholder="{{team.kiTeam.activitySince | date: 'dd/MM/yyyy'}}"
-                [formControl]="datePickerControl" (dateSelect)="onDateSelect($event)" #datePickerInput readonly="readonly">
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="info-team">
+                    <span class="info-box-text">Effectifs</span>
+                    <span class="">{{ team.ihniTeam.users.length }}</span>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
             </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-                <span class="info-box-text">Effectifs</span>
-                <span class="">{{ team.ihniTeam.users.length }}</span>
-            <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
 
+        </div>
     </div>
-
-    <br/>
+    <hr>
     <div class="row" *ngIf="(!referent) || referent">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="info-box">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="info-team">
                 <span class="info-box-text">Référent applicatif / technique</span>
                 <span *ngIf="!referent && !edit" class="">Pas de référent renseigné</span>
                 <span *ngIf="!edit"class="">{{referent}}</span>
@@ -71,10 +72,10 @@
             </div>
         </div>
     </div>
-
+    <hr>
     <div class="row" *ngIf="(!team.kiTeam.description) || team.kiTeam.description">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="info-box">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="info-team">
                 <span class="info-box-text">Description de l'activité</span>
                 <span class="">
                     <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
@@ -94,13 +95,13 @@
             </div>
         </div>
     </div>
-    
+    <hr>
     <div class="row" >
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="info-box">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="info-team">
                 <span class="info-box-text">Compétences</span>
                 <div *ngIf="competences.length > 0" class="box-tag-competence">
-                    <span *ngFor="let competence of competences"><ng-template [ngIf]="competence.principale"><span class="etiquette_competence"><i class="fa fa-fw fa-tag"></i> {{competence.libelle}}</span></ng-template></span>
+                    <span *ngFor="let competence of competences" class="etiquette_competence"><i class="fa fa-fw fa-tag"></i> {{competence.libelle}}</span>
                 </div>
                 <div  *ngIf="!competences || competences.length == 0" >
                     <span class="">language et Frameworks non renseigné</span>

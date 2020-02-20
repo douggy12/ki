@@ -60,7 +60,7 @@ export class TeamInformationsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private teamService: TeamService, private context: ContextService, private subscriptionService: SubscriptionCancelService) { }
 
   ngOnInit() {
-
+    this.competences = [];
     this.getCompetences(this.team.ihniTeam.info.id);
     if (this.team.kiTeam.activitySince){
       let date = new Date(this.team.kiTeam.activitySince);
@@ -181,8 +181,13 @@ export class TeamInformationsComponent implements OnInit {
     this.teamService.getCompTeam(this.team.ihniTeam.info.id).pipe;
     this.subscriptionService.addSubscription(
       this.teamService.getCompTeam(id).subscribe(
-        competences => {
-          this.competences = competences;
+        c => {
+          c.forEach(competence => {
+            if(competence.principale){
+              this.competences.push(competence);
+            }
+          });
+          // this.competences = competences;
         }
       )
     );
