@@ -48,7 +48,9 @@
                 </div>
             </form>
           </div>
-          <a href="{{urlSkillex}}{{model.ihniUser.info.id}}" class="users-list-name btn btn-primary pull-left" [class.mobileCompetence]="!auth.isOwner(selectedUser)">Voir ses compétences</a>
+          <div class="col-md-12">
+            <a href="{{urlSkillex}}{{model.ihniUser.info.id}}" class="users-list-name btn btn-primary pull-left" [class.mobileCompetence]="!auth.isOwner(selectedUser)">Voir ses compétences</a>
+          </div>
         </div>
       </div>
 

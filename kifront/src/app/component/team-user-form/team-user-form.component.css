@@ -22,11 +22,10 @@ input#file {
     text-align: center;
     color: white;
     margin-top: -50px;
-    margin-left: 15px;
 }
 .user-modal-img{
     width: 140px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .mobileCompetence{
     margin-top: 0;
