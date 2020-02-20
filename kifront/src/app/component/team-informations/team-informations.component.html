@@ -1,6 +1,6 @@
 <form (ngSubmit)="submitEdit('edit')">
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12"  *ngIf="(!teamType && pilote) || teamType">
+        <div class="col-md-3 col-sm-6 col-xs-12"  *ngIf="(!teamType) || teamType">
             <div class="info-box">
                 <span class="info-box-text">Type</span>
                 <div *ngIf="!edit">
@@ -19,7 +19,7 @@
         </div>
 
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="(!displayedDate && pilote) || displayedDate">
+        <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="(!displayedDate) || displayedDate">
             <div class="info-box">
             <span class="info-box-text">En activité depuis</span>
             <span *ngIf="displayedDate && !edit" class="">{{displayedDate}} </span>
@@ -49,7 +49,7 @@
     </div>
 
     <br/>
-    <div class="row" *ngIf="(!referent && pilote) || referent">
+    <div class="row" *ngIf="(!referent) || referent">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Référent applicatif / technique</span>
@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="(!team.kiTeam.description && pilote) || team.kiTeam.description">
+    <div class="row" *ngIf="(!team.kiTeam.description) || team.kiTeam.description">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Description de l'activité</span>
@@ -99,8 +99,8 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-text">Compétences</span>
-                <div *ngIf="competences.length > 0">
-                    <span *ngFor="let competence of competences" class=""><ng-template [ngIf]="competence.principale">{{competence.libelle}} <br> </ng-template></span>
+                <div *ngIf="competences.length > 0" class="box-tag-competence">
+                    <span *ngFor="let competence of competences"><ng-template [ngIf]="competence.principale"><span class="etiquette_competence"><i class="fa fa-fw fa-tag"></i> {{competence.libelle}}</span></ng-template></span>
                 </div>
                 <div  *ngIf="!competences || competences.length == 0" >
                     <span class="">language et Frameworks non renseigné</span>

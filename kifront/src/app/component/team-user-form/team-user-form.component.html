@@ -15,7 +15,6 @@
             <div class="user-modal-img">
                 <img class="img-circle" [src]="avatarUrl" alt="{{model.ihniUser.info.prenom | slice:0:1 | uppercase}} {{model.ihniUser.info.nom | slice:0:1 | uppercase}}" *ngIf="avatarUrl">
                 <div class="img-circle" *ngIf="!avatarUrl">{{model.ihniUser.info.prenom | slice:0:1 | uppercase}} {{model.ihniUser.info.nom | slice:0:1 | uppercase}}</div>
-                <a href="{{urlSkillex}}{{model.ihniUser.info.id}}" class="users-list-name"> Ses compétences</a>
             </div>
           </div>
           <div class="col-sm-8">
@@ -44,11 +43,12 @@
               </div>
 
               <div class="modal-footer" *ngIf="auth.isOwner(selectedUser)">
-                  <button type="button" (click)="onClose()"  class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                  <button type="button" (click)="onClose()"  class="btn btn-default" data-dismiss="modal">Fermer</button>
                   <button type="submit" class="btn btn-primary">Sauvegarder</button>
                 </div>
             </form>
           </div>
+          <a href="{{urlSkillex}}{{model.ihniUser.info.id}}" class="users-list-name btn btn-primary pull-left" [class.mobileCompetence]="!auth.isOwner(selectedUser)">Voir ses compétences</a>
         </div>
       </div>
 

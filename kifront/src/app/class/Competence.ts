@@ -1,6 +1,9 @@
 export class Competence {
     id: number;
-    nom: string;
-    skillexId: number;
-    teamId: string;
+    volume: number;
+    note: number;
+    sId: number;
+    libelle: string;
+    principale: boolean;
+    eId: number;
 }

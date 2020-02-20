@@ -80,3 +80,13 @@ input{
 .input-group-addon{
     padding: 4px 12px;
 }
+.etiquette_competence{
+    margin: 0px 5px 0px 0px;
+    padding: 2px 8px 2px 5px;
+    background-color: #3c8dbc;
+    color: white;
+    border-radius: 5px;
+}
+.box-tag-competence{
+    margin-top: 5px;
+}
