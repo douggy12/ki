@@ -183,11 +183,10 @@ export class TeamInformationsComponent implements OnInit {
       this.teamService.getCompTeam(id).subscribe(
         c => {
           c.forEach(competence => {
-            if(competence.principale){
+            if(competence.cle){
               this.competences.push(competence);
             }
           });
-          // this.competences = competences;
         }
       )
     );

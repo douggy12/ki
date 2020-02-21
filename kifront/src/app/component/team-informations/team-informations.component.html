@@ -77,21 +77,19 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="info-team">
                 <span class="info-box-text">Description de l'activité</span>
-                <span class="">
-                    <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
-                    <span *ngIf="!team.kiTeam.description && !edit">Pas de description renseignée</span>
-                    <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
-                        <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
-                            description is required
-                        </div>
-                        <div class="error" *ngIf="model.get('description').hasError('minlength') && model.get('description').touched">
-                            Minimum of 2 characters
-                        </div>
-                        <div class="form-group">
-                            <quill-editor class="form-control" formControlName="description" id="team_desc_editor" name="editor1" [options] ="config"></quill-editor>
-                        </div>
-                    </form>
-                </span>
+                <span *ngIf="team.kiTeam.description && !edit" [innerHTML]="getDescription()"> </span>
+                <span *ngIf="!team.kiTeam.description && !edit">Pas de description renseignée</span>
+                <form [formGroup]="model" novalidate (ngSubmit)="onSubmit(model)" *ngIf="pilote && edit">
+                    <div class="error" *ngIf="model.get('description').hasError('required') && model.get('description').touched">
+                        description is required
+                    </div>
+                    <div class="error" *ngIf="model.get('description').hasError('minlength') && model.get('description').touched">
+                        Minimum of 2 characters
+                    </div>
+                    <div class="form-group">
+                        <quill-editor class="form-control" formControlName="description" id="team_desc_editor" name="editor1" [options] ="config"></quill-editor>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
