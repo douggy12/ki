@@ -31,10 +31,11 @@ import { Ng2ImgToolsModule } from 'ng2-img-tools/dist/src/ng2-img-tools.module';
 import { CookieService } from 'ngx-cookie-service';
 import { AgencesComponent } from './component/agences/agences.component';
 import { TeamInformationsComponent } from './component/team-informations/team-informations.component';
-import {NgbAlertModule, NgbModule, NgbPopoverModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap'; 
+import {NgbAlertModule, NgbModule, NgbPopoverModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {SafeHtmlPipe} from './pipes/sanitizeHtml.pipe';
 import {FormatDatePickerStartDate} from './pipes/formatDatePickerStartDate.pipe';
 import {NgbDateCustomParserFormatter} from './utils/NgbDateCustomParserFormatter';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -57,6 +58,7 @@ import {NgbDateCustomParserFormatter} from './utils/NgbDateCustomParserFormatter
     FormatDatePickerStartDate
 ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
