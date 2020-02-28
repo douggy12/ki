@@ -14,3 +14,4 @@ kifront/\.vscode/
 kifront/dist\.zip
 
 ki_back/nb-configuration.xml
+*.code-workspace
