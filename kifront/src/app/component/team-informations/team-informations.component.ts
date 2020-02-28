@@ -41,9 +41,9 @@ export class TeamInformationsComponent implements OnInit {
   formatedDatePickerStartDatee: number;
   competences : Competence[];
 
-  @ViewChild('teamTypeInput', {static: false}) teamTypeInput: ElementRef;
-  @ViewChild('searchReferent', {static: false}) searchReferent: ElementRef;
-  @ViewChild('datePickerInput', {static: false}) datePickerInput: ElementRef;
+  @ViewChild('teamTypeInput') teamTypeInput: ElementRef;
+  @ViewChild('searchReferent') searchReferent: ElementRef;
+  @ViewChild('datePickerInput') datePickerInput: ElementRef;
   
 
   config = {
