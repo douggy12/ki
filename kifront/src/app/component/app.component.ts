@@ -26,14 +26,14 @@ export class AppComponent implements OnInit {
     this.authService.authMe().subscribe(userX => {
       this.me = userX;
       this.context.setMe(userX);
-
-      // Appel de la Cube Header
-      const appNom = 'Ki';
-      const teamId = this.myTeam;
-      const qubAdress = environment.ihniUrl;
-      const kiAdress = environment.kibackUrl;
-      initQubHeader(appNom, qubAdress, kiAdress);
-
+      $(function(){
+        // Appel de la Cube Header
+        const appNom = 'Ki';
+        const teamId = this.myTeam;
+        const qubAdress = environment.ihniUrl;
+        const kiAdress = environment.kibackUrl;
+        initQubHeader(appNom, qubAdress, kiAdress);
+      }); 
     });
     this.myTeam = this.cookieService.get('ihni_context');
     this.context.setMyTeam(this.myTeam);
