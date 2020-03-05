@@ -155,7 +155,11 @@ export class TeamInformationsComponent implements OnInit {
       this.team.kiTeam.activitySince = this.previousDate;
       
       // Switch back to the previous referent
-      this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
+      if(this.previousReferent){
+        this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
+      }else{
+        this.referent = '';
+      }
     }
   }
 
