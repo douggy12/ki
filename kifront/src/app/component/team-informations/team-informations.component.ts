@@ -27,7 +27,7 @@ export class TeamInformationsComponent implements OnInit {
   users$: Observable<IhniUser[]>;
   private searchTerms = new Subject<string>();
   referent: string;
-  previousReferent: User;
+  previousReferent: string;
   nextReferent: IhniUser;
   pilote: boolean = false;
   edit: boolean = false;
@@ -83,7 +83,7 @@ export class TeamInformationsComponent implements OnInit {
     
     if (this.team.kiTeam.referentIhniId){
       this.userService.get(this.team.kiTeam.referentIhniId).subscribe(user => {
-        this.previousReferent = user;
+        this.previousReferent = user.ihniUser.info.prenom + " " + user.ihniUser.info.nom;
         this.referent = user.ihniUser.info.prenom + " " + user.ihniUser.info.nom;
       });
     }
@@ -156,7 +156,7 @@ export class TeamInformationsComponent implements OnInit {
       
       // Switch back to the previous referent
       if(this.previousReferent){
-        this.referent = this.previousReferent.ihniUser.info.prenom + " " + this.previousReferent.ihniUser.info.nom;
+        this.referent = this.previousReferent;
       }else{
         this.referent = '';
       }
